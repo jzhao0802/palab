@@ -8,5 +8,5 @@ It is intended to be a set of functions (and tests), wrapped up in an R package.
 There are several sections to to PA pipeline:
 * Transformation
 * Description statstics
+  * [Univarate Stats](../univariate_stats.md)
 * Modelling
-Each contain many subsections which will be described in a different
