@@ -1,0 +1,18 @@
+StatName,Description,ExampleOutput,Active
+NonMissing,Number of non-missing obsservations,28,Y
+NonMissingPerc,Percentage of non-missing observations,0.875,Y
+Missing,Number of missing observations,4,Y
+MissingPerc,Percentage of missing observations,0.125,Y
+Mean,Mean of the variable,136,Y
+SD,Standard deviation of the variable ,58.1,Y
+Min ,Minimum value of the variable ,52,Y
+Max,Maximum value of the variable ,245,Y
+P1,Value at the percentile 1 of the variable,53,Y
+P5,Value at the percentile 5 of the variable,75,Y
+P10,Value at the percentile 10 of the variable,98.1,Y
+P25,Value at the percentile 25 of the variable,112,Y
+P50,Value at the percentile 50 of the variable,125.5,Y
+P75,Value at the percentile 75 of the variable,150,Y
+P90 ,Value at the percentile 90 of the variable,230,Y
+P95,Value at the percentile 95 of the variable,240,Y
+P99,Value at the percentile 99 of the variable,245,Y

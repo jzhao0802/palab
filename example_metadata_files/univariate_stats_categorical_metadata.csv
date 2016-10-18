@@ -1,0 +1,8 @@
+StatName,Description,ExampleOutput,Active
+NonMissing,Number of non-missing obsservations,28,Y
+NonMissingPerc,Percentage of non-missing observations,0.875,Y
+Missing,Number of missing observations,4,Y
+MissingPerc,Percentage of missing observations,0.125,Y
+Levels,Number of categories or levels   ,4,Y
+Top5levels,Comma seperated list of top 5 categories containing the names of the levels and frequencies in brackets,"3 (14), 4(9), 5(5)",Y
+AllLevels,Comma seperated list of all categories containing the names of the levels and frequencies in brackets,"3 (14), 4(9), 5(5)",N

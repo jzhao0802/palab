@@ -1,0 +1,13 @@
+ColumnName,Type,MissingValue
+carID,O,
+mpg,N,
+cyl,C,
+disp,N,
+hp,N,-999
+drat,N,
+wt,N,
+qsec,N,
+vs,C,0
+am,C,
+gear,C,-99
+carb,C,
