@@ -8,4 +8,4 @@ It is intended to be a set of functions (and tests), wrapped up in an R package.
 * The PA pipeline should be an R library which can be modified and added to easily.
 * There should be a master script that has all functions included in the correct order, with default parameters.
 * Some test data must be created and available with the package so that someone can run the entire pipeline through with and get familiar with the functionality.
-* Each function must be able to run indepentanly, subject to the dependancies stated in the function. 
+* Each function must be able to run indepentanly, subject to the dependancies stated in the function.

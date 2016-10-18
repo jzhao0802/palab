@@ -20,6 +20,7 @@ None
   * Full path to directory containing the metadata files.
 * `data_metadata`
   * Name of the CSV containing the data metadata, in `metadata_location`.
+  * Example file is [here](../example_metadata_files/data_metadata.csv)
   * First column: _ColumnName_, the name of the column in the input dataset.
   * Second column: _Type_.
     This indicates what type the column in the input dataset is.
