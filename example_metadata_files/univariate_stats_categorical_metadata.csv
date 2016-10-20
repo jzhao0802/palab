@@ -1,5 +1,5 @@
 StatName,Description,ExampleOutput,Active
-NonMissing,Number of non-missing obsservations,28,Y
+NonMissing,Number of non-missing observations,28,Y
 NonMissingPerc,Percentage of non-missing observations,0.875,Y
 Missing,Number of missing observations,4,Y
 MissingPerc,Percentage of missing observations,0.125,Y

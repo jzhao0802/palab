@@ -29,10 +29,15 @@ None
     * "N" for a numerical variable
 
     Every entry in the data metadata must have a value in _Type_.
-  * Third column contains the value of that variable which denotes it is missing.
+  * Third column: _MissingValue_, contains the value of that variable which denotes it is missing.
     * For example, "-999" or "NULL" or "."
     * There can only be one value per column.
     * It need not be popuated for all columns.
+  * Fourth column: _Role_, denotes the role of the column in the dataset.
+    * There must be one and only one column with the role of "ID".
+    * There must be one and only one column with the role of "outcome".
+* `max_levels`
+  * The maximum number of levels that a variable labelled as categorical in the data_metadata can have.
 * `output_csv`
   * This can either by "Y" or "N".
 * `output_dir`
@@ -40,6 +45,13 @@ None
 
 ## Function
 * Read in the input dataset and metadata files.
+  * If the metadata file doesn't meet the criteria above, the function should error and warn the user of the problem. For example:
+    * If one of the columns has no value for _Type_, the function should output that to the user.
+    * If none of the columns has the role of "outcome", the function should output that to the user.
+* Check that variables are compatable with their type.
+  * A categorical variable must not have more than `max_levels` different values.
+  * A numerical variable must not have any character values.
+  * If any mismatch is found, the function should error and the warn the user of the problem.
 * Rename all columns by prefixing them with the type specified in the data metadata.
   * E.g. patientID -> O_patientID
   * If a column is in the input dataset but not in the data metadata, it should NOT be included in the transformed dataset.
@@ -72,6 +84,7 @@ read_and_transform(
   input_dataset_location = <location of test dataset>,
   input_dataset = <name of test dataset> ,
   data_metadata = <name of test data metadata> ,
+  max_levels = 20,
   output_csv = "Y"   ,
   output_dir = <test output directory>
   )  

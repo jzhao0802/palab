@@ -1,7 +1,7 @@
 # Univarate Statistics
 
 ## Purpose
-This function aims to produce a summary of each variable in the input dataset. It will help the user understand the data better and spot any issues with the variables.  
+This function will produce a summary of each variable in the input dataset. It will help the user understand the data better and spot any issues with the variables.  
 
 ## Dependancies
 `read_and_transform`
@@ -29,20 +29,17 @@ This function aims to produce a summary of each variable in the input dataset. I
   * File structure is same as `univariate_stats_categorical_metadata`.
 
 ## Function
-* Read in the metadata files
+* Read in the metadata files and alert the user of any unrecognised statistics.
 * For columns prefixed with "O_", no stats should be calculated.
 * For numerical variables , i.e. those prefixed with "N_":
-  * Calculate all the stats with Active = "Y" in the metdata files
+  * Calculate all the stats with Active = "Y" in `univariate_stats_numerical_metadata.csv`.
 * For categorical variables, i.e. those prefixed with "C_":
-  * Calculate all the stats with Active = "Y" in the metdata files
-  * Produce a full frequency table containing all levels for all variables. The table should have the following fields:
-    * _VariableName_: Name of the categorical variable.
+  * Calculate all the stats with Active = "Y" in `univariate_stats_categorical_metadata`.
+  * Produce a full frequency table containing all levels for all variables. The table should have the following columns:
+    * _Variable_: Name of the categorical variable.
     * _Level_: The value of the level in that variable.
-    * _CountinLevel_: Count of observations which have this variable equal to this level.
-    * _PercinLevel_: Percentage of observations which have this variable equal to this level.
-
-    The user can filter this table by variable to see just the freqency distribution of one variable.
-* If stats can not be calculated for a particular variable because it was wrongly labelled in the `data_metadata` file, the function should error, outputting the names of the wrongly labelled variables and their incorrect type.
+    * _Count_: Count of observations which have this variable equal to this level.
+    * _Percentage_: Percentage of observations which have this variable equal to this level.
 
 ## Output
 All CSVs below should be output to the `output_dir`.
@@ -50,7 +47,7 @@ All CSVs below should be output to the `output_dir`.
   * CSV of the stats in `univariate_stats_numerical_metadata` calculated for numerical variables in the data.
 * univariate_stats_categorical.csv
   * CSV of the stats in `univariate_stats_categorical_metadata` calculated for categorical variables in the data.
-* frequency_table_categorical.csv
+* univariate_freq_categorical.csv
   * CSV of the full frequency table.
 
 ## Defaults
