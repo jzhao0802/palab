@@ -76,10 +76,12 @@ All CSVs below should be output to the `output_dir`, overwriting a previous vers
 ```
 read_and_transform(
   input_dataset_location = <location of test dataset>,
-  input_dataset = <name of test dataset> ,
-  data_metadata = <name of test data metadata> ,
+  input_dataset = <name of test dataset>,
+  metadata_location = <location of test metadata>,
+  data_metadata = <name of test data metadata>,
+  missing_values = ""
   max_levels = 100,
-  output_csv = "Y"   ,
+  output_csv = "Y",
   output_dir = <test output directory>
   )  
 ```

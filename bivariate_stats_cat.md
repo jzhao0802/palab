@@ -21,14 +21,14 @@ This function will produce a summary of how each variable varies with a _categor
 * Check that the specified outcome variable is actually
 * For columns prefixed with "O_", no stats should be calculated.
 * Each statistic mentioned below ends in "_\__X_". This means that it should be calculated for each level of the outcome variable, and the name of the stat should be suffixed with that level value. E.g. if the outcome variable has 2 levels, "1" and "0", the stat _NonMissing__X_ should have 2 columns in the output CSV, "NumMissing_1" and "NumMissing_0", calculated for all observations where the outcome variable has level 1 and 0 respectively.
-* For categorical variables, produce `bivarate_stats_categorical.csv` with following columns:
+* For categorical variables (except the outcome variable itself), produce `bivarate_stats_categorical.csv` with following columns:
   * _Variable_: Name of the categorical variable.
   * _NonMissing__X_: Number of non-missing observations when outcome level is X.
   * _NonMissingPerc__X_: Percentage of non-missing observations when outcome level is X.
   * _Missing__X_: Number of missing observations when outcome level is X.
   * _MissingPerc__X_: Percentage of missing observations when outcome level is X.
   * _Levels__X_: Number of categories or levels when outcome level is X.
-* For categorical variables, produce `bivariate_freq_categorical.csv`. This is a full frequency table containing all levels for all variables with the following columns:
+* For categorical variables (except the outcome variable itself), produce `bivariate_freq_categorical.csv`. This is a full frequency table containing all levels for all variables with the following columns:
   * _Variable_: Name of the categorical variable.
   * _Level_: The value of the level in that variable.
   * _Count__X_: Count of observations which have this variable equal to this level when outcome level is X.
@@ -64,6 +64,7 @@ All CSVs below should be output to the `output_dir`, overwriting a previous vers
 bivariate_stats(
   transformed_data = transformed_data,
   output_dir = <test output directory>,
+  outcome = gear
   )  
 ```
 ## Tests
