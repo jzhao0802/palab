@@ -1,7 +1,7 @@
 # Read and transform data
 
 ## Purpose
-This function will read in the original data from CSV input and transform it such that it is ready for further analysis. It will rename columns and populate missing data.
+This function will read in the original data from CSV input and transform it such that it is ready for further analysis. It will rename columns and standardise missing data.
 
 ## Name
 `read_and_transform`
@@ -24,59 +24,53 @@ None
   * First column: _ColumnName_, the name of the column in the input dataset.
   * Second column: _Type_.
     This indicates what type the column in the input dataset is.
-    * "O" for an attribute
-    * "C" for a categorical variable
-    * "N" for a numerical variable
-
+    * "o" for an attribute
+    * "c" for a categorical variable
+    * "n" for a numerical variable
+    * "k" for the column which is the primary key
     Every entry in the data metadata must have a value in _Type_.
-  * Third column: _MissingValue_, contains the value of that variable which denotes it is missing.
-    * For example, "-999" or "NULL" or "."
-    * There can only be one value per column.
-    * It need not be popuated for all columns.
-  * Fourth column: _Role_, denotes the role of the column in the dataset.
-    * There must be one and only one column with the role of "ID".
-    * There must be one and only one column with the role of "outcome".
+* `missing_values`
+  * A comma delimited string of missing values for all columns.
+  * e.g. "-999, 0, -99"
 * `max_levels`
-  * The maximum number of levels that a variable labelled as categorical in the data_metadata can have.
-* `output_csv`
-  * This can either by "Y" or "N".
+  * The maximum number of levels that a variable labelled as categorical in the data_metadata should have.
+* `output_transformed`
+  * This can either be "Y" or "N".
 * `output_dir`
   * The directory into which all outputs will be output to.
 
 ## Function
 * Read in the input dataset and metadata files.
-  * If the metadata file doesn't meet the criteria above, the function should error and warn the user of the problem. For example:
-    * If one of the columns has no value for _Type_, the function should output that to the user.
-    * If none of the columns has the role of "outcome", the function should output that to the user.
+* Produce a dataset called `transformed_data`:
+  * Rename all columns by prefixing them with the type specified in the data metadata.
+    * E.g. patientID -> o_patientID
+    * If a column is in the input dataset but not in the data metadata, it should NOT be included in the transformed dataset.
+    * If a column is in the data metadata but not in the input dataset, it should NOT added to the transformed dataset.
+  * Transform the missing values for each column
+      * Look for any of the values in `missing_values` in all columns, and replace with the R standard for missing, i.e. "NULL".
 * Check that variables are compatable with their type.
-  * A categorical variable must not have more than `max_levels` different values.
-  * A numerical variable must not have any character values.
-  * If any mismatch is found, the function should error and the warn the user of the problem.
-* Rename all columns by prefixing them with the type specified in the data metadata.
-  * E.g. patientID -> O_patientID
-  * If a column is in the input dataset but not in the data metadata, it should NOT be included in the transformed dataset.
-  * If a variable is in the data metadata but not in the input dataset, it should NOT added to the transformed dataset.
-* Transform the missing values for each column
-    * If the missing value for that column (as specified in the data metadata) is seen in that column, it must be replaced with the R standard for missing, i.e. "NULL".
-    * If the data metadata has no missing value specified, it shold be assumed that a blank, i.e. "" indicates missing.
-* Produce a summary comparing the original and transformed dataset The report should contain:
-  * Number of observations in the original and transformed dataset.
-  * Number of each type of column for the original and transformed dataset.
-    * E.g. Number of categorical variables, number of attributes
-  * Names of columns dropped from the original dataset.
-  * Names of columns in the data metadata but not in the input dataset.
+  * If a variable is classed as numerical but has character values in it, the function should error.
+  * If a variable is classed as categorical but has more than `max_levels` different values, the function should output a warning to the user.
+* Produce a `<input_dataset>_report.csv` of the different tables involved, with the following information:
+  * Number of observations in original data
+  * Number of observations in transformed data
+  * Number of columns in original data
+  * Number of columns in transformed data
+  * Number of categorical columns in transformed data
+  * Number of numerical columns in transformed data  
+  * Number of other columns in transformed data
+  * Columns in metadata but not in input data
+  * Columns in input data but not in metadata
 
 ## Output
-All CSVs below should be output to the `output_dir`.
-* `transformed_data`
-  * R dataset containing the transformed dataset.
-* input_dataset\_trans.csv
-  * If `output_csv` = "Y", output a CSV of the transformed dataset.
+All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
+* transformed_data.rds
+  * RDS file containing the transformed dataset.
+* <input_dataset>\_trans.csv
+  * If `output_csv` = "Y", output a CSV of `transformed_data`.
   * Same name as the input dataset, but with a suffix of "\_trans".
-* input_dataset\_summary.csv
+* <input_dataset>\_report.csv
   * Same name as the input dataset but with a suffix of "\_report".
-  * This is always output.
-  * If it already exists, it should overwrite the previous summary CSV.
 
 ## Defaults
 ```
@@ -84,7 +78,7 @@ read_and_transform(
   input_dataset_location = <location of test dataset>,
   input_dataset = <name of test dataset> ,
   data_metadata = <name of test data metadata> ,
-  max_levels = 20,
+  max_levels = 100,
   output_csv = "Y"   ,
   output_dir = <test output directory>
   )  

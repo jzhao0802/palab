@@ -32,7 +32,7 @@ All CSVs below should be output to the `output_dir`.
 
 ## Defaults
 ```
-univariate_stats(
+correlational(
   transformed_data = transformed_data,
   output_dir = <test output directory>,
   )  

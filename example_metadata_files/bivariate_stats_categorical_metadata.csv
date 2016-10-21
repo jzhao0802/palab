@@ -1,7 +1,0 @@
-StatName,Description,ExampleOutput,Active
-NonMissing_X,Number of non-missing observations when outcome variable is level X,28,Y
-NonMissingPerc_X,Percentage of non-missing observations when outcome variable is level X,0.875,Y
-Missing_X,Number of missing observations when outcome variable is level X,4,Y
-MissingPerc_X,Percentage of missing observations when outcome variable is level X,0.125,Y
-Levels_X,Number of categories or levels when outcome variable is level X,4,Y
-Top5levels_X,"Comma seperated list of top 5 categories containing the names of the levels and frequencies in brackets, when outcome variable is level X","3 (14), 4(9), 5(5)",Y

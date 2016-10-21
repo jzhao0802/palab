@@ -1,3 +1,3 @@
-Variable,NonMissing_1,NonMissingPerc_1,Missing_1,MissingPerc_1,Levels_1,NonMissing_0,NonMissingPerc_0,Missing_0,MissingPerc_0,Levels_0
-gear,28,0.875,4,0.125,4,28,0.875,4,0.125,4
-example,16,0.5,15,0.5,10,16,0.5,15,0.5,10
+Variable,NonMissing_1,NonMissing_0,NonMissingPerc_1,NonMissingPerc_0,Missing_1,Missing_0,MissingPerc_1,MissingPerc_0,Levels_1,Levels_0
+gear,28,28,0.875,0.875,4,4,0.125,0.125,4,4
+example,16,16,0.5,0.5,15,15,0.5,0.5,10,10

@@ -14,50 +14,52 @@ This function will produce a summary of each variable in the input dataset. It w
   * R dataset output by `read_and_transform`
 * `output_dir`
   * The directory into which all outputs will be output to.
-* `metadata_location`
-  * Full path to directory containing the metadata files.
-* `univariate_stats_categorical_metadata`
-  * Name of a CSV file containing information on which statistics to calculate for categorical variables, in `metadata_location`.
-  * Example file is [here](../example_metadata_files/univariate_stats_categorical_metadata.csv)
-  * First column: _StatName_, the name of column in the output of the univariate statstics.
-  * Second column: _Active_, either "Y" or "N".
-  * Third column: _Description_, a description of the statistic to help the user to decide if they want it active.
-  * Fourth column: _ExampleOutput_, example output from the statistic, to help the user decide if they want it active.
-* `univariate_stats_numerical_metadata`
-  * Name of a CSV file containing information on which statistics to calculate for numerical variables, in `metadata_location`.
-  * Example file is [here](../example_metadata_files/univariate_stats_numerical_metadata.csv)
-  * File structure is same as `univariate_stats_categorical_metadata`.
 
 ## Function
-* Read in the metadata files and alert the user of any unrecognised statistics.
-* For columns prefixed with "O_", no stats should be calculated.
-* For numerical variables , i.e. those prefixed with "N_":
-  * Calculate all the stats with Active = "Y" in `univariate_stats_numerical_metadata.csv`.
-* For categorical variables, i.e. those prefixed with "C_":
-  * Calculate all the stats with Active = "Y" in `univariate_stats_categorical_metadata`.
-  * Produce a full frequency table containing all levels for all variables. The table should have the following columns:
-    * _Variable_: Name of the categorical variable.
-    * _Level_: The value of the level in that variable.
-    * _Count_: Count of observations which have this variable equal to this level.
-    * _Percentage_: Percentage of observations which have this variable equal to this level.
+* For columns prefixed with "o_", no stats should be calculated.
+* For categorical variables, produce `univarate_stats_categorical.csv` with following columns:
+  * _Variable_: Name of the categorical variable.
+  * _NonMissing_: Number of non-missing observations.
+  * _NonMissingPerc_: Percentage of non-missing observations.
+  * _Missing_: Number of missing observations.
+  * _MissingPerc_: Percentage of missing observations.
+  * _Levels_: Number of categories or levels.
+* For categorical variables, produce `univariate_freq_categorical.csv`. This is a full frequency table containing all levels for all variables with the following columns:
+  * _Variable_: Name of the categorical variable.
+  * _Level_: The value of the level in that variable.
+  * _Count_: Count of observations which have this variable equal to this level.
+  * _Percentage_: Percentage of observations which have this variable equal to this level.
+* For numerical variables, produce `univarate_stats_numerical.csv` with following columns:
+  * _Variable_: Name of the categorical variable.
+  * _NonMissing_: Number of non-missing obsservations.
+  * _NonMissingPerc_: Percentage of non-missing observations.
+  * _Missing_: Number of missing observations.
+  * _MissingPerc_: Percentage of missing observations.
+  * _Mean_: Mean of the variable.
+  * _SD_: Standard deviation of the variable.
+  * _Min_: Minimum value of the variable.
+  * _Max_: Maximum value of the variable.
+  * _P1_: Value at the percentile 1 of the variable.
+  * _P5_: Value at the percentile 5 of the variable.
+  * _P10_: Value at the percentile 10 of the variable.
+  * _P25_: Value at the percentile 25 of the variable.
+  * _P50_: Value at the percentile 50 of the variable.
+  * _P75_: Value at the percentile 75 of the variable.
+  * _P90_: Value at the percentile 90 of the variable.
+  * _P95_: Value at the percentile 95 of the variable.
+  * _P99_: Value at the percentile 99 of the variable.
 
 ## Output
-All CSVs below should be output to the `output_dir`.
+All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary. 
 * univariate_stats_numerical.csv
-  * CSV of the stats in `univariate_stats_numerical_metadata` calculated for numerical variables in the data.
 * univariate_stats_categorical.csv
-  * CSV of the stats in `univariate_stats_categorical_metadata` calculated for categorical variables in the data.
 * univariate_freq_categorical.csv
-  * CSV of the full frequency table.
 
 ## Defaults
 ```
 univariate_stats(
   transformed_data = transformed_data,
   output_dir = <test output directory>,
-  metadata_location = <location of test metadata>,
-  univariate_stats_categorical_metadata = univariate_stats_categorical_metadata.csv,
-  univariate_stats_numerical_metadata = univariate_stats_numerical_metadata.csv,
   )  
 ```
 ## Tests
