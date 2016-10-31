@@ -19,7 +19,8 @@ This function will produce a summary of how each variable varies with a _numeric
   * The variable to use as an outcome.
 
 ## Function
-* Check that the specified outcome variable has more than 2 unique values. `<some better check here?> `
+* Output a warning if the outcome variable has less than 6 unique values.
+  * This is because the statistics in this function will not be meaningful and it would be better to run `bivar_stats_y_cat`.
 * For columns prefixed with "o_", no stats should be calculated.
 * For categorical variables produce `bivar_stats_y_num_x_cat.csv` where each categorical variable spans multiple rows and each row within the variable group represents a level of the categorical variable. The output file will have the following columns:
   * _Variable_: Name of the categorical variable.
@@ -39,9 +40,10 @@ This function will produce a summary of how each variable varies with a _numeric
   * _Max outcome_ : Maximum value of the outcome variable when categorical variable level is X.
 
 
-* For categorical variables produce stats on the relative risk. In this case, the first level of the categorical will be assumed to the baseline level and all other levels (including the first level) will be considered relative to this baseline. Each relative risk level below ends in "_\__X_". This means that it should be calculated for each level of the outcome variable, and the name of the stat should be suffixed with that level value. Note that for the relative risk at level 1 - the value will always be 1 as it is computed as the mean of the outcome variable with the categorical variables is level 1 divided by itself. The output should be saved in `RR_stats_y_num_x_cat.csv` where each row is a categorical variable with following columns:
-    * _Variable_: Name of categorical variable
-    * _Relative risk level X_: mean of the outcome variable when the categorical variable is level X divided by the the mean of the outcome variable for the first level of the categorical variable.
+* For categorical variables produce stats on the relative risk. In this case, the first level of the categorical will be assumed to the baseline level and all other levels (including the first level) will be considered relative to this baseline. Each relative risk level below ends in "_X_". This means that it should be calculated for each level of the outcome variable, and the name of the stat should be suffixed with that level value. Note that for the relative risk at level 1 - the value will always be 1 as it is computed as the mean of the outcome variable with the categorical variables is level 1 divided by itself. The output should be saved in `RR_stats_y_num_x_cat.csv` where each row is a categorical variable with following columns:
+  * _Variable_: Name of the categorical variable.
+  * _Level_: The value of the level in that variable.
+  * _Relative risk level X_: mean of the outcome variable when the categorical variable is level X divided by the the mean of the outcome variable for the first level of the categorical variable.
 
 * For numerical variables produce the following statistics where deciles are computed by mass (as opposed to by range) in `bivar_stats_y_num_x_num.csv` where each row represents a single numerical variable with following columns:
   * _Variable_: Name of the numerical variable.
@@ -59,6 +61,7 @@ This function will produce a summary of how each variable varies with a _numeric
   * _Mean outcome in 8th decile_: the mean of the outcome variable for the observations where the numerical variable is >= the value of the 7th decile of the numerical variable  and < the value of the 8th decile of the numerical variable
   * _Mean outcome in 9th decile_: the mean of the outcome variable for the observations where the numerical variable is >= the value of the 8th decile of the numerical variable  and < the value of the 9th decile of the numerical variable
   * _Mean outcome in 10th decile_:  the mean of the outcome variable for the observations where the numerical variable is >= the value of the 9th decile of the numerical variable  and <= the maximum value numerical variable
+
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
 * bivar_stats_y_num_x_cat.csv
