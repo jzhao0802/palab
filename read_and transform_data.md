@@ -65,7 +65,7 @@ None
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
 * transformed_data.rds
-  * RDS file containing the transformed dataset.
+  * RDS file of `transformed_data`.
 * <input_dataset>\_trans.csv
   * If `output_csv` = "Y", output a CSV of `transformed_data`.
   * Same name as the input dataset, but with a suffix of "\_trans".
@@ -78,10 +78,10 @@ read_and_transform(
   input_dataset_location = <location of test dataset>,
   input_dataset = <name of test dataset>,
   metadata_location = <location of test metadata>,
-  data_metadata = <name of test data metadata>,
+  data_metadata = data_metadata.csv,
   missing_values = ""
   max_levels = 100,
-  output_csv = "Y",
+  output_csv = "N",
   output_dir = <test output directory>
   )  
 ```
