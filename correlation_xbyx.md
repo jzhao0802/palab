@@ -7,7 +7,7 @@ This function will alert the user to any correlations between the variables.
 `read_and_transform`
 
 ## Name
-`correlational`
+`correlation_xbyx`
 
 ## Inputs
 * `transformed_data`
@@ -27,12 +27,12 @@ This function will alert the user to any correlations between the variables.
 
 ## Output
 All CSVs below should be output to the `output_dir`.
-* correlational_analysis.csv
+* The csv file name should be the same as the input dataset but with prefix `correlation_xbyx_` (e.g. correlation_xbyx_diabetes_cohort.csv where diabetetes_cohort is the name of the input dataset).
   * This is the table described in the function section.
 
 ## Defaults
 ```
-correlational(
+correlation_xbyx(
   transformed_data = transformed_data,
   output_dir = <test output directory>,
   )  
