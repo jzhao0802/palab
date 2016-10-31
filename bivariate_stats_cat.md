@@ -17,8 +17,9 @@ This function will produce a summary of how each variable varies with a _categor
   * The variable to use as an outcome.
 
 ## Function
-* Check that the specified outcome variable is actually
-* For columns prefixed with "O_", no stats should be calculated.
+* Output a warning if the outcome variable has more than 5 levels.
+  * More than 5 levels will make the resulting spreadsheets very difficult to digest, so the user needs to be warned about this.
+* For columns prefixed with "o_", no stats should be calculated.
 * Each statistic mentioned below ends in "_\__X_". This means that it should be calculated for each level of the outcome variable, and the name of the stat should be suffixed with that level value. E.g. if the outcome variable has 2 levels, "1" and "0", the stat _NonMissing__X_ should have 2 columns in the output CSV, "NumMissing_1" and "NumMissing_0", calculated for all observations where the outcome variable has level 1 and 0 respectively.
 * For categorical variables (except the outcome variable itself), produce `bivarate_stats_categorical.csv` with following columns:
   * _Variable_: Name of the categorical variable.
