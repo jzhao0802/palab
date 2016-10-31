@@ -34,7 +34,7 @@ None
   * e.g. "-999, 0, -99"
 * `max_levels`
   * The maximum number of levels that a variable labelled as categorical in the data_metadata should have.
-* `output_transformed`
+* `output_csv`
   * This can either be "Y" or "N".
 * `output_dir`
   * The directory into which all outputs will be output to.
