@@ -1,14 +1,13 @@
 # Bivariate Statistics for categerical outcomes
 
 ## Purpose
-This function will produce a summary of how each variable varies with a _categorical_ outcome variable. This will help the user understand which variables are important for predicting the output and spot any issues with the variables.
+This function will produce a summary of how each variable varies with a _categorical_ outcome variable. This will help the user to flag associations between the independent variables and outcome variable that may not be compatible with the subsequent modelling approach.
 
 ## Dependancies
 `read_and_transform`
 
 ## Name
-`bivariate_stats`
-
+`bivar_stats_y_cat`
 ## Inputs
 * `transformed_data`
   * R dataset output by `read_and_transform`
@@ -31,7 +30,7 @@ This function will produce a summary of how each variable varies with a _categor
 * For categorical variables (except the outcome variable itself), produce `bivariate_freq_categorical.csv`. This is a full frequency table containing all levels for all variables with the following columns:
   * _Variable_: Name of the categorical variable.
   * _Level_: The value of the level in that variable.
-  * _Count__X_: Count of observations which have this variable equal to this level when outcome level is X.
+  * _Count_X_: Count of observations which have this variable equal to this level when outcome level is X.
   * _Percentage__X_: Percentage of observations which have this variable equal to this level when outcome level is X.
 * For numerical variables, produce `bivarate_stats_numerical.csv` with following columns:
   * _Variable_: Name of the categorical variable.
