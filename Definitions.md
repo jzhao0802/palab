@@ -1,7 +1,7 @@
 # Definitions
 
 ## Commonly used terms
-* Input dataset
+* Main dataset 
   * This is the data that is to be analysed. It is sometimes called the design matrix.
 * Observation
   * A row in the input dataset.
