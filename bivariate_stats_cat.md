@@ -8,6 +8,7 @@ This function will produce a summary of how each variable varies with a _categor
 
 ## Name
 `bivar_stats_y_cat`
+
 ## Inputs
 * `transformed_data`
   * R dataset output by `read_and_transform`
@@ -19,21 +20,20 @@ This function will produce a summary of how each variable varies with a _categor
 ## Function
 * Output a warning if the outcome variable has more than 5 levels.
   * More than 5 levels will make the resulting spreadsheets very difficult to digest, so the user needs to be warned about this.
+* If the outcome variable is missing for any observations, they should be excluded from any further analysis.
+  * A warning should be output saying that the size of the dataset has gone from <before> observations to <after> observations
 * For columns prefixed with "o_", no stats should be calculated.
-* Each statistic mentioned below ends in "_\__X_". This means that it should be calculated for each level of the outcome variable, and the name of the stat should be suffixed with that level value. E.g. if the outcome variable has 2 levels, "1" and "0", the stat _NonMissing__X_ should have 2 columns in the output CSV, "NumMissing_1" and "NumMissing_0", calculated for all observations where the outcome variable has level 1 and 0 respectively.
-* For categorical variables (except the outcome variable itself), produce `bivarate_stats_categorical.csv` with following columns:
-  * _Variable_: Name of the categorical variable.
-  * _NonMissing__X_: Number of non-missing observations when outcome level is X.
-  * _NonMissingPerc__X_: Percentage of non-missing observations when outcome level is X.
-  * _Missing__X_: Number of missing observations when outcome level is X.
-  * _MissingPerc__X_: Percentage of missing observations when outcome level is X.
-  * _Levels__X_: Number of categories or levels when outcome level is X.
-* For categorical variables (except the outcome variable itself), produce `bivariate_freq_categorical.csv`. This is a full frequency table containing all levels for all variables with the following columns:
+* Each statistic mentioned below ends in "_\__X_". This means that it should be calculated for each level of the outcome variable, and the name of the stat should be suffixed with that level value. E.g. if the outcome variable has 2 levels, "1" and "0", the stat _Count__X_ should have 2 columns in the output CSV, "Count_1" and "Count_0", calculated for all observations where the outcome variable has level 1 and 0 respectively.
+* For categorical variables (except the outcome variable itself), produce `bivar_stats_y_cat_x_cat.csv`. This is a full frequency table containing all levels for all variables with the following columns:
   * _Variable_: Name of the categorical variable.
   * _Level_: The value of the level in that variable.
-  * _Count_X_: Count of observations which have this variable equal to this level when outcome level is X.
+    * Each variable should the following 2 special levels:
+      * First is a level called "non_missing". This row will contain aggregated stats on all the non-missing levels in that variable.
+      * Second is a level called "missing". This row will contains stats on all the missing observations for that variable.
+  * _Count__X_: Count of observations which have this variable equal to this level when outcome level is X.
   * _Percentage__X_: Percentage of observations which have this variable equal to this level when outcome level is X.
-* For numerical variables, produce `bivarate_stats_numerical.csv` with following columns:
+    * _Percentage__X_ = _Count__X_ / all observations where level is X.
+* For numerical variables, produce `bivar_stats_y_cat_x_num.csv` with following columns:
   * _Variable_: Name of the categorical variable.
   * _NonMissing__X_: Number of non-missing obsservations when outcome level is X.
   * _NonMissingPerc__X_: Percentage of non-missing observations when outcome level is X.
@@ -55,9 +55,8 @@ This function will produce a summary of how each variable varies with a _categor
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
-* bivariate_stats_numerical.csv
-* bivariate_stats_categorical.csv
-* bivariate_freq_categorical.csv
+* bivar_stats_y_cat_x_cat.csv
+* bivar_stats_y_cat_x_num.csv
 
 ## Defaults
 ```
