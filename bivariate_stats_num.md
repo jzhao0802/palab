@@ -39,11 +39,12 @@ This function will produce a summary of how each variable varies with a _numeric
   * _P99 outcome_: Value at the percentile 99 of the outcome variable when categorical variable level is X.
   * _Max outcome_ : Maximum value of the outcome variable when categorical variable level is X.
 
-
-* For categorical variables produce stats on the relative risk. In this case, the first level of the categorical will be assumed to the baseline level and all other levels (including the first level) will be considered relative to this baseline. Each relative risk level below ends in "_X_". This means that it should be calculated for each level of the outcome variable, and the name of the stat should be suffixed with that level value. Note that for the relative risk at level 1 - the value will always be 1 as it is computed as the mean of the outcome variable with the categorical variables is level 1 divided by itself. The output should be saved in `RR_stats_y_num_x_cat.csv` where each row is a categorical variable with following columns:
+* For categorical variables produce `RR_stats_y_num_x_cat.csv` which contains stats on the relative risk. The output should have the following columns:
   * _Variable_: Name of the categorical variable.
   * _Level_: The value of the level in that variable.
-  * _Relative risk level X_: mean of the outcome variable when the categorical variable is level X divided by the the mean of the outcome variable for the first level of the categorical variable.
+  * _Relative risk_: This is the mean of the outcome variable when the categorical variable is equal to this level, divided by the mean of the outcome variable for when the categorical variable is equal to the _1st_ level.
+    * The _1st_ level is defined as the first one when all level values are sorted alphabetically, or numerically by the first word in the level value. The first word in the following level value: "20 - 40", is "20".
+    * The _1st_ level will be assumed to the baseline level and all other levels (including the first level) will be considered relative to this baseline.
 
 * For numerical variables produce the following statistics where deciles are computed by mass (as opposed to by range) in `bivar_stats_y_num_x_num.csv` where each row represents a single numerical variable with following columns:
   * _Variable_: Name of the numerical variable.

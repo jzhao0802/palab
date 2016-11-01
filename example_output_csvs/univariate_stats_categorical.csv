@@ -1,3 +1,15 @@
-Variable,NonMissing,NonMissingPerc,Missing,MissingPerc,Levels
-gear,28,0.875,4,0.125,4
-example,16,0.5,15,0.5,10
+Variable,NumLevels,Level,Count,Percentage
+gear,3,non_missing,28,0.875
+gear,3,missing ,4,0.125
+gear,3,3,14,0.5
+gear,3,4,9,0.321428571
+gear,3,5,5,0.178571429
+example,7,non_missing,16,0.5
+example,7,missing ,16,0.5
+example,7,blue,9,0.5625
+example,7,white,2,0.125
+example,7,red,1,0.0625
+example,7,purple,1,0.0625
+example,7,green,1,0.0625
+example,7,yellow,1,0.0625
+example,7,orange,1,0.0625
