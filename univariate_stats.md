@@ -17,16 +17,18 @@ This function will produce a summary of each variable in the input dataset. It w
 
 ## Function
 * For columns prefixed with "o_", no stats should be calculated.
-* For categorical variables, produce `univariate_stats_categorical.csv`. This is a full frequency table containing all levels for all variables with the following columns:
+* For categorical variables, produce `univar_stats_x_cat.csv`. This is a full frequency table containing all levels for all variables with the following columns:
   * _Variable_: Name of the categorical variable.
-  * _Level_: The value of the level in that variable
-    * Each variable should have at least 2 special levels.
-      * First is a level called "NonMissing". This row will contain aggregated stats on all the non-missing levels in that variable.
-      * Second is a level called "Missing". This row will contains stats on all the missing observations for that variable.
   * _NumLevels_: This is the number of different levels in that variable. This value will be repeated for all rows with that variable.
+  * _Level_: The value of the level in that variable
+    * Each variable should the following 2 special levels:
+      * First is a level called "non_missing". This row will contain aggregated stats on all the non-missing levels in that variable.
+      * Second is a level called "missing". This row will contains stats on all the missing observations for that variable.
   * _Count_: Count of observations which have this variable equal to this level.
   * _Percentage_: Percentage of observations which have this variable equal to this level.
-* For numerical variables, produce `univarate_stats_numerical.csv` with following columns:
+    * For the special levels, _Percentage_ = _Count_ / Number of observations
+    * For the normal levels, _Percetnage_ = _Count_ / Number of non_missing of that variable
+* For numerical variables, produce `univar_stats_x_num.csv` with following columns:
   * _Variable_: Name of the categorical variable.
   * _NonMissing_: Number of non-missing obsservations.
   * _NonMissingPerc_: Percentage of non-missing observations.
@@ -48,8 +50,8 @@ This function will produce a summary of each variable in the input dataset. It w
   * _<TO DO:DECILES>_
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
-* univariate_stats_numerical.csv
-* univariate_stats_categorical.csv
+* univar_stats_x_cat.csv
+* univar_stats_x_num.csv
 
 ## Defaults
 ```
