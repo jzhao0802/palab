@@ -6,10 +6,10 @@ This function will read in the original data from CSV input and transform it suc
 ## Name
 `read_and_transform`
 
-## Dependancies
+## Internal Dependencies
 None
 
-## Inputs
+## Parameters
 * `input_dataset_location`
   * Full path to directory containing the input dataset.
 * `input_dataset`
@@ -38,6 +38,8 @@ None
   * This can either be "Y" or "N".
 * `output_dir`
   * The directory into which all outputs will be output to.
+* `outcome`
+  * The name of variable to use as an outcome.
 
 ## Function
 * Read in the input dataset and metadata files.
@@ -51,6 +53,8 @@ None
 * Check that variables are compatable with their type.
   * If a variable is classed as numerical but has character values in it, the function should error.
   * If a variable is classed as categorical but has more than `max_levels` different values, the function should output a warning to the user.
+* If the outcome variable is missing for any observations, they should be excluded from any further analysis.
+  * A warning should be output saying that the size of the dataset has gone from <before> observations to <after> observations
 * Produce a `<input_dataset>_report.csv` of the different tables involved, with the following information:
   * Number of observations in original data
   * Number of observations in transformed data
