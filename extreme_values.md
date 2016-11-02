@@ -48,8 +48,8 @@ This function will replace extreme values in continuous variables with either a 
 All CSVs below should be output to the output_dir, overwriting a previous version if necessary.
 
 * `ex_transformed_data.rds`
-  * RDS file of `exu_transformed_data`.
-* If `output_csv` = "Y", output a csv of `ex_transformed_data`
+  * RDS file of `ex_transformed_data`.
+* If `output_csv` = "True", output a csv of `ex_transformed_data`
   * This file should have the same name as the input dataset with a prefix of of "ex\_".
 * `ex_val_thrsh_output.csv`
   * This file logs the thresholds that were used to cap the numerical variables.
@@ -58,7 +58,7 @@ All CSVs below should be output to the output_dir, overwriting a previous versio
 extreme_values(
   transformed_data = transformed_data,
   output_dir = <test output directory>,
-  output_csv = "N",
+  output_csv = "False",
   metadata_location = <location of test metadata>,
   ex_val_thrsh = ex_val_thrsh.csv,
   )  
