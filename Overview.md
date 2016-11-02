@@ -15,8 +15,8 @@ The Predictive Analtyics (PA) team run many projects a year which have common da
 * Code should be commented with a consistent coding structure across all functions.
 * The package should pass R Cmd Check (http://r-pkgs.had.co.nz/check.html).
 
-
 ## Initial running order for functions
+* `var_config_generator`
 * `read_and_transform`
 * `univariate_stats`
 * `extreme_values`

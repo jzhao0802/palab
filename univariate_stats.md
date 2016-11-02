@@ -1,24 +1,24 @@
-# Univarate Statistics
+# Univariate Statistics
 
 ## Purpose
 This function will produce a summary of each variable in the input dataset. It will help the user understand the data better and spot any issues with the variables.  
 
-## Dependancies
+## Internal Dependencies
 `read_and_transform`
 
 ## Name
 `univariate_stats`
 
-## Inputs
+## Parameters
 * `transformed_data`
-  * R dataset output by `read_and_transform`, read from `output_dir` if not already in memory.  
+  * Full path and name of the R dataset of same name output by `read_and_transform`.
 * `var_config`
-  * R dataset output by `read_and_transform`, read from `output_dir` if not already in memory.  
+  * Full path and name of the R dataset of same name output by `read_and_transform`.
 * `output_dir`
   * The directory into which all outputs will be output to.
 
 ## Function
-* For columns prefixed with "o_", no stats should be calculated.
+* Read in the RDS files if not already in memory.
 * For categorical variables, produce `univar_stats_x_cat.csv`. This is a full frequency table containing all levels for all variables with the following columns:
   * _Variable_: Name of the categorical variable.
   * _NumLevels_: This is the number of different levels in that variable. This value will be repeated for all rows with that variable.
@@ -50,16 +50,31 @@ This function will produce a summary of each variable in the input dataset. It w
   * _P99_: Value at the percentile 99 of the variable.
   * _Max_: Maximum value of the variable.
   * _<TO DO:DECILES>_
+
 ## Output
-All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
+All files below should be output to the `output_dir`, overwriting a previous version if necessary.
 * univar_stats_x_cat.csv
 * univar_stats_x_num.csv
 
 ## Defaults
 ```
 univariate_stats(
-  transformed_data = transformed_data,
-  output_dir = <test output directory>,
+  transformed_data=,
+  var_config=,
+  output_dir=,
+  )  
+```
+
+## Example call
+```
+output_dir <- "D:/data/cars1/"
+transformed_data_rds <- str_c(output_dir, "transformed_data.rds")
+var_config_rds <- str(output_dir, "var_config.rds")
+
+univariate_stats(
+  transformed_data=transformed_data_rds,
+  var_config=var_config_rds,
+  output_dir=output_dir,
   )  
 ```
 ## Tests
