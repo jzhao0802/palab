@@ -4,8 +4,7 @@
 This function will provide metrics and graphics that are relevant for assessing the results of a binary classifier.
 
 ## Dependencies
-_A modeling routine will need to have been computed either within this pipeline or in an external environment_
-<extra col with scores>
+_An additional column will have been generated which is the predicted score of the positive outcome event for each observation_
 
 ## Name
 `perf_metrics_cat`
@@ -16,24 +15,25 @@ _A modeling routine will need to have been computed either within this pipeline 
 * `prob_thrsh`
   * The threshold which is applied to the `predicted_scores`
 * `roc_curve_flag`
-  * This flag indicates whether a receiver operator characteristic (ROC) curve should be saved as a graphic. This can be either "Y" or "N".
+  * This flag indicates whether a receiver operator characteristic (ROC) curve should be saved as a graphic. This can be either "True" or "False".
 * `pr_curve_flag`
-  * This flag indicates whether a precision-recall (PR) curve should be generated and saved as a graphic. This can be either "Y" or "N".
+  * This flag indicates whether a precision-recall (PR) curve should be generated and saved as a graphic. This can be either "True" or "False".
 
 
 ## Function
 * Check if `model_output` input has the correct format:
-  * Three columns with more than one rows
+  * Three columns with more than one row
   * The first column should have as many distinct values as there are rows
   * The second column should contain two distinct values
-  * Each column should have the same number of rows (no blank values permitted)
+  * Each column should have the same number of rows (no NA entries are permitted)
 * Round the `predicted_scores` to three decimal places
 * Assess which labels pertain to the positive or negative classifier
-  * Find the distinct values for the `outcome_variable` the minimum of these values is  considered to be the label for the negative class (likley to be -1 or 0; refer to this as `lnc`) and the maximum of these values is considered to be the label for the positive class (likely to be +1; refer to this as `lpc`).
-* Check if the user has specified the `prob_thrsh`.
-  * If not the default value is 0.5.
+  * Find the distinct values for the `outcome_variable` the minimum of these values is  considered to be the label for the negative class (likely to be -1 or 0; refer to this as `lnc`) and the maximum of these values is considered to be the label for the positive class (likely to be +1; refer to this as `lpc`).
+* Check if the user has specified `prob_thrsh`.
+  * If it has been provided, check that the value provided is numeric and report an error if not.
+  * If it has been provided then the default value is 0.5.
 * Create an additional column `predicted_cat` in `model_output`
-  * This is a binary variable which is set to 1 when the corresponding `predicted_scores` is greater than or equal to 0.5 and is set to 0 when the corresponding `predicted_scores` is less than 0.5.
+  * This is a binary variable which is set to 1 when the corresponding value in the `predicted_scores` column is greater than or equal to `prob_thrsh` and is set to 0 when the corresponding `predicted_scores` is less than `prob_thrsh`.
 * Produce `metrics.csv` where each row is populated with the following metrics:  
  * Calculate the number of true positives (TP; the number of observations correctly labelled as belonging to the positive class) - sum(`outcome_variable` == `lpc` & `predicted_cat`==`lpc`)
  * Calculate the number of false negatives (FN; the number of observations incorrectly labelled as belonging to the negative class) -  sum(`outcome_variable` == `lpc` & `predicted_cat`==`lnc`)
@@ -51,7 +51,7 @@ _A modeling routine will need to have been computed either within this pipeline 
 
 ## Output
 * `metrics.csv`
-* If `roc_curve_flag` is Y, `roc_curve.png/.rds`
-* If `pr_curve_flag` is Y, `pr_curve_flag.png/.rds`
+* If `roc_curve_flag` is "True", `roc_curve.png/.rds`
+* If `pr_curve_flag` is "True", `pr_curve_flag.png/.rds`
 * `pr_curve_recall_bins.csv`
 * `pr_top_patient_counts.csv`
