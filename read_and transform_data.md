@@ -49,7 +49,7 @@ None
     * If a column is in the input dataset but not in the data metadata, it should NOT be included in the transformed dataset.
     * If a column is in the data metadata but not in the input dataset, it should NOT added to the transformed dataset.
   * Transform the missing values for each column
-      * Look for any of the values in `missing_values` in all columns, and replace with the R standard for missing, i.e. "NULL".
+      * Look for any of the values in `missing_values` in all columns, and replace with the R standard for missing, i.e. "NA".
 * Check that variables are compatable with their type.
   * If a variable is classed as numerical but has character values in it, the function should error.
   * If a variable is classed as categorical but has more than `max_levels` different values, the function should output a warning to the user.
@@ -67,7 +67,7 @@ None
   * Columns in input data but not in metadata
 
 ## Output
-All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
+All files below should be output to the `output_dir`, overwriting a previous version if necessary.
 * transformed_data.rds
   * RDS file of `transformed_data`.
 * <input_dataset>\_trans.csv

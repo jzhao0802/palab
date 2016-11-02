@@ -11,7 +11,9 @@ This function will produce a summary of each variable in the input dataset. It w
 
 ## Inputs
 * `transformed_data`
-  * R dataset output by `read_and_transform`
+  * R dataset output by `read_and_transform`, read from `output_dir` if not already in memory.  
+* `var_config`
+  * R dataset output by `read_and_transform`, read from `output_dir` if not already in memory.  
 * `output_dir`
   * The directory into which all outputs will be output to.
 
