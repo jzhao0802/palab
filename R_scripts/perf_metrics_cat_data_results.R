@@ -65,4 +65,41 @@ metrics[11,2] <- pr.curve(scores.class0 = model_output$pred_scores[1:50], scores
 
 write.csv(metrics, file = paste0(path_output,"metrics.csv"), row.names = FALSE)
 
+#create tp_vals.csv
+tp_vals <- list(5,10,15,50)
+
+#create pr_top_counts.csv
+pr_top_counts <- data.frame(matrix(nrow = 4, ncol = 3))
+colnames(pr_top_counts) <- c("TP", "FP", "score_thrsh")
+pos_scores <- sort(model_output$pred_scores[model_output$outcome_var==1], decreasing =TRUE)
+
+pr_top_counts[1,1] <- tp_vals[1]
+thrsh <- pos_scores[as.numeric(tp_vals[1])]
+pr_top_counts[1,2] <- sum((model_output$outcome_var == 0) & (model_output$pred_scores >= thrsh))
+pr_top_counts[1,3] <- thrsh
+
+pr_top_counts[2,1] <- tp_vals[2]
+thrsh <- pos_scores[as.numeric(tp_vals[2])]
+pr_top_counts[2,2] <- sum((model_output$outcome_var == 0) & (model_output$pred_scores >= thrsh))
+pr_top_counts[2,3] <- thrsh
+
+pr_top_counts[3,1] <- tp_vals[3]
+thrsh <- pos_scores[as.numeric(tp_vals[3])]
+pr_top_counts[3,2] <- sum((model_output$outcome_var == 0) & (model_output$pred_scores >= thrsh))
+pr_top_counts[3,3] <- thrsh
+
+
+pr_top_counts[4,1] <- tp_vals[4]
+thrsh <- pos_scores[as.numeric(tp_vals[4])]
+pr_top_counts[4,2] <- sum((model_output$outcome_var == 0) & (model_output$pred_scores >= thrsh))
+pr_top_counts[4,3] <- thrsh
+
+write.csv(metrics, file = paste0(path_output,"pr_top_counts.csv"), row.names = FALSE)
+
+#create pr_curve_bins.csv
+pred <- prediction(model_output$pred_scores, model_output$outcome_var);
+RP.perf <- performance(pred, "prec", "rec");
+ppv <- as.numeric( unlist (RP.perf@y.values))
+recall <- as.numeric( unlist (RP.perf@x.values))
+recall_bins <- seq(0.05,1,0.05)
 
