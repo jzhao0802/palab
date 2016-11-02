@@ -37,7 +37,6 @@ This function will produce a summary of each variable in the input dataset. It w
   * _Mean_: Mean of the variable.
   * _SD_: Standard deviation of the variable.
   * _Min_: Minimum value of the variable.
-  * _Max_: Maximum value of the variable.
   * _P1_: Value at the percentile 1 of the variable.
   * _P5_: Value at the percentile 5 of the variable.
   * _P10_: Value at the percentile 10 of the variable.
@@ -47,6 +46,7 @@ This function will produce a summary of each variable in the input dataset. It w
   * _P90_: Value at the percentile 90 of the variable.
   * _P95_: Value at the percentile 95 of the variable.
   * _P99_: Value at the percentile 99 of the variable.
+  * _Max_: Maximum value of the variable.
   * _<TO DO:DECILES>_
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
