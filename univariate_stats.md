@@ -19,7 +19,7 @@ This function will produce a summary of each variable in the input dataset. It w
 
 ## Function
 * Read in the RDS files if not already in memory.
-* For categorical variables, produce `univar_stats_x_cat.csv`. This is a full frequency table containing all levels for all variables with the following columns:
+* For categorical variables (from `var_config`), produce `univar_stats_x_cat.csv`. This is a full frequency table containing all levels for all variables with the following columns:
   * _Variable_: Name of the categorical variable.
   * _NumLevels_: This is the number of different levels in that variable. This value will be repeated for all rows with that variable.
   * _Level_: The value of the level in that variable
@@ -30,7 +30,7 @@ This function will produce a summary of each variable in the input dataset. It w
   * _Percentage_: Percentage of observations which have this variable equal to this level.
     * For the special levels, _Percentage_ = _Count_ / Number of observations
     * For the normal levels, _Percetnage_ = _Count_ / Number of non_missing of that variable
-* For numerical variables, produce `univar_stats_x_num.csv` with following columns:
+* For numerical variables (from `var_config`), produce `univar_stats_x_num.csv` with following columns:
   * _Variable_: Name of the categorical variable.
   * _NonMissing_: Number of non-missing obsservations.
   * _NonMissingPerc_: Percentage of non-missing observations.
