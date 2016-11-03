@@ -103,3 +103,12 @@ ppv <- as.numeric( unlist (RP.perf@y.values))
 recall <- as.numeric( unlist (RP.perf@x.values))
 recall_bins <- seq(0.05,1,0.05)
 
+ppv_at_recall <- numeric()
+for (i in 1:length(recall_bins)){
+  min_dist <- min(abs(recall - recall_bins[i]))
+  ppv_at_recall[i] <- mean(ppv[(round(abs(recall - recall_bins[i]),3) == round(min_dist,3))])
+}
+
+plot(recall_bins, ppv_at_recall); lines(recall_bins, ppv_at_recall)
+require(reshape2)
+pr_curve_bins <- melt(data.frame(recall_bins, ppv_at_recall))
