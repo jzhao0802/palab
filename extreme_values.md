@@ -9,15 +9,24 @@ This function will replace extreme values in continuous variables with either a 
 ## Name
 `extreme_values`
 
-## Inputs
+## Parameters
 * `transformed_data`
   * R dataset output by `read_and_transform`
 * `output_dir`
   * The directory into which all outputs will be saved.
 * `output_csv`
-  * This flag indicates if the transformed data set should be saved as a csv file. This can either be "Y" or "N".
-* `metadata_location`
-  * Full path to directory containing ex_val_thrsh.csv.
+  * This flag indicates whether the transformed data set should be saved as a csv file. This can either be "Y" or "N".
+* `var_config`
+    * Full path and name of the CSV containing the variable configuration.
+    * Example file is [here](../example_metadata_files/var_config.csv)
+    * First column: _ColumnName_, the name of the column in the input dataset.
+    * Second column: _Type_.
+      This indicates what type the column in the input dataset is.
+      * "Categorical" for a categorical variable
+      * "Numerical" for a numerical variable
+      * "Key" for the column which is the primary key
+      * "Other" for an attribute or any other type of column not listed above.
+    * Every entry in the data metadata must have a value in _Type_.
 * `ex_val_thrsh`
     * Input file where the user can provide their own thresholds for capping numerical variables or a flag indicating that a variable should not be capped. For all other numerical variables not listed in this file then the value of that variable at the 99th percentile will be used (x_p99) will be used to cap the variable.
     * First column: _Variable_, the name of the variable to be changed (with relevant variable type prefix; e.g. mpg is has been previously renamed (via `read_and_transform`) to n_mpg as it is a numerical variable).
@@ -49,22 +58,17 @@ All CSVs below should be output to the output_dir, overwriting a previous versio
 
 * `ex_transformed_data.rds`
   * RDS file of `ex_transformed_data`.
-<<<<<<< HEAD
-* If `output_csv` = "True", output a csv of `ex_transformed_data`
-=======
-* If `output_csv` = "Y", output a csv of `ex_transformed_data`
->>>>>>> ac1c23a47f42766adf8585698129aa95ea5a0fa3
-  * This file should have the same name as the input dataset with a prefix of of "ex\_".
+
+* If `output_csv` = "TRUE", write out `ex_transformed_data` as a csv to `output_dir`
 * `ex_val_thrsh_output.csv`
   * This file logs the thresholds that were used to cap the numerical variables.
 ## Defaults
 ```
 extreme_values(
-  transformed_data = transformed_data,
-  output_dir = <test output directory>,
+  transformed_data = ,
+  output_dir = ,
   output_csv = "False",
-  metadata_location = <location of test metadata>,
-  ex_val_thrsh = ex_val_thrsh.csv,
+  var_config = ,
   )  
 ```
 ## Tests
