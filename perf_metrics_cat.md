@@ -3,24 +3,25 @@
 ## Purpose
 This function will provide metrics and graphics that are relevant for assessing the results of a binary classifier.
 
-## Dependencies
+## Internal Dependencies
 _An additional column will have been generated which is the predicted score of the positive outcome event for each observation_
 
 ## Name
 `perf_metrics_cat`
 
-## Inputs
+## Parameters
 * `model_output`
   * an R dataset where the first column is the `patient_id`, the second column is the `outcome_variable` and the third column is the `predicted_scores` from the model.
 * `prob_thrsh`
   * The threshold which is applied to the `predicted_scores`
-* `roc_curve_flag`
-  * This flag indicates whether a receiver operator characteristic (ROC) curve should be saved as a graphic. This can be either "True" or "False".
-* `pr_curve_flag`
-  * This flag indicates whether a precision-recall (PR) curve should be generated and saved as a graphic. This can be either "True" or "False".
 * `tp_vals`
-  * A list of values defined by the user that represent the numbers of true positives for which the
-corresponding false positive count and predicted score threshold should be computed.
+    * A list of values defined by the user that represent the numbers of true positives for which the
+  corresponding false positive count and predicted score threshold should be computed.
+* `roc_curve_flag`
+  * This flag indicates whether a receiver operator characteristic (ROC) curve should be saved as a graphic. This can be either "TRUE" or "FALSE". The default value is FALSE.
+* `pr_curve_flag`
+  * This flag indicates whether a precision-recall (PR) curve should be generated and saved as a graphic. This can be either "TRUE" or "FALSE". The default value is FALSE.
+
 
 ## Function
 * Check if `model_output` input has the correct format:
@@ -52,7 +53,7 @@ corresponding false positive count and predicted score threshold should be compu
 * If `tp_vals` has been provided by user:
   * Check that `tp_vals` contains a list of numerical values.
   * Check that the maximum value in this list is less than or equal to the total number of positive observations in `outcome_variable`, i.e. sum(`outcome_variable`== `lpc`).
-  * Produce `pr_top_counts.csv` where the columns names are `TP`, `FP` and `score_thrsh`. To calculate the first row of `pr_top_counts.csv`, populate the first column as `tp_vals[1]`. Next, subset the `predicted_scores` to the positive class and sort it in descending order. Select the top number of true positives (value stored in `tp_vals[1]`) from the sorted positive predicted scores and now count the number of false positives that are greater than the minimum predicted score for the top number of true positives; this is the entry of the second column. That is, to compute the number of FP when TP is equal to `tp_vals[1]` then `pos_scores` = sort(`predicted_scores`[`outcome_variable`== 1]); `ps_thrsh` = `pos_scores`[`tp_vals[1]`]; `FP` = sum(((`predicted_scores`[`outcome_variable`== 0])>=`os_thrsh`). `ps_thrsh` should be stored in the third column. This process should be repeated for all entries in `tp_vals`.
+  * If `tp_vals` has been provided then produce `pr_top_counts.csv` where the columns names are `TP`, `FP` and `score_thrsh`. To calculate the first row of `pr_top_counts.csv`, populate the first column as `tp_vals[1]`. Next, subset the `predicted_scores` to the positive class and sort it in descending order. Select the top number of true positives (value stored in `tp_vals[1]`) from the sorted positive predicted scores and now count the number of false positives that are greater than the minimum predicted score for the top number of true positives; this is the entry of the second column. That is, to compute the number of FP when TP is equal to `tp_vals[1]` then `pos_scores` = sort(`predicted_scores`[`outcome_variable`== 1]); `ps_thrsh` = `pos_scores`[`tp_vals[1]`]; `FP` = sum(((`predicted_scores`[`outcome_variable`== 0])>=`os_thrsh`). `ps_thrsh` should be stored in the third column. This process should be repeated for all entries in `tp_vals`.
 
 ## Output
 * `metrics.csv`
@@ -61,4 +62,16 @@ corresponding false positive count and predicted score threshold should be compu
 * `pr_curve_bins.csv`
 * `pr_top_counts.csv`
 
+## Defaults
+```
+perf_metrics_cat(
+  model_output = ,
+  prob_thrsh = 0.5,
+  tp_vals = ,
+  roc_curve_flag = 'FALSE',
+  pr_curve_flag = 'FALSE'
+  )
+```  
 ## Tests
+* All outputs should have the correct format and structure as specified.
+* Using the provided toy example for `model_output.csv` - all outputs produced should exactly match the provided examples for provided results `metrics.csv`, `pr_curve_recall_bins.csv`, `pr_top_patient_counts.csv` with `prob_thrsh` set to 0.5 and `tp_vals` contains the following values (5,10,15,50). 

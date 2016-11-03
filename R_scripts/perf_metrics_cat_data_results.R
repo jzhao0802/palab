@@ -94,7 +94,7 @@ thrsh <- pos_scores[as.numeric(tp_vals[4])]
 pr_top_counts[4,2] <- sum((model_output$outcome_var == 0) & (model_output$pred_scores >= thrsh))
 pr_top_counts[4,3] <- thrsh
 
-write.csv(metrics, file = paste0(path_output,"pr_top_counts.csv"), row.names = FALSE)
+write.csv(pr_top_counts, file = paste0(path_output,"pr_top_counts.csv"), row.names = FALSE)
 
 #create pr_curve_bins.csv
 pred <- prediction(model_output$pred_scores, model_output$outcome_var);
@@ -111,4 +111,6 @@ for (i in 1:length(recall_bins)){
 
 plot(recall_bins, ppv_at_recall); lines(recall_bins, ppv_at_recall)
 require(reshape2)
-pr_curve_bins <- melt(data.frame(recall_bins, ppv_at_recall))
+pr_curve_bins <- (data.frame(recall_bins, ppv_at_recall))
+
+write.csv(pr_curve_bins, file = paste0(path_output,"pr_curve_bins.csv"), row.names = FALSE)

@@ -1,12 +1,12 @@
 "metric_name","value"
-"TP",19
-"FN",31
-"FP",19
-"TN",31
-"Senstivity (recall)",0.38
-"Specificity",0.62
-"Precision",0.5
-"Accuracy",0.5
-"F1-score",0.431818181818182
-"auROC",0.5168
-"auPR",0.532205049502296
+"TP",32
+"FN",18
+"FP",33
+"TN",17
+"Senstivity (recall)",0.64
+"Specificity",0.34
+"Precision",0.492307692307692
+"Accuracy",0.49
+"F1-score",0.556521739130435
+"auROC",0.5036
+"auPR",0.495098271228773
