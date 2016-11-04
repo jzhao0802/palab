@@ -49,7 +49,7 @@ This function will replace extreme values in continuous variables with either a 
   * Compute the 99th percentile for each numerical variable in `transformed_data` (as identified by the prefix "n_").
   * For each numerical variable, replace values greater than the value at the 99th percentile with the value at the 99th percentile, i.e. x[x>x_p99] = x_p99
   * Create a duplicate of `transformed_data` called `ex_transformed_data`. Update the all numerical variables in `ex_transformed_data` with their capped equivalents.
-  * Produce `ex_val_thrsh_output.csv` which takes a similar form to `ex_val_thrsh`:
+  * Produce `ex_val_thrsh_out.csv` which takes the same form as `ex_val_thrsh`:
     * First column: the list of all numerical variables that were capped for extreme values.
     * Second column: x_p99 for the corresponding variable.
 
@@ -60,7 +60,8 @@ All CSVs below should be output to the output_dir, overwriting a previous versio
   * RDS file of `ex_transformed_data`.
 
 * If `output_csv` = "TRUE", write out `ex_transformed_data` as a csv to `output_dir`
-* `ex_val_thrsh_output.csv`
+
+* `ex_val_thrsh_out.csv`
   * This file logs the thresholds that were used to cap the numerical variables.
 ## Defaults
 ```
