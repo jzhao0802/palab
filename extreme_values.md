@@ -77,4 +77,4 @@ extreme_values(
 ```
 ## Tests
 * All outputs should have the correct format and structure as specified.
-* Using the provided toy example provided [here](/example_data/mtcars.csv) for `transformed_data` and [here](/example_metadata_files/ex_val_thrsh.csv) - all outputs produced should exactly match the provided examples results: [ex_val_thrsh_output.csv](/example_output_csvs/ex_val_thrsh_output.csv), and DATA LINK HERE with `perct` set to 0.99. 
+* Using the provided toy example provided [here](file:///example_data/mtcars.csv) for `transformed_data` and [here](./example_metadata_files/ex_val_thrsh.csv) - all outputs produced should exactly match the provided examples results: [ex_val_thrsh_output.csv](file:///example_output_csvs/ex_val_thrsh_output.csv), and DATA LINK HERE with `perct` set to 0.99.
