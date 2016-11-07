@@ -79,4 +79,4 @@ bivariate_stats(
 ```
 ## Tests
 * All outputs should have the correct format and structure as specified.
-* Using the provided toy example for `transformed_data` provided [here](../example_data/mtcars.csv) `model_output.csv` - all outputs produced should exactly match the provided examples for provided results `metrics.csv`, `pr_curve_recall_bins.csv`, `pr_top_patient_counts.csv` with `prob_thrsh` set to 0.5 and `tp_vals` contains the following values (5,10,15,50).
+* Using the provided toy example for `model_output.csv` provided [here](./example_data/model_output.csv)  - all outputs produced should exactly match the provided examples for provided results [metrics.csv](./example_output_csvs/metrics.csv), [pr_curve_recall_bins.csv](./example_output_csvs/pr_curve_recall_bins.csv), and [pr_top_counts.csv](./example_output_csvs/pr_top_counts.csv) with `prob_thrsh` set to 0.5 and `tp_vals` contains the following values {5,10,15,50}.
