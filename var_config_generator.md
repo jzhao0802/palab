@@ -24,11 +24,9 @@ None
 * Read in the first `sample_row` lines of `input_dataset`.
 * Produce `var_config_generated` with the following columns:
   * _ColumnName_: Name of the column `input_dataset`
-  * _TypeGenerated_: This is the type of the columm as guessed by the read function. This field can take one of several values:
-    * Date - for date columns
+  * _TypeGenerated_: This is the type of the column as guessed by the read function. <options of read>This field can take one of several values:
     * Categorical - for categorical columns
     * Numerical - for numerical columns
-    * Integer - for integer columns
     * Other - for all other columns
   * _NumUniqueValues_: This is the number of unqiue values that the column contains.
 * Every column that appears in `input_dataset` should also appear as a row in `var_config_generated` and must have a _TypeGenerated_.

@@ -12,17 +12,17 @@ This function will produce a summary of how each variable varies with a _numeric
 
 ## Inputs
 * `transformed_data`
-  * R dataset output by `read_and_transform`
+  * Full path and name of the R dataset of same name output by `read_and_transform`.
+* `var_config`
+    * Full path and name of the R dataset of same name output by `read_and_transform`.
 * `output_dir`
-  * The directory into which all outputs will be saved.
-* `outcome`
-  * The variable to use as an outcome.
+    * The directory into which all outputs will be output to.
+
 
 ## Function
-* Output a warning if the outcome variable has less than 6 unique values.
+* Output a warning if the outcome variable has less than 5 unique values.
   * This is because the statistics in this function will not be meaningful and it would be better to run `bivar_stats_y_cat`.
-* For columns prefixed with "o_", no stats should be calculated.
-* For categorical variables produce `bivar_stats_y_num_x_cat.csv` where each categorical variable spans multiple rows and each row within the variable group represents a level of the categorical variable. The output file will have the following columns:
+* For categorical variables (variable definition located in `var_config`), produce `bivar_stats_y_num_x_cat.csv` where the statistics for each categorical variable spans a group of rows and each row within the group represents a level of the categorical variable. The output file will have the following columns:
   * _Variable_: Name of the categorical variable.
   * _Level_: The value of the level in that variable.
   * _Mean outcome_: mean of the outcome variable when the categorical variable is level X.
@@ -78,3 +78,5 @@ bivariate_stats(
   )  
 ```
 ## Tests
+* All outputs should have the correct format and structure as specified.
+* Using the provided toy example for `transformed_data` provided [here](../example_data/mtcars.csv) `model_output.csv` - all outputs produced should exactly match the provided examples for provided results `metrics.csv`, `pr_curve_recall_bins.csv`, `pr_top_patient_counts.csv` with `prob_thrsh` set to 0.5 and `tp_vals` contains the following values (5,10,15,50).
