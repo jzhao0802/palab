@@ -18,7 +18,7 @@ This function will replace extreme values in continuous variables with either a 
   * This flag indicates whether the transformed data set should be saved as a csv file. This can either be "Y" or "N".
 * `var_config`
     * Full path and name of the CSV containing the variable configuration.
-    * Example file is [here](../example_metadata_files/var_config.csv)
+    * Example file is [here](file:///C:/Users/odoyle/)
     * First column: _ColumnName_, the name of the column in the input dataset.
     * Second column: _Type_.
       This indicates what type the column in the input dataset is.
