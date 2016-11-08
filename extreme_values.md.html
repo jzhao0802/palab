@@ -556,8 +556,8 @@ pre.editor-colors .fold-marker:after,
 </li>
 <li><p>If the user has not provided <code>ex_val_thrsh</code> then the default assumption is that all numerical variables should be capped at <code>x_pth</code>:</p>
 <ul>
-<li>Compute the value at the percentile level stored in <code>pth</code> for each numerical variable in <code>transformed_data</code>.</li>
-<li>For each numerical variable, replace values greater than or equal to the value at the <code>perct</code> percentile with the value at the <code>perct</code> percentile, i.e. <code>x[x&gt;=x_pth] = x_pth</code></li>
+<li>Compute the value at the percentile level stored in <code>pth</code> (<code>x_pth</code>) for each numerical variable in <code>transformed_data</code>.</li>
+<li>For each numerical variable, replace values greater than or equal to <code>x_pth</code> with <code>x_pth</code>, i.e. <code>x[x&gt;=x_pth] = x_pth</code></li>
 <li>Create a duplicate of <code>transformed_data</code> called <code>ex_transformed_data</code>. Update the all numerical variables in <code>ex_transformed_data</code> with their capped equivalents.</li>
 <li>Produce <code>ex_val_thrsh_out.csv</code> which takes the same form as <code>ex_val_thrsh</code>:<ul>
 <li>First column: the list of all numerical variables that were capped for extreme values.</li>
@@ -585,6 +585,6 @@ pre.editor-colors .fold-marker:after,
 </ul>
 </li>
 <li>All outputs should have the correct format and structure as specified.</li>
-<li>Using the provided toy example provided <a href="./example_data/mtcars.csv">here</a> for <code>transformed_data</code> and <a href="./example_metadata_files/ex_val_thrsh.csv">here</a> - all outputs produced should exactly match the provided examples results: <a href="./example_output_csvs/ex_val_thrsh_output.csv">ex_val_thrsh_output.csv</a>, with <code>pth</code> set to 0.99.</li>
+<li>Using the provided toy example provided <a href="./example_data/mtcars.csv">here</a> for <code>transformed_data</code> and <a href="./example_metadata_files/ex_val_thrsh.csv">here</a> for <code>ex_val_thrsh</code> - all outputs produced should exactly match the provided examples results: <a href="./example_output_csvs/ex_val_thrsh_output.csv">ex_val_thrsh_output.csv</a>, with <code>pth</code> set to 0.99.</li>
 </ul></body>
 </html>
