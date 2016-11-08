@@ -121,18 +121,18 @@ num_not_missing_level <- function(x,level) {
 
 bvs_n = data.frame(matrix(nrow = ncol(nx), ncol = 13))
 colnames(bvs_n)[1] <- 'Variable name'
-colnames(bvs_n)[2] <- 'Correlation coefficient (Pearson\'s) between variable and VA12'
-colnames(bvs_n)[3] <- 'P-value of correlation coefficient (Pearson\'s) between variable and VA12'
-colnames(bvs_n)[4] <- 'Mean VA in 1st decile'
-colnames(bvs_n)[5] <- 'Mean VA in 2nd decile'
-colnames(bvs_n)[6] <- 'Mean VA in 3rd decile'
-colnames(bvs_n)[7] <- 'Mean VA in 4th decile'
-colnames(bvs_n)[8] <- 'Mean VA in 5th decile'
-colnames(bvs_n)[9] <- 'Mean VA in 6th decile'
-colnames(bvs_n)[10] <- 'Mean VA in 7th decile'
-colnames(bvs_n)[11] <- 'Mean VA in 8th decile'
-colnames(bvs_n)[12] <- 'Mean VA in 9th decile'
-colnames(bvs_n)[13] <- 'Mean VA in 10th decile'
+colnames(bvs_n)[2] <- 'Correlation coefficient (Pearson\'s) between variable and outcome'
+colnames(bvs_n)[3] <- 'P-value of correlation coefficient (Pearson\'s) between variable and outcome'
+colnames(bvs_n)[4] <- 'Mean outcome in 1st decile'
+colnames(bvs_n)[5] <- 'Mean outcome in 2nd decile'
+colnames(bvs_n)[6] <- 'Mean outcome in 3rd decile'
+colnames(bvs_n)[7] <- 'Mean outcome in 4th decile'
+colnames(bvs_n)[8] <- 'Mean outcome in 5th decile'
+colnames(bvs_n)[9] <- 'Mean outcome in 6th decile'
+colnames(bvs_n)[10] <- 'Mean outcome in 7th decile'
+colnames(bvs_n)[11] <- 'Mean outcome in 8th decile'
+colnames(bvs_n)[12] <- 'Mean outcome in 9th decile'
+colnames(bvs_n)[13] <- 'Mean outcome in 10th decile'
 
 
 
@@ -163,19 +163,19 @@ total_levels <- Reduce("+", sum_levels_list)
 bvs_c <- data.frame(matrix(nrow = (total_levels), ncol = 15))
 colnames(bvs_c)[1] <- 'Categorical variable'
 colnames(bvs_c)[2] <- 'Level'
-colnames(bvs_c)[3] <- 'Mean VA12'
-colnames(bvs_c)[4] <- 'SD VA12 '
-colnames(bvs_c)[5] <- 'Minimum VA12'
-colnames(bvs_c)[6] <- '1st percentile VA12'
-colnames(bvs_c)[7] <- '5th percentile VA12'
-colnames(bvs_c)[8] <- '10th percentile VA12'
-colnames(bvs_c)[9] <- '25th percentile VA12'
-colnames(bvs_c)[10] <- '50th percentile VA12'
-colnames(bvs_c)[11] <- '75th percentile VA12'
-colnames(bvs_c)[12] <- '90th percentile VA12'
-colnames(bvs_c)[13] <- '95th percentile VA12'
-colnames(bvs_c)[14] <- '99th percentile VA12'
-colnames(bvs_c)[15] <- 'Maximum VA12'
+colnames(bvs_c)[3] <- 'Mean outcome'
+colnames(bvs_c)[4] <- 'SD outcome '
+colnames(bvs_c)[5] <- 'Minimum outcome'
+colnames(bvs_c)[6] <- '1st percentile outcome'
+colnames(bvs_c)[7] <- '5th percentile outcome'
+colnames(bvs_c)[8] <- '10th percentile outcome'
+colnames(bvs_c)[9] <- '25th percentile outcome'
+colnames(bvs_c)[10] <- '50th percentile outcome'
+colnames(bvs_c)[11] <- '75th percentile outcome'
+colnames(bvs_c)[12] <- '90th percentile outcome'
+colnames(bvs_c)[13] <- '95th percentile outcome'
+colnames(bvs_c)[14] <- '99th percentile outcome'
+colnames(bvs_c)[15] <- 'Maximum outcome'
 ct = 1
 for (i in 1:nrow(cv_names)){
   n_levels <- num_of_levels(cx[,i])
@@ -202,3 +202,21 @@ for (i in 1:nrow(cv_names)){
 
 write.csv(bvs_c, file = paste0(path_output,"bivar_stats_y_num_x_cat.csv"), row.names = FALSE)
 
+rr <- data.frame(matrix(nrow = (total_levels), ncol = 3))
+colnames(rr)[1] <- 'Categorical variable'
+colnames(rr)[2] <- 'Level'
+colnames(rr)[3] <- 'Relative Risk'
+ct<-1
+for (i in 1:ncol(cx)){
+  n_levels <- num_of_levels(cx[,i])
+  levels <- sort(distinct_levels(cx[,i]))
+  baseline_mean_level <- mean_outcome_var_level(cx[,i], y, levels[1])
+  for (j in 1:n_levels){
+    rr[ct,1] <- colnames(cx)[i]
+    rr[ct,2] <- levels[j]
+    rr[ct,3] <- mean_outcome_var_level(cx[,i], y, levels[j])/baseline_mean_level
+    ct = ct + 1 
+  }
+}
+
+write.csv(rr, file = paste0(path_output,"rr_stats_y_num_x_cat.csv"), row.names = FALSE)
