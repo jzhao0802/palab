@@ -1,4 +1,4 @@
-"Categorical variable","Level","Mean VA12","SD VA12 ","Minimum VA12","1st percentile VA12","5th percentile VA12","10th percentile VA12","25th percentile VA12","50th percentile VA12","75th percentile VA12","90th percentile VA12","95th percentile VA12","99th percentile VA12","Maximum VA12"
+"Categorical variable","Level","Mean outcome","SD outcome ","Minimum outcome","1st percentile outcome","5th percentile outcome","10th percentile outcome","25th percentile outcome","50th percentile outcome","75th percentile outcome","90th percentile outcome","95th percentile outcome","99th percentile outcome","Maximum outcome"
 "cyl","6",19.7428571428571,1.45356704106042,17.8,17.818,17.89,17.98,18.65,19.7,21,21.16,21.28,21.376,21.4
 "cyl","4",26.6636363636364,4.50982765242148,21.4,21.41,21.45,21.5,22.8,26,30.4,32.4,33.15,33.75,33.9
 "cyl","8",15.1,2.56004807647164,10.4,10.4,10.4,11.27,14.4,15.2,16.25,18.28,18.875,19.135,19.2
