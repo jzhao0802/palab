@@ -517,7 +517,7 @@ pre.editor-colors .fold-marker:after,
 </ul>
 </li>
 <li><code>output_dir</code><ul>
-<li>The directory into which all outputs will be output to.</li>
+<li>The directory into which all outputs will be written to.</li>
 </ul>
 </li>
 </ul>
@@ -546,7 +546,7 @@ pre.editor-colors .fold-marker:after,
 <li><em>Max outcome</em> : Maximum value of the outcome variable when categorical variable level is X.</li>
 </ul>
 </li>
-<li><p>For categorical variables produce <code>RR_stats_y_num_x_cat.csv</code> which contains stats on the relative risk. The output should have the following columns:</p>
+<li><p>For categorical variables produce <code>RR_stats_y_num_x_cat.csv</code> which contains stats on the relative risk where the statistics for each categorical variable spans a group of rows and each row within the group represents a level of the categorical variable. The output should have the following columns:</p>
 <ul>
 <li><em>Variable</em>: Name of the categorical variable.</li>
 <li><em>Level</em>: The value of the level in that variable.</li>
@@ -588,6 +588,8 @@ pre.editor-colors .fold-marker:after,
 <pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>bivariate_stats(</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>transformed_data&nbsp;=&nbsp;transformed_data,</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;output_dir&nbsp;=&nbsp;&lt;test&nbsp;output&nbsp;directory&gt;,</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;outcome&nbsp;=&nbsp;gear</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;)</span></span></span></div></pre><h2 id="tests">Tests</h2>
 <ul>
 <li>All outputs should have the correct format and structure as specified.</li>
-<li>Using the provided toy example for <code>model_output.csv</code> provided <a href="./example_data/model_output.csv">here</a>  - all outputs produced should exactly match the provided examples for provided results <a href="./example_output_csvs/metrics.csv">metrics.csv</a>, <a href="./example_output_csvs/pr_curve_recall_bins.csv">pr_curve_recall_bins.csv</a>, and <a href="./example_output_csvs/pr_top_counts.csv">pr_top_counts.csv</a> with <code>prob_thrsh</code> set to 0.5 and <code>tp_vals</code> contains the following values {5,10,15,50}.</li>
+<li>Using the provided toy example for <a href="./example_data/mtcars.csv">transformed_data</a>: all outputs should exactly match the provided examples for results <a href="./example_output_csvs/bivar_stats_y_num_x_cat.csv">bivar_stats_y_num_x_cat</a>
+<a href="./example_output_csvs/bivar_stats_y_num_x_num.csv">bivar_stats_y_num_x_num</a>
+<a href="./example_output_csvs/bivar_stats_y_num_x_cat.csv">rr_stats_y_num_x_cat</a></li>
 </ul></body>
 </html>

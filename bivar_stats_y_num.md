@@ -16,7 +16,7 @@ This function will produce a summary of how each variable varies with a _numeric
 * `var_config`
     * Full path and name of the R dataset of same name output by `read_and_transform`.
 * `output_dir`
-    * The directory into which all outputs will be output to.
+    * The directory into which all outputs will be written to.
 
 
 ## Function
@@ -39,7 +39,7 @@ This function will produce a summary of how each variable varies with a _numeric
   * _P99 outcome_: Value at the percentile 99 of the outcome variable when categorical variable level is X.
   * _Max outcome_ : Maximum value of the outcome variable when categorical variable level is X.
 
-* For categorical variables produce `RR_stats_y_num_x_cat.csv` which contains stats on the relative risk. The output should have the following columns:
+* For categorical variables produce `RR_stats_y_num_x_cat.csv` which contains stats on the relative risk where the statistics for each categorical variable spans a group of rows and each row within the group represents a level of the categorical variable. The output should have the following columns:
   * _Variable_: Name of the categorical variable.
   * _Level_: The value of the level in that variable.
   * _Relative risk_: This is the mean of the outcome variable when the categorical variable is equal to this level, divided by the mean of the outcome variable for when the categorical variable is equal to the _1st_ level.
@@ -79,4 +79,6 @@ bivariate_stats(
 ```
 ## Tests
 * All outputs should have the correct format and structure as specified.
-* Using the provided toy example for `model_output.csv` provided [here](./example_data/model_output.csv)  - all outputs produced should exactly match the provided examples for provided results [metrics.csv](./example_output_csvs/metrics.csv), [pr_curve_recall_bins.csv](./example_output_csvs/pr_curve_recall_bins.csv), and [pr_top_counts.csv](./example_output_csvs/pr_top_counts.csv) with `prob_thrsh` set to 0.5 and `tp_vals` contains the following values {5,10,15,50}.
+* Using the provided toy example for [transformed_data](./example_data/mtcars.csv): all outputs should exactly match the provided examples for results [bivar_stats_y_num_x_cat](./example_output_csvs/bivar_stats_y_num_x_cat.csv)
+[bivar_stats_y_num_x_num](./example_output_csvs/bivar_stats_y_num_x_num.csv)
+[rr_stats_y_num_x_cat](./example_output_csvs/bivar_stats_y_num_x_cat.csv)
