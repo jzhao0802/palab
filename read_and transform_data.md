@@ -25,15 +25,15 @@ None
     * "Key" for the column which is the primary key
     * "Other" for an attribute or any other type of column not listed above.
   * Every entry in the data metadata must have a value in _Type_.
+* `max_levels`
+  * The maximum number of levels that a variable labelled as categorical in the data_metadata should have.
 * `missing_values`
   * A comma delimited string of missing values for all columns.
   * e.g. "-999, 0, -99"
-* `max_levels`
-  * The maximum number of levels that a variable labelled as categorical in the data_metadata should have.
 * `output_csv`
   * This can either be TRUE or FALSE.
 * `output_dir`
-  * The directory into which all outputs will be output to.
+  * The directory into which all outputs will be written to.
 * `outcome`
   * The name of variable to use as an outcome.
 
@@ -62,11 +62,15 @@ None
   * Columns in input data but not in metadata
 
 ## Output
-All files below should be output to the `output_dir`, overwriting a previous version if necessary.
+All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
+* `transformed_data`
+  * R dataset
+* `var_config`
+  * R dataset of var_config.csv
 * transformed_data.rds
-  * RDS file of `transformed_data`.
+  * RDS file of `transformed_data` written to `output_dir`
 * transformed_data.csv
-  * If `output_csv` = "Y", output a CSV of `transformed_data`.
+  * If `output_csv` = "Y", output a CSV of `transformed_data`
 * transformed_data_report.csv
 
 ## Defaults
@@ -83,16 +87,13 @@ read_and_transform(
 
 # Example call
 ```
-input_dataset <- "D:/data/cars1/input/mt_cars.csv"
-output_dir <- "D:/data/cars1"
-
 read_and_transform(
-  input_dataset = input_dataset,
+  input_dataset = "D:/data/cars1/input/mt_cars.csv",
   var_config = "D:/data/cars1/metadata/var_config.csv",
   missing_values = "-999, 0, -99",
   max_levels = 100,
   output_csv = FALSE,
-  output_dir = output_dir
+  output_dir = "D:/data/cars1"
   )
 ```
 ## Tests

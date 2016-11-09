@@ -11,14 +11,13 @@ This function will produce a summary of each variable in the input dataset. It w
 
 ## Parameters
 * `transformed_data`
-  * Full path and name of the R dataset of same name output by `read_and_transform`.
+  * R dataset output by `read_and_transform`
 * `var_config`
-  * Full path and name of the R dataset of same name output by `read_and_transform`.
+  * R dataset output by `var_config_generator`
 * `output_dir`
-  * The directory into which all outputs will be output to.
+  * The directory into which all outputs will be written to.
 
 ## Function
-* Read in the RDS files if not already in memory.
 * For categorical variables (from `var_config`), produce `univar_stats_x_cat.csv`. This is a full frequency table containing all levels for all variables with the following columns:
   * _Variable_: Name of the categorical variable.
   * _NumLevels_: This is the number of different levels in that variable. This value will be repeated for all rows with that variable.
@@ -29,7 +28,7 @@ This function will produce a summary of each variable in the input dataset. It w
   * _Count_: Count of observations which have this variable equal to this level.
   * _Percentage_: Percentage of observations which have this variable equal to this level.
     * For the special levels, _Percentage_ = _Count_ / Number of observations
-    * For the normal levels, _Percetnage_ = _Count_ / Number of non_missing of that variable
+    * For the normal levels, _Percentage_ = _Count_ / Number of non_missing of that variable
 * For numerical variables (from `var_config`), produce `univar_stats_x_num.csv` with following columns:
   * _Variable_: Name of the categorical variable.
   * _NonMissing_: Number of non-missing obsservations.
@@ -49,7 +48,24 @@ This function will produce a summary of each variable in the input dataset. It w
   * _P95_: Value at the percentile 95 of the variable.
   * _P99_: Value at the percentile 99 of the variable.
   * _Max_: Maximum value of the variable.
-  * _<TO DO:DECILES>_
+  * _P10_: Value at the percentile 10 of the variable.
+  * _P20_: Value at the percentile 20 of the variable.
+  * _P30_: Value at the percentile 30 of the variable.
+  * _P40_: Value at the percentile 40 of the variable.
+  * _P50_: Value at the percentile 50 of the variable.
+  * _P60_: Value at the percentile 60 of the variable.
+  * _P70_: Value at the percentile 70 of the variable.
+  * _P80_: Value at the percentile 80 of the variable.
+  * _P90_: Value at the percentile 90 of the variable.
+* Note that the percentile thresholds should be calculated on non-missing values only.
+* Produce `univar_stats_problems.csv` to highlight any obvious data issues. If the univariate stats of a variable meets any of the following criteria, then it should be in the output:
+  * Variable is 100% missing
+  * Variable has only 1 unique value
+
+  The table should have the following columns:
+  * _Variable_: Name of variable
+  * _Problem_: A description of the problem with this variable, which can take the folloiwng values:
+
 
 ## Output
 All files below should be output to the `output_dir`, overwriting a previous version if necessary.
@@ -67,14 +83,10 @@ univariate_stats(
 
 ## Example call
 ```
-output_dir <- "D:/data/cars1/"
-transformed_data_rds <- str_c(output_dir, "transformed_data.rds")
-var_config_rds <- str(output_dir, "var_config.rds")
-
 univariate_stats(
-  transformed_data=transformed_data_rds,
-  var_config=var_config_rds,
-  output_dir=output_dir,
+  transformed_data=transformed_data,
+  var_config=var_config,
+  output_dir="D:/data/cars1/",
   )  
 ```
 ## Tests

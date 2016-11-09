@@ -3,17 +3,19 @@
 ## Purpose
 This function will produce a summary of how each variable varies with a _categorical_ outcome variable. This will help the user to flag associations between the independent variables and outcome variable that may not be compatible with the subsequent modelling approach.
 
-## Dependancies
+## Internal Dependancies
 `read_and_transform`
 
 ## Name
 `bivar_stats_y_cat`
 
-## Inputs
+## Parameters
 * `transformed_data`
   * R dataset output by `read_and_transform`
+* `var_config`
+  * R dataset output by `var_config_generator`
 * `output_dir`
-  * The directory into which all outputs will be output to.
+  * The directory into which all outputs will be written to.
 * `outcome`
   * The variable to use as an outcome.
 
