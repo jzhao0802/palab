@@ -1,11 +1,11 @@
 # Variable configuration generator
 
 ## Purpose
-This function will read in the a smalle sample of the original data from CSV input and guesses the column types.
+This function will read in the a small sample of the original data from CSV input and guesses the column types.
 The file that is ouput will be used to create `var_config.csv` which is an input to the next function, `read_and_transform`.
 
 ## Name
-var_config_generator
+`var_config_generator`
 
 ## Internal Dependencies
 None
@@ -18,11 +18,11 @@ None
 * `sample_rows`
   * The number of rows to read from the input dataset.
 * `output_dir`
-  * The directory into which all outputs will be output to.
+  * The directory into which all outputs will be written to.
 
 ## Function
 * Read in the first `sample_row` lines of `input_dataset`.
-* Produce `var_config_generated` with the following columns:
+* Produce var_config_generated.csv with the following columns:
   * _ColumnName_: Name of the column `input_dataset`
   * _TypeGenerated_: This is the type of the column as guessed by the read function. <options of read>This field can take one of several values:
     * Categorical - for categorical columns
@@ -32,11 +32,8 @@ None
 * Every column that appears in `input_dataset` should also appear as a row in `var_config_generated` and must have a _TypeGenerated_.
 
 ## Output
-All files below should be output to the `output_dir`, overwriting a previous version if necessary.
-* var_config_generated.rds
-  * RDS file of `var_config_generated`.
+All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
 * var_config_generated.csv
-  * CSV of `var_config_generated`.
 
 ## Defaults
 ```
@@ -49,12 +46,9 @@ var_config_generator(
 
 ## Example call
 ```
-input_dataset <- "D:/data/cars1/input/mt_cars.csv"
-output_dir <- "D:/data/cars1"
-
 var_config_generator(
-  input_dataset = input_dataset
-  output_dir = output_dir
+  input_dataset = "D:/data/cars1/input/mt_cars.csv"
+  output_dir = "D:/data/cars1"
   )  
 ```
 ## Tests

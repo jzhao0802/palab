@@ -3,7 +3,7 @@
 ## Purpose
 This function will replace extreme values in numerical variables with either a user-defined value or a data-driven value.
 
-## Dependencies
+## Internal Dependencies
 `read_and_transform`
 
 ## Name

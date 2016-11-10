@@ -3,17 +3,19 @@
 ## Purpose
 This function will produce a summary of how each variable varies with a _categorical_ outcome variable. This will help the user to flag associations between the independent variables and outcome variable that may not be compatible with the subsequent modelling approach.
 
-## Dependancies
+## Internal Dependancies
 `read_and_transform`
 
 ## Name
 `bivar_stats_y_cat`
 
-## Inputs
+## Parameters
 * `transformed_data`
   * R dataset output by `read_and_transform`
+* `var_config`
+  * R dataset output by `var_config_generator`
 * `output_dir`
-  * The directory into which all outputs will be output to.
+  * The directory into which all outputs will be written to.
 * `outcome`
   * The variable to use as an outcome.
 
@@ -29,10 +31,9 @@ This function will produce a summary of how each variable varies with a _categor
       * First is a level called "non_missing". This row will contain aggregated stats on all the non-missing levels in that variable.
       * Second is a level called "missing". This row will contains stats on all the missing observations for that variable.
   * _Count__X_: Count of observations which have this variable equal to this level when outcome level is X.
-  * _Prp__X_: Proportion of observations which have this variable equal to this level when outcome level is X.  The result should be rounded to two decimal places.
-    * _Prp__X_ = _Count__X_ / all observations where level is X.
-
-* For numerical variables, produce `bivar_stats_y_cat_x_num.csv`. Excluding the count and percentages or observations, all other statistics will be calculated ignoring missing values. The output file will have the following columns:
+  * _Percentage of Level__X_: _Count__X_ / all observations where level of variable is this level, i.e. P(outcome = Y1 | variable = X1)
+  * _Percentage of Outcome__X_: _Count__X_ / all observations where the outcome level is X, i.e. P(variable = X1 | outcome = Y1)
+* For numerical variables, produce `bivar_stats_y_cat_x_num.csv` with following columns:
   * _Variable_: Name of the categorical variable.
   * _NonMissing__X_: Number of non-missing obsservations when outcome level is X.
   * _NonMissingPrp__X_: Proportion of non-missing observations when outcome level is X where the denominator is the total number of observations in the data inclusive of missing values. The result should be rounded to two decimal places.
@@ -59,10 +60,22 @@ All CSVs below should be output to the `output_dir`, overwriting a previous vers
 
 ## Defaults
 ```
-bivariate_stats(
-  transformed_data = transformed_data,
-  output_dir = <test output directory>,
-  outcome = gear
+bivar_stats_y_cat(
+  transformed_data=,
+  var_config=,
+  output_dir=,
+  outcome=
   )  
 ```
+
+## Example call
+```
+bivar_stats_y_cat(
+  transformed_data=transformed_data,
+  var_config=var_config,
+  output_dir="D:/data/cars1/",
+  outcome = "gear"
+  )  
+```
+
 ## Tests

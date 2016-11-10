@@ -3,21 +3,21 @@
 ## Purpose
 This function will produce a summary of how each variable varies with a _numerical_ outcome variable. This will help the user to flag associations between the independent variables and outcome variable that may not be compatible with the subsequent modelling approach.
 
-
-## Dependencies
+## Internal Dependancies
 `read_and_transform`
 
 ## Name
 `bivar_stats_y_num`
 
-## Inputs
+## Parameters
 * `transformed_data`
-  * Full path and name of the R dataset of same name output by `read_and_transform`.
+  * R dataset output by `read_and_transform`
 * `var_config`
-    * Full path and name of the R dataset of same name output by `read_and_transform`.
+  * R dataset output by `var_config_generator`
 * `output_dir`
-    * The directory into which all outputs will be written to.
-
+  * The directory into which all outputs will be written to.
+* `outcome`
+  * The variable to use as an outcome.
 
 ## Function
 * Output a warning if the outcome variable has less than 5 unique values.
@@ -71,12 +71,24 @@ All CSVs below should be output to the `output_dir`, overwriting a previous vers
 
 ## Defaults
 ```
-bivariate_stats(
-  transformed_data = transformed_data,
-  output_dir = <test output directory>,
-  outcome = gear
+bivar_stats_y_num(
+  transformed_data=,
+  var_config=,
+  output_dir=,
+  outcome=
   )  
 ```
+
+## Example call
+```
+bivar_stats_y_num(
+  transformed_data=transformed_data,
+  var_config=var_config,
+  output_dir="D:/data/cars1/",
+  outcome = "gear"
+  )  
+```
+
 ## Tests
 * All outputs should have the correct format and structure as specified.
 * Using the provided toy example for [transformed_data](./example_data/mtcars.csv): all outputs should exactly match the provided examples for the results [bivar_stats_y_num_x_cat](./example_output_csvs/bivar_stats_y_num_x_cat.csv);
