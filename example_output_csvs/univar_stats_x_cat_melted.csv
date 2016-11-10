@@ -1,0 +1,27 @@
+"Variable","Number of levels","Level","Count","Proportion"
+"cyl",3,"non-missing",32,1
+"vs",2,"non-missing",32,1
+"am",2,"non-missing",32,1
+"gear",3,"non-missing",28,0.88
+"carb",6,"non-missing",32,1
+"cyl",3,"missing",0,0
+"vs",2,"missing",0,0
+"am",2,"missing",0,0
+"gear",3,"missing",4,0.12
+"carb",6,"missing",0,0
+"cyl",3,"4",11,0.34375
+"cyl",3,"6",7,0.21875
+"cyl",3,"8",14,0.4375
+"vs",2,"0",18,0.5625
+"vs",2,"1",14,0.4375
+"am",2,"0",19,0.59375
+"am",2,"1",13,0.40625
+"gear",3,"3",14,0.5
+"gear",3,"4",9,0.321428571428571
+"gear",3,"5",5,0.178571428571429
+"carb",6,"1",7,0.21875
+"carb",6,"2",10,0.3125
+"carb",6,"3",3,0.09375
+"carb",6,"4",10,0.3125
+"carb",6,"6",1,0.03125
+"carb",6,"8",1,0.03125

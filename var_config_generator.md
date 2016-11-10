@@ -52,3 +52,4 @@ var_config_generator(
   )  
 ```
 ## Tests
+* Using the provided toy example for [transformed_data](./example_data/mtcars.csv): all outputs should exactly match the provided examples for results [var_config_generated](./example_output_csvs/var_config_generated.csv)

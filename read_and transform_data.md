@@ -67,11 +67,11 @@ All CSVs below should be output to the `output_dir`, overwriting a previous vers
   * R dataset
 * `var_config`
   * R dataset of var_config.csv
-* transformed_data.rds
+* `transformed_data.rds`
   * RDS file of `transformed_data` written to `output_dir`
-* transformed_data.csv
+* `transformed_data.csv`
   * If `output_csv` = "Y", output a CSV of `transformed_data`
-* transformed_data_report.csv
+* `transformed_data_report.csv`
 
 ## Defaults
 ```
@@ -96,4 +96,8 @@ read_and_transform(
   output_dir = "D:/data/cars1"
   )
 ```
+
 ## Tests
+* Using the provided toy example for [transformed_data](./example_data/mtcars.csv): all outputs should exactly match the provided examples for results:
+  * [transformed_data CSV](./example_output_csvs/transformed_data.csv)
+  * [transformed_data RDS](./example_output_csvs/transformed_data.rds)

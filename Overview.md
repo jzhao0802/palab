@@ -19,8 +19,8 @@ The Predictive Analtyics (PA) team run many projects a year which have common da
 * `var_config_generator`
 * `read_and_transform`
 * `univariate_stats`
-* `extreme_values`
 * `bivariate_stats_cat`
 * `bivariate_stats_num`
+* `extreme_values`
 * `correlation_xbyx`
 * `perf_metrics_cat`
