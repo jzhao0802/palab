@@ -28,7 +28,7 @@ This function will produce a summary of each variable in the input dataset. It w
   * _Count_: Count of observations which have this variable equal to this level.
   * _Percentage_: Percentage of observations which have this variable equal to this level.
     * For the special levels, _Percentage_ = _Count_ / Number of observations
-    * For the normal levels, _Percentage_ = _Count_ / Number of non_missing of that variable
+    * For the normal levels, _Percentage_ = _Count_ / Number of non_missing observations for that variable
 * For numerical variables (from `var_config`), produce `univar_stats_x_num.csv` with following columns:
   * _Variable_: Name of the categorical variable.
   * _NonMissing_: Number of non-missing obsservations.

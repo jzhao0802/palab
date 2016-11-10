@@ -71,12 +71,24 @@ All CSVs below should be output to the `output_dir`, overwriting a previous vers
 
 ## Defaults
 ```
-bivariate_stats(
-  transformed_data = transformed_data,
-  output_dir = <test output directory>,
-  outcome = gear
+bivar_stats_y_num(
+  transformed_data=,
+  var_config=,
+  output_dir=,
+  outcome=
   )  
 ```
+
+## Example call
+```
+bivar_stats_y_num(
+  transformed_data=transformed_data,
+  var_config=var_config,
+  output_dir="D:/data/cars1/",
+  outcome = "gear"
+  )  
+```
+
 ## Tests
 * All outputs should have the correct format and structure as specified.
 * Using the provided toy example for [transformed_data](./example_data/mtcars.csv): all outputs should exactly match the provided examples for results [bivar_stats_y_num_x_cat](./example_output_csvs/bivar_stats_y_num_x_cat.csv)
