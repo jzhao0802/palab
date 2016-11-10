@@ -22,7 +22,6 @@ _An additional column will have been generated which is the predicted score of t
 * `pr_curve_flag`
   * This flag indicates whether a precision-recall (PR) curve should be generated and saved as a graphic. This can be either "TRUE" or "FALSE". The default value is FALSE.
 
-
 ## Function
 * Check if `model_output` input has the correct format:
   * Three columns with more than one row

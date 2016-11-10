@@ -29,14 +29,15 @@ This function will produce a summary of how each variable varies with a _categor
       * First is a level called "non_missing". This row will contain aggregated stats on all the non-missing levels in that variable.
       * Second is a level called "missing". This row will contains stats on all the missing observations for that variable.
   * _Count__X_: Count of observations which have this variable equal to this level when outcome level is X.
-  * _Percentage__X_: Percentage of observations which have this variable equal to this level when outcome level is X.
-    * _Percentage__X_ = _Count__X_ / all observations where level is X.
-* For numerical variables, produce `bivar_stats_y_cat_x_num.csv` with following columns:
+  * _Prp__X_: Proportion of observations which have this variable equal to this level when outcome level is X.  The result should be rounded to two decimal places.
+    * _Prp__X_ = _Count__X_ / all observations where level is X.
+
+* For numerical variables, produce `bivar_stats_y_cat_x_num.csv`. Excluding the count and percentages or observations, all other statistics will be calculated ignoring missing values. The output file will have the following columns:
   * _Variable_: Name of the categorical variable.
   * _NonMissing__X_: Number of non-missing obsservations when outcome level is X.
-  * _NonMissingPerc__X_: Percentage of non-missing observations when outcome level is X.
+  * _NonMissingPrp__X_: Proportion of non-missing observations when outcome level is X where the denominator is the total number of observations in the data inclusive of missing values. The result should be rounded to two decimal places.
   * _Missing__X_: Number of missing observations when outcome level is X.
-  * _MissingPerc__X_: Percentage of missing observations when outcome level is X.
+  * _MissingPrp__X_: Proportion of missing observations when outcome level is X where the denominator is the total number of observations in the data inclusive of missing values. The result should be rounded to two decimal places.
   * _Mean__X_: Mean of the variable when outcome level is X.
   * _SD__X_: Standard deviation of the variable when outcome level is X.
   * _Min__X_: Minimum value of the variable when outcome level is X.
