@@ -80,3 +80,6 @@ bivar_stats_y_cat(
 ```
 
 ## Tests
+* All outputs should have the correct format and structure as specified.
+* Using the provided toy example for [transformed_data](./example_data/mtcars.csv): all outputs should exactly match the provided examples for the results [bivar_stats_y_cat_x_cat](./example_output_csvs/bivar_stats_y_cat_x_cat.csv);
+[bivar_stats_y_cat_x_num](./example_output_csvs/bivar_stats_y_cat_x_num.csv).
