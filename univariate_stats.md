@@ -18,25 +18,36 @@ This function will produce a summary of each variable in the input dataset. It w
   * The directory into which all outputs will be written to.
 
 ## Function
-* For categorical variables (from `var_config`), produce `univar_stats_x_cat.csv`. This is a full frequency table containing all levels for all variables with the following columns:
+
+* For categorical variables (from `var_config`), produce `univar_stats_x_cat.csv` with the following columns:
   * _Variable_: Name of the categorical variable.
-  * _NumLevels_: This is the number of different levels in that variable. This value will be repeated for all rows with that variable.
+  * _Non-missing, N_: Number of non-missing obsservations.
+  * _Non-missing, %_: Percentage of non-missing observations.
+  * _Missing, N_: Number of missing observations.
+  * _Missing, %_: Percentage of missing observations.
+  * _Number of Levels_: This is the number of different levels in that variable. This value will be repeated for all rows with that variable.
+  * _LevelX value_: The value in the most popular level in this variable
+  * _Obs in LevelX, N_: Count of observations which have this variable equal to _LevelX value_
+  * _Obs in LevelX, %_: _Obs in LevelX, N_ /  _Non-missing, N_
+* For categorical variables (from `var_config`), produce `univar_stats_x_cat_melted.csv`. This is a full frequency table containing all levels for all variables with the following columns:
+  * _Variable_: Name of the categorical variable.
+  * _Number of Levels_: This is the number of different levels in that variable. This value will be repeated for all rows with that variable.
   * _Level_: The value of the level in that variable
     * Each variable should the following 2 special levels:
       * First is a level called "non_missing". This row will contain aggregated stats on all the non-missing levels in that variable.
       * Second is a level called "missing". This row will contains stats on all the missing observations for that variable.
   * _Count_: Count of observations which have this variable equal to this level.
-  * _Percentage_: Percentage of observations which have this variable equal to this level.
-    * For the special levels, _Percentage_ = _Count_ / Number of observations
-    * For the normal levels, _Percentage_ = _Count_ / Number of non_missing observations for that variable
+  * _Proportion_: Percentage of observations which have this variable equal to this level.
+    * For the special levels, _Proportion_ = _Count_ / Number of observations
+    * For the normal levels, _Proportion_ = _Count_ / Number of non_missing observations for that variable
 * For numerical variables (from `var_config`), produce `univar_stats_x_num.csv` with following columns:
   * _Variable_: Name of the categorical variable.
-  * _NonMissing_: Number of non-missing obsservations.
-  * _NonMissingPerc_: Percentage of non-missing observations.
-  * _Missing_: Number of missing observations.
-  * _MissingPerc_: Percentage of missing observations.
+  * _Non-missing, N_: Number of non-missing obsservations.
+  * _Non-missing, %_: Percentage of non-missing observations.
+  * _Missing, N_: Number of missing observations.
+  * _Missing, %_: Percentage of missing observations.
   * _Mean_: Mean of the variable.
-  * _SD_: Standard deviation of the variable.
+  * _Standard deviation_: Standard deviation of the variable.
   * _Min_: Minimum value of the variable.
   * _P1_: Value at the percentile 1 of the variable.
   * _P5_: Value at the percentile 5 of the variable.
@@ -70,6 +81,7 @@ This function will produce a summary of each variable in the input dataset. It w
 ## Output
 All files below should be output to the `output_dir`, overwriting a previous version if necessary.
 * univar_stats_x_cat.csv
+* univar_stats_x_cat_melted.csv
 * univar_stats_x_num.csv
 
 ## Defaults

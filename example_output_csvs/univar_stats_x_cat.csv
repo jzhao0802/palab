@@ -1,15 +1,6 @@
-Variable,NumLevels,Level,Count,Percentage
-gear,3,non_missing,28,0.875
-gear,3,missing ,4,0.125
-gear,3,3,14,0.5
-gear,3,4,9,0.321428571
-gear,3,5,5,0.178571429
-example,7,non_missing,16,0.5
-example,7,missing ,16,0.5
-example,7,blue,9,0.5625
-example,7,white,2,0.125
-example,7,red,1,0.0625
-example,7,purple,1,0.0625
-example,7,green,1,0.0625
-example,7,yellow,1,0.0625
-example,7,orange,1,0.0625
+"Variable","Non-missing, N","Non-missing, %","Missing, N","Missing, %","Number of levels","Level1 value","Obs in level1, N","Obs in level1, %","Level2 value","Obs in level2, N","Obs in level2, %","Level3 value","Obs in level3, N","Obs in level3, %","Level4 value","Obs in level4, N","Obs in level4, %","Level5 value","Obs in level5, N","Obs in level5, %","Level6 value","Obs in level6, N","Obs in level6, %"
+"cyl",32,1,0,0,3,"4",11,0.34,"6",7,0.22,"8",14,0.44,NA,0,0,NA,0,0,NA,0,0
+"vs",32,1,0,0,2,"0",18,0.56,"1",14,0.44,NA,0,0,NA,0,0,NA,0,0,NA,0,0
+"am",32,1,0,0,2,"0",19,0.59,"1",13,0.41,NA,0,0,NA,0,0,NA,0,0,NA,0,0
+"gear",28,0.88,4,0.12,3,"3",14,0.5,"4",9,0.32,"5",5,0.18,NA,0,0,NA,0,0,NA,0,0
+"carb",32,1,0,0,6,"1",7,0.22,"2",10,0.31,"3",3,0.09,"4",10,0.31,"6",1,0.03,"8",1,0.03
