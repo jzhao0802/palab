@@ -1,0 +1,14 @@
+Column,TypeGenerated,NumUniqueValues
+carID,categorical,32
+mpg,numerical,25
+cyl,numerical,3
+disp,numerical,27
+hp,numerical,20
+drat,numerical,22
+wt,numerical,29
+qsec,numerical,30
+vs,numerical,2
+vs,numerical,2
+am,numerical,2
+gear,numerical,4
+carb,numerical,6
