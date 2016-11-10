@@ -96,4 +96,8 @@ read_and_transform(
   output_dir = "D:/data/cars1"
   )
 ```
+
 ## Tests
+* Using the provided toy example for [transformed_data](./example_data/mtcars.csv): all outputs should exactly match the provided examples for results:
+  * [transformed_data CSV](./example_output_csvs/transformed_data.csv)
+  * [transformed_data RDS](./example_output_csvs/transformed_data.rds)
