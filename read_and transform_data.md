@@ -67,11 +67,11 @@ All CSVs below should be output to the `output_dir`, overwriting a previous vers
   * R dataset
 * `var_config`
   * R dataset of var_config.csv
-* transformed_data.rds
+* `transformed_data.rds`
   * RDS file of `transformed_data` written to `output_dir`
-* transformed_data.csv
+* `transformed_data.csv`
   * If `output_csv` = "Y", output a CSV of `transformed_data`
-* transformed_data_report.csv
+* `transformed_data_report.csv`
 
 ## Defaults
 ```

@@ -50,14 +50,14 @@ This function will replace extreme values in numerical variables with either a u
 
 ## Outputs
 All CSVs below should be output to the output_dir, overwriting a previous version if necessary.
-
+* `ex_transformed_data`
+  * R dataset
 * `ex_transformed_data.rds`
-  * RDS file of `ex_transformed_data`.
-
+  * RDS file of `ex_transformed_data` written to `output_dir`
 * If `output_csv` = "TRUE", write out `ex_transformed_data` as a csv to `output_dir`
-
 * `ex_val_thrsh_out.csv`
   * This file logs the thresholds that were used to cap the numerical variables.
+
 ## Defaults
 ```
 extreme_values(
