@@ -178,16 +178,16 @@ colnames(bvs_c)[8] <- 'Proportion of Outcome_1'
 ct = 1
 for (i in 1:nrow(cv_names)){
   n_levels <- num_of_levels(cx[,i])
-  levels <- distinct_levels(cx[,i])
+  levels <- sort(distinct_levels(cx[,i]))
   for (j in 1:n_levels){
     bvs_c[ct,1] <- colnames(cx)[i]
     bvs_c[ct,2] <- levels[j]
     bvs_c[ct,3] <- num_not_missing_x_level_y_level(cx[,i], levels[j], y, 0)
-    bvs_c[ct,4] <- num_not_missing_x_level_y_level(cx[,i], levels[j], y, 0)/sum(y==0)
-    bvs_c[ct,5] <- num_not_missing_x_level_y_level(cx[,i], levels[j], y, 0)/num_not_missing_level(cx[,i], levels[j])
+    bvs_c[ct,4] <- round(num_not_missing_x_level_y_level(cx[,i], levels[j], y, 0)/sum(y==0),2)
+    bvs_c[ct,5] <- round(num_not_missing_x_level_y_level(cx[,i], levels[j], y, 0)/num_not_missing_level(cx[,i], levels[j]),2)
     bvs_c[ct,6] <- num_not_missing_x_level_y_level(cx[,i], levels[j], y, 1)
-    bvs_c[ct,7] <- num_not_missing_x_level_y_level(cx[,i], levels[j], y, 1)/sum(y==1)
-    bvs_c[ct,8] <- num_not_missing_x_level_y_level(cx[,i], levels[j], y, 1)/num_not_missing_level(cx[,i], levels[j])
+    bvs_c[ct,7] <- round(num_not_missing_x_level_y_level(cx[,i], levels[j], y, 1)/sum(y==1),2)
+    bvs_c[ct,8] <- round(num_not_missing_x_level_y_level(cx[,i], levels[j], y, 1)/num_not_missing_level(cx[,i], levels[j]),2)
     ct = ct + 1 
   }
 }
