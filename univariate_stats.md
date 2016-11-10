@@ -101,4 +101,9 @@ univariate_stats(
   output_dir="D:/data/cars1/",
   )  
 ```
+
 ## Tests
+* All outputs should have the correct format and structure as specified.
+* Using the provided toy example for [transformed_data](./example_data/mtcars.csv): all outputs should exactly match the provided examples for the results [univar_stats_x_cat](./example_output_csvs/univar_stats_x_cat.csv);
+[univar_stats_x_cat_melted](./example_output_csvs/univar_stats_x_cat_melted.csv);
+[univar_stats_x_num](./example_output_csvs/univar_stats_x_num.csv).
