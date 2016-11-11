@@ -11,9 +11,9 @@ This function will produce a summary of each variable in the input dataset. It w
 
 ## Parameters
 * `transformed_data`
-  * R dataset output by `read_and_transform`
+  * R dataset (as an object) or a path to a CSV file output by `read_and_transform`.
 * `var_config`
-  * R dataset output by `var_config_generator`
+  * R dataset (as an object) or a path to a CSV file output by `var_config_generator`.
 * `output_dir`
   * The directory into which all outputs will be written to.
 
