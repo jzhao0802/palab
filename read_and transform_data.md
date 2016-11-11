@@ -3,6 +3,9 @@
 ## Purpose
 This function will read in the original data from CSV input and transform it such that it is ready for further analysis.
 
+## Implementation details
+Please use data.table and/or readr packages to ensure fast execution.
+
 ## Name
 `read_and_transform`
 
@@ -20,10 +23,10 @@ None
   * First column: _ColumnName_, the name of the column in the input dataset.
   * Second column: _Type_.
     This indicates what type the column in the input dataset is.
-    * "Categorical" for a categorical variable
-    * "Numerical" for a numerical variable
-    * "Key" for the column which is the primary key
-    * "Other" for an attribute or any other type of column not listed above.
+    * "Categorical" for a categorical variable, (or c for short)
+    * "Numerical" for a numerical variable, (or n for short)
+    * "Key" for the column which is the primary key, (or k for short)
+    * "Other" for an attribute or any other type of column not listed above, (or o for short)
   * Every entry in the data metadata must have a value in _Type_.
 * `max_levels`
   * The maximum number of levels that a variable labelled as categorical in the data_metadata should have.
