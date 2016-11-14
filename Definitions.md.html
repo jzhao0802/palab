@@ -2,7 +2,7 @@
 <html>
   <head>
       <meta charset="utf-8" />
-      <title>bivar_stats_y_num</title>
+      <title>Definitions</title>
       <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); overflow: auto; background-color: rgb(40, 44, 52); }
 .markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
 .markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
@@ -506,102 +506,43 @@ pre.editor-colors .fold-marker:after,
 }
 </style>
   </head>
-  <body class='markdown-preview' data-use-github-style><h1 id="bivariate-statistics-for-numerical-outcomes">Bivariate Statistics for numerical outcomes</h1>
-<h2 id="purpose">Purpose</h2>
-<p>This function will produce a summary of how each variable varies with a <em>numerical</em> outcome variable. This will help the user to flag associations between the independent variables and outcome variable that may not be compatible with the subsequent modelling approach.</p>
-<h2 id="internal-dependancies">Internal Dependancies</h2>
-<p><code>read_and_transform</code></p>
-<h2 id="name">Name</h2>
-<p><code>bivar_stats_y_num</code></p>
-<h2 id="parameters">Parameters</h2>
+  <body class='markdown-preview' data-use-github-style><h1 id="definitions">Definitions</h1>
+<h2 id="commonly-used-terms">Commonly used terms</h2>
 <ul>
-<li><code>transformed_data</code><ul>
-<li>R data frame output by <code>read_and_transform</code></li>
+<li>Input dataset<ul>
+<li>This is the data that is to be analysed. It is sometimes called the design matrix.</li>
 </ul>
 </li>
-<li><code>var_config</code><ul>
-<li>R data frame output by <code>var_config_generator</code></li>
+<li>Observation<ul>
+<li>A row in the input dataset.</li>
+<li>There is usually one row per patient.</li>
 </ul>
 </li>
-<li><code>output_dir</code><ul>
-<li>The directory into which all outputs will be written to.</li>
+<li>Attributes<ul>
+<li>A column in the input dataset which is descriptive but no intended as an input to a statistical algorithm. For example, an ID (patient ID, hospitalID) or a date (index date)</li>
 </ul>
 </li>
-<li><code>outcome</code><ul>
-<li>The variable to use as an outcome.</li>
+<li>Variable<ul>
+<li>A column in the input dataset which is intended as an input into a statistical algorithm.</li>
 </ul>
 </li>
-</ul>
-<h2 id="function">Function</h2>
-<ul>
-<li>Output a warning if the outcome variable has less than 5 unique values.<ul>
-<li>This is because the statistics in this function will not be meaningful and it would be better to run <code>bivar_stats_y_cat</code>.</li>
+<li>Categorical variable<ul>
+<li>A variable which has a distinct number of unique values which are not related numerically, i.e. Gender, Treatment type, Comorbidity.</li>
 </ul>
 </li>
-<li><p>For categorical variables (variable definition located in <code>var_config</code>), produce <code>bivar_stats_y_num_x_cat.csv</code> where the statistics for each categorical variable spans a group of rows and each row within the group represents a level of the categorical variable. The statistics will be calculated ignoring missing values. The results should be round to two decimal places. The output file will have the following columns:</p>
-<ul>
-<li><em>Variable</em>: Name of the categorical variable.</li>
-<li><em>Level</em>: The value of the level in that variable.</li>
-<li><em>Mean outcome</em>: mean of the outcome variable when the categorical variable is level X.</li>
-<li><em>SD outcome</em>: the standard deviation of the outcome variable when the categorical variable is level X.</li>
-<li><em>Min outcome</em>: Minimum value of the variable when outcome level is X.</li>
-<li><em>P1 outcome</em>: Value at the percentile 1 of the outcome variable when categorical variable level is X.</li>
-<li><em>P5 outcome</em>: Value at the percentile 5 of the outcome variable when categorical variable level is X.</li>
-<li><em>P10 outcome</em>: Value at the percentile 10 of the outcome variable when categorical variable level is X.</li>
-<li><em>P25 outcome</em>: Value at the percentile 25 of the outcome variable when categorical variable level is X.</li>
-<li><em>P50 outcome</em>: Value at the percentile 50 of the outcome variable when categorical variable level is X.</li>
-<li><em>P75 outcome</em>: Value at the percentile 75 of the outcome variable when categorical variable level is X.</li>
-<li><em>P90 outcome</em>: Value at the percentile 90 of the outcome variable when categorical variable level is X.</li>
-<li><em>P95 outcome</em>: Value at the percentile 95 of the outcome variable when categorical variable level is X.</li>
-<li><em>P99 outcome</em>: Value at the percentile 99 of the outcome variable when categorical variable level is X.</li>
-<li><em>Max outcome</em> : Maximum value of the outcome variable when categorical variable level is X.</li>
+<li>Numerical variable  <ul>
+<li>A variable which has values on a continuous scale, e.g. Height</li>
 </ul>
 </li>
-<li><p>For categorical variables produce <code>RR_stats_y_num_x_cat.csv</code> which contains stats on the relative risk where the statistics for each categorical variable spans a group of rows and each row within the group represents a level of the categorical variable. The results should be rounded to two decimal places. The output should have the following columns:</p>
-<ul>
-<li><em>Variable</em>: Name of the categorical variable.</li>
-<li><em>Level</em>: The value of the level in that variable.</li>
-<li><em>Relative risk</em>: This is the mean of the outcome variable when the categorical variable is equal to this level, divided by the mean of the outcome variable for when the categorical variable is equal to the <em>1st</em> level.<ul>
-<li>The <em>1st</em> level is defined as the first one when all level values are sorted alphabetically, or numerically by the first word in the level value. The first word in the following level value: &quot;20 - 40&quot;, is &quot;20&quot;.</li>
-<li>The <em>1st</em> level will be assumed to the baseline level and all other levels (including the first level) will be considered relative to this baseline.</li>
+<li>Independent variable<ul>
+<li>A variable which will be used to make a prediction in a supervised model.</li>
+<li>Also known as predictors, input variables.</li>
 </ul>
 </li>
+<li>Outcome variable<ul>
+<li>A variable which will be used to train a supervised model</li>
+<li>Also known as Response variable, Target variable, Dependent variable</li>
 </ul>
 </li>
-<li><p>For numerical variables produce the following statistics where deciles are computed by mass (as opposed to by range) in <code>bivar_stats_y_num_x_num.csv</code> where each row represents a single numerical variable.  The statistics will be calculated ignoring missing values. The output file will have the following columns:</p>
-<ul>
-<li><em>Variable</em>: Name of the numerical variable.</li>
-<li><em>Pearson&#39;s correlation coefficient</em>: Pearson&#39;s correlation coefficient measuring the association between the numerical variable and the outcome variable. The result should be rounded to two decimal places.</li>
-<li><em>P-value of Pearson&#39;s correlation coefficient</em>: The p-value for Pearson&#39;s correlation coefficient measuring the association between the numerical variable and the outcome variable. The result should be rounded to five decimal places.</li>
-<li><em>Spearman&#39;s correlation coefficient</em>: Spearman&#39;s correlation coefficient measuring the association between the numerical variable and the outcome variable. The result should be rounded to two decimal places.</li>
-<li><em>P-value of Spearman&#39;s correlation coefficient</em>: The p-value for Spearman&#39;s correlation coefficient measuring the association between the numerical variable and the outcome variable. The result should be rounded to five decimal places.</li>
-<li><em>Mean outcome in 1st decile</em>: the mean of the outcome variable for the observations where the numerical variable is &gt;= minimum value of the numerical variable and &lt; the value of the 1st decile of the numerical variable. The result should be rounded to two decimal places.</li>
-<li><em>Mean outcome in 2nd decile</em>: the mean of the outcome variable for the observations where the numerical variable is &gt;= the value of the 1st decile of the numerical variable  and &lt; the value of the 2nd decile of the numerical variable. The result should be rounded to two decimal places.</li>
-<li><em>Mean outcome in 3rd decile</em>: the mean of the outcome variable for the observations where the numerical variable is &gt;= the value of the 2nd decile of the numerical variable  and &lt; the value of the 3rd decile of the numerical variable. The result should be rounded to two decimal places.</li>
-<li><em>Mean outcome in 4th decile</em>: the mean of the outcome variable for the observations where the numerical variable is &gt;= the value of the 3rd decile of the numerical variable  and &lt; the value of the 4th decile of the numerical variable. The result should be rounded to two decimal places.</li>
-<li><em>Mean outcome in 5th decile</em>: the mean of the outcome variable for the observations where the numerical variable is &gt;= the value of the 4th decile of the numerical variable  and &lt; the value of the 5th decile of the numerical variable. The result should be rounded to two decimal places.</li>
-<li><em>Mean outcome in 6th decile</em>: the mean of the outcome variable for the observations where the numerical variable is &gt;= the value of the 5th decile of the numerical variable  and &lt; the value of the 6th decile of the numerical variable. The result should be rounded to two decimal places.</li>
-<li><em>Mean outcome in 7th decile</em>: the mean of the outcome variable for the observations where the numerical variable is &gt;= the value of the 6th decile of the numerical variable  and &lt; the value of the 7th decile of the numerical variable. The result should be rounded to two decimal places.</li>
-<li><em>Mean outcome in 8th decile</em>: the mean of the outcome variable for the observations where the numerical variable is &gt;= the value of the 7th decile of the numerical variable  and &lt; the value of the 8th decile of the numerical variable. The result should be rounded to two decimal places.</li>
-<li><em>Mean outcome in 9th decile</em>: the mean of the outcome variable for the observations where the numerical variable is &gt;= the value of the 8th decile of the numerical variable  and &lt; the value of the 9th decile of the numerical variable. The result should be rounded to two decimal places.</li>
-<li><em>Mean outcome in 10th decile</em>:  the mean of the outcome variable for the observations where the numerical variable is &gt;= the value of the 9th decile of the numerical variable  and &lt;= the maximum value numerical variable. The result should be rounded to two decimal places.</li>
-</ul>
-</li>
-</ul>
-<h2 id="output">Output</h2>
-<p>All CSVs below should be output to the <code>output_dir</code>, overwriting a previous version if necessary.</p>
-<ul>
-<li>bivar_stats_y_num_x_cat.csv</li>
-<li>RR_stats_y_num_x_cat.csv</li>
-<li>bivar_stats_y_num_x_num.csv</li>
-</ul>
-<h2 id="defaults">Defaults</h2>
-<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>bivar_stats_y_num(</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>transformed_data=,</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;var_config=,</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;output_dir=,</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;outcome=</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;)</span></span></span></div></pre><h2 id="example-call">Example call</h2>
-<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>bivar_stats_y_num(</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>transformed_data=transformed_data,</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;var_config=var_config,</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;output_dir=&quot;D:/data/cars1/&quot;,</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;outcome&nbsp;=&nbsp;&quot;gear&quot;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;)</span></span></span></div></pre><h2 id="tests">Tests</h2>
-<ul>
-<li>All outputs should have the correct format and structure as specified.</li>
-<li>Using the provided toy example for <a href="./example_data/mtcars.csv">transformed_data</a>: all outputs should exactly match the provided examples for the results <a href="./example_output_csvs/bivar_stats_y_num_x_cat.csv">bivar_stats_y_num_x_cat</a>;
-<a href="./example_output_csvs/bivar_stats_y_num_x_num.csv">bivar_stats_y_num_x_num</a>;
-<a href="./example_output_csvs/rr_stats_y_num_x_cat.csv">rr_stats_y_num_x_cat</a>.</li>
 </ul></body>
 </html>
