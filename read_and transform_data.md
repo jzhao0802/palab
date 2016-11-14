@@ -67,9 +67,9 @@ None
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
 * `transformed_data`
-  * R dataset
+  * R data frame
 * `var_config`
-  * R dataset of var_config.csv
+  * R data frame of var_config.csv
 * `transformed_data.rds`
   * RDS file of `transformed_data` written to `output_dir`
 * `transformed_data.csv`

@@ -11,9 +11,9 @@ This function will produce a summary of how each variable varies with a _categor
 
 ## Parameters
 * `transformed_data`
-  * R dataset output by `read_and_transform`
+  * R data frame output by `read_and_transform`
 * `var_config`
-  * R dataset output by `var_config_generator`
+  * R data frame output by `var_config_generator`
 * `output_dir`
   * The directory into which all outputs will be written to.
 * `outcome`
