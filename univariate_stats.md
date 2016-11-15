@@ -4,14 +4,14 @@
 This function will produce a summary of each variable in the input dataset. It will help the user understand the data better and spot any issues with the variables.  
 
 ## Internal Dependencies
-`read_and_transform`
+`read_transform`
 
 ## Name
 `univariate_stats`
 
 ## Parameters
 * `transformed_data`
-  * R data frame output by `read_and_transform`.
+  * R data frame output by `read_transform`.
 * `var_config`
   * R data frame output by `var_config_generator`.
 * `output_dir`

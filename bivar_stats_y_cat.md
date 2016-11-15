@@ -4,14 +4,14 @@
 This function will produce a summary of how each variable varies with a _categorical_ outcome variable. This will help the user to flag associations between the independent variables and outcome variable that may not be compatible with the subsequent modelling approach.
 
 ## Internal Dependancies
-`read_and_transform`
+`read_transform`
 
 ## Name
 `bivar_stats_y_cat`
 
 ## Parameters
 * `transformed_data`
-  * R data frame output by `read_and_transform`
+  * R data frame output by `read_transform`
 * `var_config`
   * R data frame output by `var_config_generator`
 * `output_dir`

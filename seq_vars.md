@@ -4,7 +4,7 @@
 This function will create an exhaustive set of paired sequence variables and return the set of variables that occur with a user-defined freuqency.
 
 ## Internal Dependencies
-`read_and_transform`
+`read_transform`
 
 ## Name
 `seq_vars`
