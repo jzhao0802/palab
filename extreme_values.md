@@ -4,14 +4,14 @@
 This function will replace extreme values in numerical variables with either a user-defined value or a data-driven value.
 
 ## Internal Dependencies
-`read_and_transform`
+`read_transform`
 
 ## Name
 `extreme_values`
 
 ## Parameters
 * `transformed_data`
-  * R dataset output by `read_and_transform`
+  * R dataset output by `read_transform`
 * `output_dir`
   * The directory into which all outputs will be saved.
 * `output_csv`

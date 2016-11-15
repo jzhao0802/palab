@@ -3,80 +3,35 @@
 ## Purpose
 This function will take in an R data.frame and convert all nominal categorical variables with k levels, into k-1 dummy variables. 
 
+## Implementation details
+Here is a clear example of dummy encoding, that will be referenced throughout this document:
+http://www.ats.ucla.edu/stat/r/library/contrast_coding.htm
+
 ## Internal Dependencies
-`read_and_transform`
+`read_transform`
 
 ## Name
 `dummy_vars`
 
 ## Parameters
 * `transformed_data`
-  * R data frame output by `read_and_transform`.
+  * R data frame output by `read_transform`.
 * `var_config`
   * R data frame output by `var_config_generator`.
 * `output_dir`
   * The directory into which all outputs will be written to.
 
 ## Function
-
-* For categorical variables (from `var_config`), produce `univar_stats_x_cat.csv` with the following columns:
-  * _Variable_: Name of the categorical variable.
-  * _Non-missing, N_: Number of non-missing obsservations.
-  * _Non-missing, %_: Percentage of non-missing observations.
-  * _Missing, N_: Number of missing observations.
-  * _Missing, %_: Percentage of missing observations.
-  * _Number of Levels_: This is the number of different levels in that variable. This value will be repeated for all rows with that variable.
-  * _LevelX value_: The value in the most popular level in this variable
-  * _Obs in LevelX, N_: Count of observations which have this variable equal to _LevelX value_
-  * _Obs in LevelX, %_: _Obs in LevelX, N_ /  _Non-missing, N_
-* For categorical variables (from `var_config`), produce `univar_stats_x_cat_melted.csv`. This is a full frequency table containing all levels for all variables with the following columns:
-  * _Variable_: Name of the categorical variable.
-  * _Number of Levels_: This is the number of different levels in that variable. This value will be repeated for all rows with that variable.
-  * _Level_: The value of the level in that variable
-    * Each variable should the following 2 special levels:
-      * First is a level called "non_missing". This row will contain aggregated stats on all the non-missing levels in that variable.
-      * Second is a level called "missing". This row will contains stats on all the missing observations for that variable.
-  * _Count_: Count of observations which have this variable equal to this level.
-  * _Proportion_: Percentage of observations which have this variable equal to this level.
-    * For the special levels, _Proportion_ = _Count_ / Number of observations
-    * For the normal levels, _Proportion_ = _Count_ / Number of non_missing observations for that variable
-* For numerical variables (from `var_config`), produce `univar_stats_x_num.csv` with following columns:
-  * _Variable_: Name of the categorical variable.
-  * _Non-missing, N_: Number of non-missing obsservations.
-  * _Non-missing, %_: Percentage of non-missing observations.
-  * _Missing, N_: Number of missing observations.
-  * _Missing, %_: Percentage of missing observations.
-  * _Mean_: Mean of the variable.
-  * _Standard deviation_: Standard deviation of the variable.
-  * _Min_: Minimum value of the variable.
-  * _P1_: Value at the percentile 1 of the variable.
-  * _P5_: Value at the percentile 5 of the variable.
-  * _P10_: Value at the percentile 10 of the variable.
-  * _P25_: Value at the percentile 25 of the variable.
-  * _P50_: Value at the percentile 50 of the variable.
-  * _P75_: Value at the percentile 75 of the variable.
-  * _P90_: Value at the percentile 90 of the variable.
-  * _P95_: Value at the percentile 95 of the variable.
-  * _P99_: Value at the percentile 99 of the variable.
-  * _Max_: Maximum value of the variable.
-  * _P10_: Value at the percentile 10 of the variable.
-  * _P20_: Value at the percentile 20 of the variable.
-  * _P30_: Value at the percentile 30 of the variable.
-  * _P40_: Value at the percentile 40 of the variable.
-  * _P50_: Value at the percentile 50 of the variable.
-  * _P60_: Value at the percentile 60 of the variable.
-  * _P70_: Value at the percentile 70 of the variable.
-  * _P80_: Value at the percentile 80 of the variable.
-  * _P90_: Value at the percentile 90 of the variable.
-* Note that the percentile thresholds should be calculated on non-missing values only.
-* Produce `univar_stats_problems.csv` to highlight any obvious data issues. If the univariate stats of a variable meets any of the following criteria, then it should be in the output:
-  * Variable is 100% missing
-  * Variable has only 1 unique value
-
-  The table should have the following columns:
-  * _Variable_: Name of variable
-  * _Problem_: A description of the problem with this variable, which can take the folloiwng values:
-
+* For each categorical varible with k levels, create k-1 dummy variables using the contrasts function of R, and remove the original column. The resulting data.frame must have only numerical features.
+* If certain categorical variables have more than 10 levels, the function should give a warning to the user, listing the problematic columns.
+* The levels of each categorical variables should be ordered alphabetically before creating the derived dummy variables.
+* If the original categorical variable's name is `cat`, and it has k=3 levels: `A`, `B`, `C` then the column names of the k-1 dummy variables should be: `cat_B_A`, `cat_C_A`. 
+* Therefore 
+  * a sample with `cat` = `A` is enconded as (0, 0),
+  * a sample with `cat` = `B` is enconded as (1, 0),
+  * a sample with `cat` = `C` is enconded as (0, 1),
+  * where the first binary flag corresponds to `cat_B_A` and the second to `cat_C_A`.
+  
 
 ## Output
 All files below should be output to the `output_dir`, overwriting a previous version if necessary.

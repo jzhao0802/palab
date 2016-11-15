@@ -4,14 +4,14 @@
 This function will alert the user to any correlations between the variables.
 
 ## Internal Dependencies
-`read_and_transform`
+`read_transform`
 
 ## Name
 `correlation_xbyx`
 
 ## Parameters
 * `transformed_data`
-  * Full path and name of the R dataset of same name output by `read_and_transform`.
+  * Full path and name of the R dataset of same name output by `read_transform`.
 * `output_dir`
   * The directory into which all outputs will be output to.
 

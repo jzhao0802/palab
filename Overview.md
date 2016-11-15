@@ -18,7 +18,7 @@ The Predictive Analtyics (PA) team run many projects a year which have common da
 
 ## Initial running order for functions
 * `var_config_generator`
-* `read_and_transform`
+* `read_transform`
 * `long_var_names`
 * `univariate_stats`
 * `bivariate_stats_cat`

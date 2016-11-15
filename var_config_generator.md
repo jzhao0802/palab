@@ -2,7 +2,7 @@
 
 ## Purpose
 This function will read in the a small sample of the original data from CSV input and guesses the column types.
-The file that is ouput will be used to create `var_config.csv` which is an input to the next function, `read_and_transform`.
+The file that is ouput will be used to create `var_config.csv` which is an input to the next function, `read_transform`.
 
 ## Name
 `var_config_generator`

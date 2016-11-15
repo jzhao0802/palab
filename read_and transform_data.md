@@ -7,7 +7,7 @@ This function will read in the original data from CSV input and transform it suc
 Please use data.table and/or readr packages to ensure fast execution.
 
 ## Name
-`read_and_transform`
+`read_transform`
 
 ## Internal Dependencies
 None
@@ -50,7 +50,7 @@ None
   * If there are columns in `input_dataset` which are not listed in `var_config.csv`, they should be dropped.
   * If there are columns in `var_config.csv` which are not in `input_dataset`, they should not be added.
 * Produce a dataset called `transformed_data`:
-  * Transform the missing values for each column - kook for any of the values in `missing_values` in all columns, and replace with the R standard for missing, i.e. "NA".
+  * Transform the missing values for each column - look for any of the values in `missing_values` in all columns, and replace with the R standard for missing, i.e. "NA".
   * Remove any observations where the outcome is missing.
 * Produce a `transformed_data_report.csv` of the different tables involved, with the following information:
   * Number of observations in original data
@@ -78,7 +78,7 @@ All CSVs below should be output to the `output_dir`, overwriting a previous vers
 
 ## Defaults
 ```
-read_and_transform(
+read_transform(
   input_dataset =,
   var_config =,
   missing_values =,
@@ -90,7 +90,7 @@ read_and_transform(
 
 # Example call
 ```
-read_and_transform(
+read_transform(
   input_dataset = "D:/data/cars1/input/mt_cars.csv",
   var_config = "D:/data/cars1/metadata/var_config.csv",
   missing_values = "-999, 0, -99",
