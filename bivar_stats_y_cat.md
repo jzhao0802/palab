@@ -10,7 +10,7 @@ This function will produce a summary of how each variable varies with a _categor
 `bivar_stats_y_cat`
 
 ## Parameters
-* `transformed_data`
+* `input`
   * R data frame output by `read_transform`
 * `var_config`
   * R data frame output by `var_config_generator`
@@ -62,7 +62,7 @@ All CSVs below should be output to the `output_dir`, overwriting a previous vers
 ## Defaults
 ```
 bivar_stats_y_cat(
-  transformed_data=,
+  input=,
   var_config=,
   output_dir=,
   outcome=
@@ -72,7 +72,7 @@ bivar_stats_y_cat(
 ## Example call
 ```
 bivar_stats_y_cat(
-  transformed_data=transformed_data,
+  input=transformed_data,
   var_config=var_config,
   output_dir="D:/data/cars1/",
   outcome = "gear"
@@ -81,5 +81,5 @@ bivar_stats_y_cat(
 
 ## Tests
 * All outputs should have the correct format and structure as specified.
-* Using the provided toy example for [transformed_data](./example_data/mtcars.csv): all outputs should exactly match the provided examples for the results [bivar_stats_y_cat_x_cat](./example_output_csvs/bivar_stats_y_cat_x_cat.csv);
+* Using the provided toy example for [input](./example_data/mtcars.csv): all outputs should exactly match the provided examples for the results [bivar_stats_y_cat_x_cat](./example_output_csvs/bivar_stats_y_cat_x_cat.csv);
 [bivar_stats_y_cat_x_num](./example_output_csvs/bivar_stats_y_cat_x_num.csv).

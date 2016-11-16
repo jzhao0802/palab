@@ -20,11 +20,13 @@ The Predictive Analtyics (PA) team run many projects a year which have common da
 ## Initial running order for functions
 * `var_config_generator`
 * `read_transform`
+* `dummy_vars`
 * `long_var_names`
 * `univariate_stats`
 * `bivariate_stats_cat`
 * `bivariate_stats_num`
 * `correlation_xbyx`
+* `multicollinearity`
 * `extreme_values`
 * `binning`
 * `perf_metrics_cat`

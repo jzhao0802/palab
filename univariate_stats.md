@@ -10,7 +10,7 @@ This function will produce a summary of each variable in the input dataset. It w
 `univariate_stats`
 
 ## Parameters
-* `transformed_data`
+* `input`
   * R data frame output by `read_transform`.
 * `var_config`
   * R data frame output by `var_config_generator`.
@@ -87,7 +87,7 @@ All files below should be output to the `output_dir`, overwriting a previous ver
 ## Defaults
 ```
 univariate_stats(
-  transformed_data=,
+  input=,
   var_config=,
   output_dir=,
   )  
@@ -96,7 +96,7 @@ univariate_stats(
 ## Example call
 ```
 univariate_stats(
-  transformed_data=transformed_data,
+  input=transformed_data,
   var_config=var_config,
   output_dir="D:/data/cars1/",
   )  
@@ -104,6 +104,6 @@ univariate_stats(
 
 ## Tests
 * All outputs should have the correct format and structure as specified.
-* Using the provided toy example for [transformed_data](./example_data/mtcars.csv): all outputs should exactly match the provided examples for the results [univar_stats_x_cat](./example_output_csvs/univar_stats_x_cat.csv);
+* Using the provided toy example for [input](./example_data/mtcars.csv): all outputs should exactly match the provided examples for the results [univar_stats_x_cat](./example_output_csvs/univar_stats_x_cat.csv);
 [univar_stats_x_cat_melted](./example_output_csvs/univar_stats_x_cat_melted.csv);
 [univar_stats_x_num](./example_output_csvs/univar_stats_x_num.csv).

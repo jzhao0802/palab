@@ -10,7 +10,7 @@ This function will alert the user to any correlations between the variables.
 `correlation_xbyx`
 
 ## Parameters
-* `transformed_data`
+* `input`
   * Full path and name of the R dataset of same name output by `read_transform`.
 * `output_dir`
   * The directory into which all outputs will be output to.
@@ -32,7 +32,7 @@ All CSVs below should be output to the `output_dir`.
 ## Defaults
 ```
 correlation_xbyx(
-  transformed_data =,
+  input =,
   output_dir =,
   )  
 ```
@@ -40,10 +40,10 @@ correlation_xbyx(
 ## Example call
 ```
 output_dir <- "D:/data/cars1/"
-transformed_data_rds <- str_c(output_dir, "transformed_data.rds")
+input_rds <- str_c(output_dir, "transformed_data.rds")
 
 correlation_xbyx(
-  transformed_data = transformed_data_rds,
+  input = transformed_data_rds,
   output_dir = output_dir,
   )  
 ```
