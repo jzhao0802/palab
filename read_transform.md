@@ -54,7 +54,7 @@ None
 * Produce a dataset called `output`:
   * Transform the missing values for each column - look for any of the values in `missing_values` in all columns, and replace with the R standard for missing, i.e. "NA".
   * Remove any observations where the outcome is missing.
-* Produce a `output`_report.csv of the different tables involved, with the following information:
+* Produce a `output`\_report.csv of the different tables involved, with the following information:
   * Number of observations in original data
   * Number of observations in transformed data
   * Number of observations in original data where the outcome was missing.

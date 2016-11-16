@@ -20,10 +20,10 @@ http://www.ats.ucla.edu/stat/r/library/contrast_coding.htm
   * R data frame output by `var_config_generator`.
 * `output`
   * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
-* `output_csv`
-  * This can either be TRUE or FALSE.
 * `output_dir`
   * The directory into which all outputs will be written to.
+* `output_csv`
+  * This can either be TRUE or FALSE.
 
 ## Function
 * For each categorical varible (as defined by `var_config`) with k levels, create k-1 dummy variables using the contrasts function of R, and remove the original column. The resulting data.frame must have only numeric features.
@@ -57,9 +57,9 @@ All CSVs below should be output to the `output_dir`, overwriting a previous vers
 dummy_vars(
   input =,
   var_config =,
-  output_csv = FALSE,
   output = 'transformed_dummyfied',
-  output_dir =
+  output_dir =,
+  output_csv = FALSE
   )  
 ```
 
@@ -68,8 +68,8 @@ dummy_vars(
 dummy_vars(
   input = "D:/data/cars1/input/mt_cars_transformed.csv",
   var_config = "D:/data/cars1/metadata/var_config.csv",
-  output_csv = FALSE,
   output = 'transformed_dummyfied',
-  output_dir = "D:/data/cars1"
+  output_dir = "D:/data/cars1",
+  output_csv = FALSE
   )
 ```

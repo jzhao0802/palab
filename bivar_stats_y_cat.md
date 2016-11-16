@@ -14,6 +14,8 @@ This function will produce a summary of how each variable varies with a _categor
   * R data frame output by `read_transform`
 * `var_config`
   * R data frame output by `var_config_generator`
+* `output`
+  * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
 * `output_dir`
   * The directory into which all outputs will be written to.
 * `outcome`
@@ -24,7 +26,7 @@ This function will produce a summary of how each variable varies with a _categor
   * More than 5 levels will make the resulting spreadsheets very difficult to digest, so the user needs to be warned about this.
 * For columns prefixed with "o_", no stats should be calculated.
 * Each statistic mentioned below ends in "_\__X_". This means that it should be calculated for each level of the outcome variable, and the name of the stat should be suffixed with that level value. E.g. if the outcome variable has 2 levels, "1" and "0", the stat _Count__X_ should have 2 columns in the output CSV, "Count_1" and "Count_0", calculated for all observations where the outcome variable has level 1 and 0 respectively.
-* For categorical variables (except the outcome variable itself), produce `bivar_stats_y_cat_x_cat.csv`. This is a full frequency table containing all levels for all variables with the following columns:
+* For categorical variables (except the outcome variable itself), produce `output`bivar_stats_y_cat_x_cat.csv. This is a full frequency table containing all levels for all variables with the following columns:
   * _Variable_: Name of the categorical variable.
   * _Level_: The value of the level in that variable.
     * Each variable should the following 2 special levels:
@@ -34,7 +36,7 @@ This function will produce a summary of how each variable varies with a _categor
   * _Proportion of Level__X_: _Count__X_ / all observations where level of variable is this level, i.e. P(outcome = Y1 | variable = X1); rounded to two decimal places.
   * _Proportion of Outcome__X_: _Count__X_ / all observations where the outcome level is X, i.e. P(variable = X1 | outcome = Y1); rounded to two decimal places.
 
-* For numerical variables, produce `bivar_stats_y_cat_x_num.csv` with following columns with all results rounded to two decimal places:
+* For numerical variables, produce  `output`bivar_stats_y_cat_x_num.csv with following columns with all results rounded to two decimal places:
   * _Variable_: Name of the categorical variable.
   * _NonMissing__X_: Number of non-missing obsservations when outcome level is X.
   * _NonMissingPrp__X_: Proportion of non-missing observations when outcome level is X where the denominator is the total number of observations in the data inclusive of missing values. The result should be rounded to two decimal places.
@@ -56,14 +58,16 @@ This function will produce a summary of how each variable varies with a _categor
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
-* bivar_stats_y_cat_x_cat.csv
-* bivar_stats_y_cat_x_num.csv
+* `output`bivar_stats_y_cat_x_cat.csv
+* `output`bivar_stats_y_cat_x_num.csv
+* The default of `output` is '', so the function produces bivar_stats_y_cat_x_cat.csv and bivar_stats_y_cat_x_num.csv by default.
 
 ## Defaults
 ```
 bivar_stats_y_cat(
   input=,
   var_config=,
+  output='',
   output_dir=,
   outcome=
   )  
@@ -74,6 +78,7 @@ bivar_stats_y_cat(
 bivar_stats_y_cat(
   input=transformed_data,
   var_config=var_config,
+  output='transformed_data',
   output_dir="D:/data/cars1/",
   outcome = "gear"
   )  
