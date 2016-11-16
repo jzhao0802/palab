@@ -39,14 +39,14 @@ This function will replace extreme values in numerical variables with either a u
  * Produce `ex_val_thrsh_output.csv` which takes the same <duplicate> form to `ex_val_thrsh`:
    * First column: the list of variables that were capped for extreme values.
    * Second column: the threshold value at which the variable was capped which could be either user-defined value or x_pth.
- * Create a duplicate of `input` called `output`_ex.csv. Update the numerical variables in `output`_ex.csv with those that have been capped.
+ * Create a duplicate of `input` called `output`\_ex.csv. Update the numerical variables in `output`\_ex.csv with those that have been capped.
 
 * If the user has not provided `ex_val_thrsh` then the default assumption is that all numerical variables should be capped at `x_pth`:
   * Compute the value at the percentile level stored in `pth` (`x_pth`) for each numerical variable in `input`.
   * For each numerical variable, replace values greater than or equal to `x_pth` with `x_pth`, i.e. `x[x>=x_pth] = x_pth`
-  * Create a duplicate of `input` called `output`_ex.csv. Update the all numerical variables in `output`_ex.csv with their capped equivalents.
+  * Create a duplicate of `input` called `output`\_ex.csv. Update the all numerical variables in `output`\_ex.csv with their capped equivalents.
 
-* Produce `output`_ex_val_thrsh_out.csv which takes the same form as `ex_val_thrsh`:
+* Produce `output`\_ex_val_thrsh_out.csv which takes the same form as `ex_val_thrsh`:
     * First column: the list of all numerical variables.
     * Second column: if the variable was not capped then enter the flag 'N', otherwise enter the numerical value at which the variable was capped (user-defined threshold or `x_pth`).
 
@@ -55,10 +55,10 @@ R data frame with the capped values.
 
 ## Outputs
 All CSVs below should be output to the output_dir, overwriting a previous version if necessary.
-* `output`_ex.rds
-  * RDS file of `output`_ex.csv written to `output_dir`
-* If `output_csv` = "TRUE", write out `output`_ex.csv as a csv to `output_dir`
-* `output`_ex_val_thrsh_out.csv
+* `output`\_ex.rds
+  * RDS file of `output`\_ex.csv written to `output_dir`
+* If `output_csv` = "TRUE", write out `output`\_ex.csv as a csv to `output_dir`
+* `output`\_ex_val_thrsh_out.csv
   * This file logs the thresholds that were used to cap the numerical variables.
 
 ## Defaults
@@ -76,4 +76,4 @@ extreme_values(
 
 ## Tests
 * All outputs should have the correct format and structure as specified.
-* Using the provided toy example for [input](./example_data/mtcars.csv) and [ex_val_thrsh](./example_metadata_files/ex_val_thrsh.csv) for `ex_val_thrsh`: all outputs produced should exactly match the provided examples results in [`output`_ex.csv](./example_output_csvs/ex_mtcars.csv) [`output`_ex_val_thrsh_out.csv](./example_output_csvs/ex_val_thrsh_out.csv), with `pth` set to 0.99.
+* Using the provided toy example for [input](./example_data/mtcars.csv) and [ex_val_thrsh](./example_metadata_files/ex_val_thrsh.csv) for `ex_val_thrsh`: all outputs produced should exactly match the provided examples results in [`output`\_ex.csv](./example_output_csvs/ex_mtcars.csv) [`output`\_ex_val_thrsh_out.csv](./example_output_csvs/ex_val_thrsh_out.csv), with `pth` set to 0.99.
