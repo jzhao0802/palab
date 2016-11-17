@@ -4,14 +4,14 @@
 This function calculates the correlations between the variables/columns of a numeric R data.frame.
 
 ## Internal Dependencies
-`read_transform`
+`read_transform` and `dummy_vars`
 
 ## Name
 `correlation`
 
 ## Parameters
 * `input`
-  * R data frame output by `read_transform`
+  * R data frame output by `dummy_vars`
 * `method`
   * String specifying the type of correlation to calculate. Default = 'spearman'
     * 'spearman': https://www.wikiwand.com/en/Spearman's_rank_correlation_coefficient
@@ -24,7 +24,7 @@ This function calculates the correlations between the variables/columns of a num
 ## Function
 * Calculate the correlation meassure specified in the `method` parameter for every pair of variables.
 * If any of the columns of the input data.frame isn't numeric, throw an error and let the user know which column(s) to check.
-* Produce `output`correlation_xbyx.csv with the following columns:
+* Produce `output`correlation.csv with the following columns:
   * _Variable1_: Name of variable 1
   * _Variable2_: Name of variable 2
   * _Correlation_: The correlation coefficient
@@ -38,12 +38,12 @@ This function calculates the correlations between the variables/columns of a num
 
 ## Output
 All CSVs below should be output to the `output_dir`.
-* `output`correlation_xbyx.csv
-* The default of `output` is '', so the function produces correlation_xbyx.csv by default.
+* `output`correlation.csv
+* The default of `output` is '', so the function produces correlation.csv by default.
 
 ## Defaults
 ```
-correlation_xbyx(
+correlation(
   input =,
   method='spearman',
   output='',
@@ -56,7 +56,7 @@ correlation_xbyx(
 output_dir <- "D:/data/cars1/"
 input_rds <- str_c(output_dir, "transformed_data.rds")
 
-correlation_xbyx(
+correlation(
   input = transformed_data_rds,
   output_dir = output_dir,
   )  
