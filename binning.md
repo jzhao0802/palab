@@ -5,6 +5,7 @@ Bin continuous variable in a data.frame into finite number of bins.
 
 ## Internal Dependencies
 
+
 ## Name
 
 ## Parameters
