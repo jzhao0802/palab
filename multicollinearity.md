@@ -2,11 +2,13 @@
 
 ## Purpose
 This function provides metrics to assess if there's multicollinearity between the predictors in an input matrix.
+
 ## Internal Dependencies
 `read_transform` and `dummy_vars`
+
 ## Name
 `multicollinearity`
-asdasdadasdsa
+
 ## Parameters
 * `input`
   * R data frame output by `dummy_vars`
