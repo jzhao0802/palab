@@ -4,18 +4,14 @@
 This function will replace extreme values in numerical variables with either a user-defined value or a data-driven value.
 
 ## Internal Dependencies
-`read_and_transform`
+`read_transform`
 
 ## Name
 `extreme_values`
 
 ## Parameters
-* `transformed_data`
-  * R dataset output by `read_and_transform`
-* `output_dir`
-  * The directory into which all outputs will be saved.
-* `output_csv`
-  * This flag indicates whether the transformed data set should be saved as a csv file. This can either be "TRUE" or "FALSE".
+* `input`
+  * R dataset output by `read_transform`
 * `var_config`
     * Full path and name of the CSV containing the variable configuration.
     * Example file is [here](./example_metadata_files/var_config.csv)
@@ -26,49 +22,58 @@ This function will replace extreme values in numerical variables with either a u
     * First column: _Variable_, the name of the variable.
     * Second column: _Thrsh_, a numerical value which represents a user-defined threshold at which the variable should be capped. A flag of "N" indicates that the variable should not be capped.
     * Example file: [ex_val_thrsh.csv](./example_metadata_files/ex_val_thrsh.csv)
+* `output`
+  * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
+* `output_dir`
+  * The directory into which all outputs will be saved.
+* `output_csv`
+  * This flag indicates whether the transformed data set should be saved as a csv file. This can either be "TRUE" or "FALSE".
 
 ## Function  
 * If the user has provided the `ex_val_thrsh.csv` file:
  * Check that the input file has two columns and at least one row. Return an error if these criteria are not met.
- * Check that the variables listed in `ex_val_thrsh` exist in `transformed_data`. Otherwise return an error specifying which variable name in `ex_val_thrsh` does not exist in `transformed_data`.
+ * Check that the variables listed in `ex_val_thrsh` exist in `input`. Otherwise return an error specifying which variable name in `ex_val_thrsh` does not exist in `input`.
  * For variables where the row entry for _Thrsh_ is numerical: cap values greater than or equal to the provided threshold value, i.e. x[x>thrsh] = thrsh.
- * For numerical variables that are contained in `transformed_data` but not listed in `ex_val_thrsh`:  compute the value at the `pth` percentile (`x_pth`) for each variable and use it to replace values greater than or equal to the value at `pth` percentile for that variable, i.e. `x[x>=x_pth] = x_pth`.
+ * For numerical variables that are contained in `input` but not listed in `ex_val_thrsh`:  compute the value at the `pth` percentile (`x_pth`) for each variable and use it to replace values greater than or equal to the value at `pth` percentile for that variable, i.e. `x[x>=x_pth] = x_pth`.
  * For variables where the row entry for _Thrsh_ is "N": do not alter these variables.
  * Produce `ex_val_thrsh_output.csv` which takes the same <duplicate> form to `ex_val_thrsh`:
    * First column: the list of variables that were capped for extreme values.
    * Second column: the threshold value at which the variable was capped which could be either user-defined value or x_pth.
- * Create a duplicate of `transformed_data` called `ex_transformed_data`. Update the numerical variables in `ex_transformed_data` with those that have been capped.
+ * Create a duplicate of `input` called `output`\_ex.csv. Update the numerical variables in `output`\_ex.csv with those that have been capped.
 
 * If the user has not provided `ex_val_thrsh` then the default assumption is that all numerical variables should be capped at `x_pth`:
-  * Compute the value at the percentile level stored in `pth` (`x_pth`) for each numerical variable in `transformed_data`.
+  * Compute the value at the percentile level stored in `pth` (`x_pth`) for each numerical variable in `input`.
   * For each numerical variable, replace values greater than or equal to `x_pth` with `x_pth`, i.e. `x[x>=x_pth] = x_pth`
-  * Create a duplicate of `transformed_data` called `ex_transformed_data`. Update the all numerical variables in `ex_transformed_data` with their capped equivalents.
+  * Create a duplicate of `input` called `output`\_ex.csv. Update the all numerical variables in `output`\_ex.csv with their capped equivalents.
 
-* Produce `ex_val_thrsh_out.csv` which takes the same form as `ex_val_thrsh`:
+* Produce `output`\_ex_val_thrsh_out.csv which takes the same form as `ex_val_thrsh`:
     * First column: the list of all numerical variables.
     * Second column: if the variable was not capped then enter the flag 'N', otherwise enter the numerical value at which the variable was capped (user-defined threshold or `x_pth`).
 
+## Return
+R data frame with the capped values.
+
 ## Outputs
 All CSVs below should be output to the output_dir, overwriting a previous version if necessary.
-* `ex_transformed_data`
-  * R dataset
-* `ex_transformed_data.rds`
-  * RDS file of `ex_transformed_data` written to `output_dir`
-* If `output_csv` = "TRUE", write out `ex_transformed_data` as a csv to `output_dir`
-* `ex_val_thrsh_out.csv`
+* `output`\_ex.rds
+  * RDS file of `output`\_ex.csv written to `output_dir`
+* If `output_csv` = "TRUE", write out `output`\_ex.csv as a csv to `output_dir`
+* `output`\_ex_val_thrsh_out.csv
   * This file logs the thresholds that were used to cap the numerical variables.
 
 ## Defaults
 ```
 extreme_values(
-  transformed_data = ,
-  output_dir = ,
-  output_csv = "False",
+  input = ,
   var_config = ,
   xperct = 0.99,
-  ex_val_thrsh =
+  ex_val_thrsh =,
+  output = ,
+  output_dir = ,
+  output_csv = "False"
   )  
 ```
+
 ## Tests
 * All outputs should have the correct format and structure as specified.
-* Using the provided toy example for [transformed_data](./example_data/mtcars.csv) and [ex_val_thrsh](./example_metadata_files/ex_val_thrsh.csv) for `ex_val_thrsh`: all outputs produced should exactly match the provided examples results in [ex_transformed_data](./example_output_csvs/ex_mtcars.csv) [ex_val_thrsh_output.csv](./example_output_csvs/ex_val_thrsh_out.csv), with `pth` set to 0.99.
+* Using the provided toy example for [input](./example_data/mtcars.csv) and [ex_val_thrsh](./example_metadata_files/ex_val_thrsh.csv) for `ex_val_thrsh`: all outputs produced should exactly match the provided examples results in [`output`\_ex.csv](./example_output_csvs/ex_mtcars.csv) [`output`\_ex_val_thrsh_out.csv](./example_output_csvs/ex_val_thrsh_out.csv), with `pth` set to 0.99.

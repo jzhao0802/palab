@@ -4,16 +4,18 @@
 This function will produce a summary of how each variable varies with a _numerical_ outcome variable. This will help the user to flag associations between the independent variables and outcome variable that may not be compatible with the subsequent modelling approach.
 
 ## Internal Dependancies
-`read_and_transform`
+`read_transform`
 
 ## Name
 `bivar_stats_y_num`
 
 ## Parameters
-* `transformed_data`
-  * R dataset output by `read_and_transform`
+* `input`
+  * R data frame output by `read_transform`
 * `var_config`
-  * R dataset output by `var_config_generator`
+  * R data frame output by `var_config_generator`
+* `output`
+  * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
 * `output_dir`
   * The directory into which all outputs will be written to.
 * `outcome`
@@ -22,7 +24,7 @@ This function will produce a summary of how each variable varies with a _numeric
 ## Function
 * Output a warning if the outcome variable has less than 5 unique values.
   * This is because the statistics in this function will not be meaningful and it would be better to run `bivar_stats_y_cat`.
-* For categorical variables (variable definition located in `var_config`), produce `bivar_stats_y_num_x_cat.csv` where the statistics for each categorical variable spans a group of rows and each row within the group represents a level of the categorical variable. The statistics will be calculated ignoring missing values. The results should be round to two decimal places. The output file will have the following columns:
+* For categorical variables (variable definition located in `var_config`), produce `output`bivar_stats_y_num_x_cat.csv where the statistics for each categorical variable spans a group of rows and each row within the group represents a level of the categorical variable. The statistics will be calculated ignoring missing values. The results should be round to two decimal places. The output file will have the following columns:
   * _Variable_: Name of the categorical variable.
   * _Level_: The value of the level in that variable.
   * _Mean outcome_: mean of the outcome variable when the categorical variable is level X.
@@ -39,14 +41,14 @@ This function will produce a summary of how each variable varies with a _numeric
   * _P99 outcome_: Value at the percentile 99 of the outcome variable when categorical variable level is X.
   * _Max outcome_ : Maximum value of the outcome variable when categorical variable level is X.
 
-* For categorical variables produce `RR_stats_y_num_x_cat.csv` which contains stats on the relative risk where the statistics for each categorical variable spans a group of rows and each row within the group represents a level of the categorical variable. The results should be rounded to two decimal places. The output should have the following columns:
+* For categorical variables produce `output`RR_stats_y_num_x_cat.csv which contains stats on the relative risk where the statistics for each categorical variable spans a group of rows and each row within the group represents a level of the categorical variable. The results should be rounded to two decimal places. The output should have the following columns:
   * _Variable_: Name of the categorical variable.
   * _Level_: The value of the level in that variable.
   * _Relative risk_: This is the mean of the outcome variable when the categorical variable is equal to this level, divided by the mean of the outcome variable for when the categorical variable is equal to the _1st_ level.
     * The _1st_ level is defined as the first one when all level values are sorted alphabetically, or numerically by the first word in the level value. The first word in the following level value: "20 - 40", is "20".
     * The _1st_ level will be assumed to the baseline level and all other levels (including the first level) will be considered relative to this baseline.
 
-* For numerical variables produce the following statistics where deciles are computed by mass (as opposed to by range) in `bivar_stats_y_num_x_num.csv` where each row represents a single numerical variable.  The statistics will be calculated ignoring missing values. The output file will have the following columns:
+* For numerical variables produce the following statistics where deciles are computed by mass (as opposed to by range) in `output`bivar_stats_y_num_x_num.csv where each row represents a single numerical variable.  The statistics will be calculated ignoring missing values. The output file will have the following columns:
   * _Variable_: Name of the numerical variable.
   * _Pearson's correlation coefficient_: Pearson's correlation coefficient measuring the association between the numerical variable and the outcome variable. The result should be rounded to two decimal places.
   * _P-value of Pearson's correlation coefficient_: The p-value for Pearson's correlation coefficient measuring the association between the numerical variable and the outcome variable. The result should be rounded to five decimal places.
@@ -65,15 +67,18 @@ This function will produce a summary of how each variable varies with a _numeric
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
-* bivar_stats_y_num_x_cat.csv
-* RR_stats_y_num_x_cat.csv
-* bivar_stats_y_num_x_num.csv
+* `output`bivar_stats_y_num_x_cat.csv
+* `output`RR_stats_y_num_x_cat.csv
+* `output`bivar_stats_y_num_x_num.csv
+* The default of `output` is '', so the function produces bivar_stats_y_num_x_cat.csv, RR_stats_y_num_x_cat.csv and 
+bivar_stats_y_num_x_num.csv by default.
 
 ## Defaults
 ```
 bivar_stats_y_num(
-  transformed_data=,
+  input=,
   var_config=,
+  output='',
   output_dir=,
   outcome=
   )  
@@ -82,8 +87,9 @@ bivar_stats_y_num(
 ## Example call
 ```
 bivar_stats_y_num(
-  transformed_data=transformed_data,
+  input=transformed_data,
   var_config=var_config,
+  output='transformed_data',
   output_dir="D:/data/cars1/",
   outcome = "gear"
   )  
@@ -91,6 +97,6 @@ bivar_stats_y_num(
 
 ## Tests
 * All outputs should have the correct format and structure as specified.
-* Using the provided toy example for [transformed_data](./example_data/mtcars.csv): all outputs should exactly match the provided examples for the results [bivar_stats_y_num_x_cat](./example_output_csvs/bivar_stats_y_num_x_cat.csv);
+* Using the provided toy example for [input](./example_data/mtcars.csv): all outputs should exactly match the provided examples for the results [bivar_stats_y_num_x_cat](./example_output_csvs/bivar_stats_y_num_x_cat.csv);
 [bivar_stats_y_num_x_num](./example_output_csvs/bivar_stats_y_num_x_num.csv);
 [rr_stats_y_num_x_cat](./example_output_csvs/rr_stats_y_num_x_cat.csv).

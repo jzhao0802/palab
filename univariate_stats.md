@@ -4,22 +4,24 @@
 This function will produce a summary of each variable in the input dataset. It will help the user understand the data better and spot any issues with the variables.  
 
 ## Internal Dependencies
-`read_and_transform`
+`read_transform`
 
 ## Name
 `univariate_stats`
 
 ## Parameters
-* `transformed_data`
-  * R dataset (as an object) or a path to a CSV file output by `read_and_transform`.
+* `input`
+  * R data frame output by `read_transform`.
 * `var_config`
-  * R dataset (as an object) or a path to a CSV file output by `var_config_generator`.
+  * R data frame output by `var_config_generator`.
+* `output`
+  * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
 * `output_dir`
   * The directory into which all outputs will be written to.
 
 ## Function
 
-* For categorical variables (from `var_config`), produce `univar_stats_x_cat.csv` with the following columns:
+* For categorical variables (from `var_config`), produce `output`univar_stats_x_cat.csv with the following columns:
   * _Variable_: Name of the categorical variable.
   * _Non-missing, N_: Number of non-missing obsservations.
   * _Non-missing, %_: Percentage of non-missing observations.
@@ -29,7 +31,7 @@ This function will produce a summary of each variable in the input dataset. It w
   * _LevelX value_: The value in the most popular level in this variable
   * _Obs in LevelX, N_: Count of observations which have this variable equal to _LevelX value_
   * _Obs in LevelX, %_: _Obs in LevelX, N_ /  _Non-missing, N_
-* For categorical variables (from `var_config`), produce `univar_stats_x_cat_melted.csv`. This is a full frequency table containing all levels for all variables with the following columns:
+* For categorical variables (from `var_config`), produce `output`univar_stats_x_cat_melted.csv. This is a full frequency table containing all levels for all variables with the following columns:
   * _Variable_: Name of the categorical variable.
   * _Number of Levels_: This is the number of different levels in that variable. This value will be repeated for all rows with that variable.
   * _Level_: The value of the level in that variable
@@ -40,7 +42,7 @@ This function will produce a summary of each variable in the input dataset. It w
   * _Proportion_: Percentage of observations which have this variable equal to this level.
     * For the special levels, _Proportion_ = _Count_ / Number of observations
     * For the normal levels, _Proportion_ = _Count_ / Number of non_missing observations for that variable
-* For numerical variables (from `var_config`), produce `univar_stats_x_num.csv` with following columns:
+* For numerical variables (from `var_config`), produce `output`univar_stats_x_num.csv with following columns:
   * _Variable_: Name of the categorical variable.
   * _Non-missing, N_: Number of non-missing obsservations.
   * _Non-missing, %_: Percentage of non-missing observations.
@@ -80,15 +82,17 @@ This function will produce a summary of each variable in the input dataset. It w
 
 ## Output
 All files below should be output to the `output_dir`, overwriting a previous version if necessary.
-* univar_stats_x_cat.csv
-* univar_stats_x_cat_melted.csv
-* univar_stats_x_num.csv
+* `output`univar_stats_x_cat.csv
+* `output`univar_stats_x_cat_melted.csv
+* `output`univar_stats_x_num.csv
+* The default of `output` is '', so the function produces univar_stats_x_cat.csv, univar_stats_x_cat_melted.csv and univar_stats_x_num.csv by default.
 
 ## Defaults
 ```
 univariate_stats(
-  transformed_data=,
+  input=,
   var_config=,
+  output='',
   output_dir=,
   )  
 ```
@@ -96,14 +100,15 @@ univariate_stats(
 ## Example call
 ```
 univariate_stats(
-  transformed_data=transformed_data,
+  input=transformed_data,
   var_config=var_config,
+  output='transformed_data',
   output_dir="D:/data/cars1/",
   )  
 ```
 
 ## Tests
 * All outputs should have the correct format and structure as specified.
-* Using the provided toy example for [transformed_data](./example_data/mtcars.csv): all outputs should exactly match the provided examples for the results [univar_stats_x_cat](./example_output_csvs/univar_stats_x_cat.csv);
+* Using the provided toy example for [input](./example_data/mtcars.csv): all outputs should exactly match the provided examples for the results [univar_stats_x_cat](./example_output_csvs/univar_stats_x_cat.csv);
 [univar_stats_x_cat_melted](./example_output_csvs/univar_stats_x_cat_melted.csv);
 [univar_stats_x_num](./example_output_csvs/univar_stats_x_num.csv).
