@@ -14,7 +14,7 @@ None
 
 ## Parameters
 * `input_csv`
-  * Full path and name of the CSV containing the input dataset.
+* Full path and name of the CSV containing the input dataset.
   * Format of the file will always be a CSV.  
   * First row of the CSV will always be the column names, and there are never any row names.
 * `var_config`
@@ -54,7 +54,7 @@ None
 * Produce a dataset called `output`:
   * Transform the missing values for each column - look for any of the values in `missing_values` in all columns, and replace with the R standard for missing, i.e. "NA".
   * Remove any observations where the outcome is missing.
-* Produce a `output`\_report.csv of the different tables involved, with the following information:
+* Produce a report (and save it as `output`_report.csv if `output_csv` = TRUE) of the different tables involved, with the following information:
   * Number of observations in original data
   * Number of observations in transformed data
   * Number of observations in original data where the outcome was missing.
@@ -67,7 +67,7 @@ None
   * Columns in input data but not in metadata
 
 ## Return
-R data frame holding the transformed data.
+Two data.frames returned as a single bbject. \$data should return an R data frame holding the transformed data, and \$report should hold the data.frame that's written to `output`_report.csv.
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
@@ -76,7 +76,9 @@ All CSVs below should be output to the `output_dir`, overwriting a previous vers
 * `output`.rds
   * RDS file of transformed data written to `output_dir`
 * `output`.csv
-  * If `output_csv` = "Y", write transformed data to a CSV.
+  * If `output_csv` = TRUE, write transformed data to a csv.
+* `output`_report.csv
+  * If `output_csv` = TRUE, write report as csv.
 
 ## Defaults
 ```

@@ -35,7 +35,8 @@ http://www.ats.ucla.edu/stat/r/library/contrast_coding.htm
   * a sample with `cat` = `B` is enconded as (1, 0),
   * a sample with `cat` = `C` is enconded as (0, 1),
   * where the first binary flag corresponds to `cat_B_A` and the second to `cat_C_A`.
-* If there's a `name_desc.csv` (for details have a look at `var_rename` function) in the `output_dir`, add each dummy variable to it as:
+* A new var_config file should be created that has all the original categorical variables removed and replaced with the dummy variables.
+* If there's a `name_desc.csv` (for details have a look at `var_desc` function) in the `output_dir`, add each dummy variable to it as:
   * `var_name` should be the newly created column name of the dummy variable, e.g. `cat_B_A`.
   * `var_long_name` should be `cat: B vs A`.
   * `var_desc` should be `Categorical variable: cat, level B vs level A`.
@@ -47,17 +48,20 @@ R data frame holding the transformed data with dummy vars and original categoric
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
 * `name_desc.csv`
   * Updated as described above.
-* `output`.rds
+* `output`var_config_dummyfied.csv
+  * A new var_config file that is identical to `var_config` except the categorical variables.
+* `output`dummyfied.rds
   * RDS file of transformed data written to `output_dir`
-* `output`.csv
+* `output`dummyfied.csv
   * If `output_csv` = "Y", write transformed data to a CSV.
+* The default of `output` is '', so the function produces dummyfied.rds and dummyfied.csv if `output_csv`=TRUE.
 
 ## Defaults
 ```
 dummy_vars(
   input =,
   var_config =,
-  output = 'transformed_dummyfied',
+  output = '',
   output_dir =,
   output_csv = FALSE
   )  
