@@ -38,11 +38,13 @@ http://www.ats.ucla.edu/stat/r/library/contrast_coding.htm
   * a sample with `cat` = `B` is enconded as (1, 0),
   * a sample with `cat` = `C` is enconded as (0, 1),
   * where the first binary flag corresponds to `cat_B_A` and the second to `cat_C_A`.
+* If `cat` is missing for a certain row, than all new dummy variables should be missing as well.
 * A new var_config file should be created that has all the original categorical variables removed and replaced with the dummy variables, see Output section.
 * If `name_desc.csv` (for details have a look at `var_desc` function) is provided add each dummy variable to it as:
   * `Var` should be the newly created column name of the dummy variable, e.g. `cat_B_A`.
   * `Name` should be `cat: B vs A`.
   * `Desc` should be `Categorical variable: cat, level B vs level A`.
+
 
 ## Return
 R data frame holding the transformed data with dummy vars and original categorical variables removed so that each column is numeric.
