@@ -61,7 +61,7 @@ All CSVs below should be output to the `output_dir`, overwriting a previous vers
 * `output`binned.rds
   * RDS file of transformed data written to `output_dir`
 * `output`binned.csv
-  * If `output_csv` = "Y", write transformed data to a CSV.
+  * If `output_csv` = TRUE, write transformed data to a CSV.
 * The default of `output` is '', so the function produces binned.rds and binned.csv if `output_csv`=TRUE.
 
 ## Defaults
