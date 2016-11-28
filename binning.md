@@ -52,6 +52,7 @@ It's probably a good idea to build this function modularly, i.e. write an intern
       4. 40 < x <= Inf
 * If `replace_val` = "o", then each continuous value is replaced with the number of bin it belongs to. For example if `cutpoints` = c(3), `method` = "q", `column` = c("age"), `replace_val` = "o", and "age" = c(15, 16, 17, 18, 19, 20, 21, 22, 23), the binned version of "age" = c(1, 1, 1, 2, ,2, 2, 3, 3, 3). It's vital to preserve the ordinal structure of the data. This is why, the first 3 rows (15, 16,17) will become 1 and not 2 or 3. 
 * If `replace_val` = "m", then each continuous value is replaced with the mean of values within the bin it belongs to. For example if `cutpoints` = c(3), `method` = "q", `column` = c("age"), `replace_val` = "m", and "age" = c(15, 16, 17, 18, 19, 20, 21, 22, 23), the binned version of "age" = c(16, 16, 16, 19, ,19, 19, 22, 22, 22).
+* Missing values should be ignored and remain missing after the binning.
 
 ## Return
 R data frame holding the transformed data (i.e. numeric columns binned).
