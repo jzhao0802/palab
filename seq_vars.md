@@ -47,23 +47,22 @@ For this function reduced running time is a priority so please consider when con
 
   * _A equal B_: count of the number observations where the event named in _A_ occurs on the same date as the event named in _B_.  
   * _Proportion A equal B_: _A equal B_ divided by _A and B_
-  
 
-  * If the outcome variable is binary then the following columns should be created for both levels of the outcome variable:
-    * _A and B Level__X_: count of the number observations where both events (named in columns A and B) occur and the outcome variable is equal to _Level__X_
-    * _A and B Proportion Level__X_: _A and B Level__X_ divided by the total number of observations (including missing values) for _Level_X_
-    * _Missing A and B Level_X_: the count of number of observations for which both A and B are not present and the outcome variable is _Level__X_.
-    * _Delta A and B_: the absolute value of the difference between _A and B Proportion Level__1_ and _A and B Proportion Level__2_
-  
-    * _A before B Level__X_: count of the number observations where the event named in _A_ occurs before the event named in _B_ and the outcome variable is _Level__X_.
-    * _A before B Proportion Level__X_: count of the number observations where the event named in _A_ occurs before the event named in _B_ and the outcome variable is equal to _Level__X_ divided by the total number of observations (including missing values) for _Level_X_
-    * _Delta A before B_: the absolute value of the difference between _A before B Proportion Level__1_ and _A before B Proportion Level__2_
-    * _B before A Level__X_: count of the number observations where the event named in _B_ occurs before the event named in _A_ and the outcome variable is _Level__X_.
-    * _B before A Proportion Level__X_: count of the number observations where the event named in _B_ occurs before the event named in _A_ and the outcome variable is equal to _Level__X_ divided by the total number of observations (including missing values) for _Level_X_
-    * _Delta B before A_: the absolute value of the difference between _B before A Proportion Level__1_ and _A before B Proportion Level__2_
-    * _A equal B Level__X_: count of the number observations where the event named in _A_ occurs on the same date as the event named in _B_ and the outcome variable is _Level__X_.
-    * _A equal B Proportion Level__X_: count of the number observations where the event named in _A_ occurs on the same date as the event named in _B_ and the outcome variable is _Level__X_ divided by the total number of observations (including missing values) for _Level_X_
-    * _Delta A equal B_: the absolute value of the difference between _A equal B Proportion Level__1_ and _A equal B Proportion Level__2_
+* If the outcome variable is binary then the following columns should be created for both levels of the outcome variable:
+  * _A and B Level__X_: count of the number observations where both events (named in columns A and B) occur and the outcome variable is equal to _Level__X_
+  * _A and B Proportion Level__X_: _A and B Level__X_ divided by the total number of observations (including missing values) for _Level_X_
+  * _Missing A and B Level_X_: the count of number of observations for which both A and B are not present and the outcome variable is _Level__X_.
+  * _Delta A and B_: the absolute value of the difference between _A and B Proportion Level__1_ and _A and B Proportion Level__2_
+
+  * _A before B Level__X_: count of the number observations where the event named in _A_ occurs before the event named in _B_ and the outcome variable is _Level__X_.
+  * _A before B Proportion Level__X_: count of the number observations where the event named in _A_ occurs before the event named in _B_ and the outcome variable is equal to _Level__X_ divided by the total number of observations (including missing values) for _Level_X_
+  * _Delta A before B_: the absolute value of the difference between _A before B Proportion Level__1_ and _A before B Proportion Level__2_
+  * _B before A Level__X_: count of the number observations where the event named in _B_ occurs before the event named in _A_ and the outcome variable is _Level__X_.
+  * _B before A Proportion Level__X_: count of the number observations where the event named in _B_ occurs before the event named in _A_ and the outcome variable is equal to _Level__X_ divided by the total number of observations (including missing values) for _Level_X_
+  * _Delta B before A_: the absolute value of the difference between _B before A Proportion Level__1_ and _A before B Proportion Level__2_
+  * _A equal B Level__X_: count of the number observations where the event named in _A_ occurs on the same date as the event named in _B_ and the outcome variable is _Level__X_.
+  * _A equal B Proportion Level__X_: count of the number observations where the event named in _A_ occurs on the same date as the event named in _B_ and the outcome variable is _Level__X_ divided by the total number of observations (including missing values) for _Level_X_
+  * _Delta A equal B_: the absolute value of the difference between _A equal B Proportion Level__1_ and _A equal B Proportion Level__2_
 * Having created all relevant columns the rows should be filtered using the following criteria:
   * _Proportion A and B (total obs)_ should be greater than `freq_thrsh`. Note that it may be more efficient to create this column in isolation first and then only create the other metrics for the rows that will be selected by this criteria.
 * If the outcome variable is binary then apply the following additional criteria:
