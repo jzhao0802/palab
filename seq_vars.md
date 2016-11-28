@@ -20,8 +20,11 @@ This function will create an exhaustive set of paired sequence variables and ret
   * A comma delimited string of missing values for all columns.
   * e.g. "-999, 0, -99"
 * `freq_thrsh`
-  * A user-defined value between 0 and 1 the defines how frequency a pair of events need to be so that it will output as a sequence variable.
+  * A user-defined value between 0 and 1 the defines how frequent a pair of events need to be so that it will output as a sequence variable.
   * The default value is 1%
+  * `xfreq_thrsh`
+    * A user-defined value between 0 and 1 the defines how large the difference in frequency of sequency variables should be across classes. This assumes that outcome variable is binary.
+    * The default value is 5%  
 
 
 
@@ -32,17 +35,25 @@ This function will create an exhaustive set of paired sequence variables and ret
 * From the subsetted list create `seq_var_descriptives.csv`. The rows in this file are the list of unique un-ordered pairs, i.e. for N events; this file would have N(N-1)/2 rows. The output should contain the following column for each unique pair of events:
   * _A_: The variable name of the first event in the pair.
   * _B_: The varialbe name of the second event in the pair.
+
   * _A and B_: count of the number observations where both events (named in columns A and B) occur regardless of order, i.e. a valid date entry exists for both events.   
-  * _Proportion A and B (total obs)_: Count stored in _A and B_ divided by the total number of observations in the data set.
+  * _Proportion A and B (total obs)_: Count stored in _A and B_ divided by the total number of observations in the data set (i.e. the total number of observations is _A and B_ + _Missing A and B_).
+  * _Missing A and B_: the count of number of observations for which both A and B are not present.
+
   * _A before B_: count of the number observations where the event named in _A_ occurs before the event named in _B_.  
   * _Proportion A before B_: _A before B_ divided by _A and B_
+
   * _B before A_: count of the number observations where the event named in _B_ occurs before the event named in _A_.  
   * _Proportion B before A_: _B before A_ divided by _A and B_
+
   * _A equal B_: count of the number observations where the event named in _A_ occurs on the same date as the event named in _B_.  
   * _Proportion A equal B_: _A equal B_ divided by _A and B_
-  The following columns should be repeated for both levels in the outcome variable:
+
+  If the outcome variable is binary then the following columns should be created for both levels of the outcome variable:
     * _A and B Level__X_: count of the number observations where both events (named in columns A and B) occur and the outcome variable is equal to _Level__X_
     * _A and B Proportion Level__X_: _A and B Level__X_ divided by the total number of observations (including missing values) for _Level_X_
+    * _Missing A and B Level_X_: the count of number of observations for which both A and B are not present and the outcome variable is _Level__X_.
+* _Delta A and B_: the absolute value of the difference between _A and B Proportion Level__1_ and _A and B Proportion Level__2_
   The following columns should be repeated for both levels in the outcome variable:
     * _A before B Level__X_: count of the number observations where the event named in _A_ occurs before the event named in _B_ and the outcome variable is _Level__X_.
     * _A before B Proportion Level__X_: count of the number observations where the event named in _A_ occurs before the event named in _B_ and the outcome variable is equal to _Level__X_ divided by the total number of observations (including missing values) for _Level_X_
@@ -52,3 +63,9 @@ This function will create an exhaustive set of paired sequence variables and ret
 The following columns should be repeated for both levels in the outcome variable:
     * _A equal B Level__X_: count of the number observations where the event named in _A_ occurs on the same date as the event named in _B_ and the outcome variable is _Level__X_.
     * _A equal B Proportion Level__X_: count of the number observations where the event named in _A_ occurs on the same date as the event named in _B_ and the outcome variable is _Level__X_ divided by the total number of observations (including missing values) for _Level_X_
+
+    * Having created all relevant columns the rows should be filtered using the following criteria:
+      * _Proportion A and B (total obs)_ should be greater than `freq_thrsh`.
+      If the outcome variable is binary then apply the following additional criteria:
+      * Both _A before B Proportion Level__1_ and _A before B Proportion Level__2_ should be greater than `freq_thrsh`. Remove rows that do not meet this condition.
+      *  _Delta A and B_ should be greater than `freq_thrsh`
