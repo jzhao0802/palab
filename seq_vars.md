@@ -35,7 +35,6 @@ For this function reduced running time is a priority so please consider when con
 * From the subsetted list create `seq_var_descriptives.csv`. The rows in this file are the list of unique un-ordered pairs, i.e. for N subsetted events; this file would have N(N-1)/2 rows. The output should contain the following column for each unique pair of events:
   * _A_: The variable name of the first event in the pair.
   * _B_: The varialbe name of the second event in the pair.
-
   * _A and B_: count of the number observations where both events (named in columns A and B) occur regardless of order, i.e. a valid date entry exists for both events.   
   * _Proportion A and B (total obs)_: Count stored in _A and B_ divided by the total number of observations in the data set (i.e. the total number of observations is _A and B_ + _Missing A and B_).
   * _Missing A and B_: the count of number of observations for which both A and B are not present.
