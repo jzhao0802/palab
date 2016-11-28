@@ -13,16 +13,14 @@ This function will create an exhaustive set of paired sequence variables and ret
 * `event_dates`
   * Dataset where each column is a variable and each row is an observation.
   * The outcome variable is represented as a binary variable.
-  * For all other variables the nonmissing entries should be in date format.
+  * For all other variables the nonmissing entries should be in date format (ISO8601, see https://cran.r-project.org/web/packages/readr/vignettes/column-types.html)/
+  
 * `missing_values`
   * A comma delimited string of missing values for all columns.
   * e.g. "-999, 0, -99"
 * `freq_thrsh`
-  * A user-defined value between 0 and 1 the defines how frequency a pair of events need to be so that it will output as a sequence variable.
+  * A user-defined value between 0 and 1 that defines how frequent a pair of events need to be so that it will output as a sequence variable.
   * The default value is 1%
-
-
-
 
 ## Function
 * Compute the frequency of each event variable in `event_dates`, i.e. the number of date entries divided by the total number of observations (inc missing values).
