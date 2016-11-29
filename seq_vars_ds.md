@@ -1,4 +1,4 @@
-#Create paired sequence variables.
+#Create descriptive statistics for paired sequence variables.
 
 ## Purpose
 This function will create a set of paired sequence variables. User-defined thresholds will be used to first filter the number of potential pairs based on how frequent the individual variables are and second, in the case of binary outcome variables, the sequence variables will need to have a minimum difference in frequency across classes (i.e. the levels of the outcome variable). These criteria are introduced to reduce the number of potential sequential variables to those that are likely to be the most relevant so that the user can review these with a clinical team. Note that if data passed to this function include the outcome variable then this data can no longer be considering as independent test data in later modelling stages. The user should take responsibility for this step and no checks are enforced.
@@ -14,7 +14,7 @@ For this function reduced running time is a priority so please consider when con
 ## Parameters
 * `event_dates`
   * Dataset where each column is a variable and each row is an observation.
-  * The outcome variable is represented as a binary variable.
+  * The outcome variable (if provided) is represented as a binary variable.
   * For all other variables the nonmissing entries should be in date format.
 * `outcome`
     * The variable to use as an outcome.
