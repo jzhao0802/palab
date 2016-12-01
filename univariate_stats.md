@@ -13,7 +13,8 @@ This function will produce a summary of each variable in the input dataset. It w
 * `input`
   * R data frame output by `read_transform`.
 * `var_config`
-  * R data frame output by `var_config_generator`.
+  * Full path and name of the CSV containing the variable configuration.
+  * Example file is [here](../example_metadata_files/var_config.csv)
 * `output`
   * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
 * `output_dir`

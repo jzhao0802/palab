@@ -60,11 +60,10 @@ None
   * Number of observations in original data where the outcome was missing.
   * Number of columns in original data
   * Number of columns in transformed data
-  * Number of categorical columns in transformed data
   * Number of numerical columns in transformed data  
   * Number of other columns in transformed data
-  * Columns in metadata but not in input data
-  * Columns in input data but not in metadata
+  * Columns in `var_config` but not in input data
+  * Columns in input data but not in `var_config`
 
 ## Return
 Two data.frames returned as a single bbject. \$data should return an R data frame holding the transformed data, and \$report should hold the data.frame that's written to `output`_report.csv.

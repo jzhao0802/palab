@@ -26,12 +26,12 @@ None
 * Read in the first `sample_row` lines of `input_csv`. If `input_csv` doesn't have enough rows (default is 1000), read in as many as possible.
 * Produce `output`var_config.csv with the following columns:
   * _ColumnName_: Name of the column `input_csv`
-  * _TypeGenerated_: This is the type of the column as guessed by the read function. <options of read>This field can take one of several values:
+  * _Type_: This is the type of the column as guessed by the read function. <options of read>This field can take one of several values:
     * Categorical - for categorical columns
     * Numerical - for numerical columns
     * Other - for all other columns
   * _NumUniqueValues_: This is the number of unqiue values that the column contains.
-* Every column that appears in `input_csv` should also appear as a row in `output`var_config.csv and must have a _TypeGenerated_.
+* Every column that appears in `input_csv` should also appear as a row in `output`var_config.csv and must have a _Type_.
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
