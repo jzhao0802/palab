@@ -3,8 +3,8 @@
 Since it's a package that's still in development and is cannot be installed through the install.package() command there are a couple of things we need to install to get them working.
 
 * Go to [Rtools website](https://cran.r-project.org/bin/windows/Rtools/) and install the .exe that corresponds to your R version. For me this was Rtools33.exe. Your R version should be displayed as the first message from R studio, when you fire up a new session. The installation takes a good 10 minutes.
-* Install devtools with: install.package("devtools")
-* Install packrat with: install.package("packrat")
+* Install devtools with: install.packages("devtools")
+* Install packrat with: install.packages("packrat")
 * Change the working directory to the folder where the compressed tar.gz (drop from Mango) is.
 * Load packrat with library(packrat)
 * Unbundle the project and set up the packrat environment with packrat::unbundle("name_of_drop.tar.gz", ".")
