@@ -72,8 +72,6 @@ List containing these data frames:
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
-* `var_config`
-  * R data frame of var_config.csv
 * `output`.csv
   * If `output_csv` = TRUE, write transformed data to a csv.
 * `output`report.csv
@@ -110,4 +108,3 @@ cars <- read_transform(
 ## Tests
 * Using the provided toy example for [input_csv](./example_data/mtcars.csv): all outputs should exactly match the provided examples for results:
   * [transformed data CSV](./example_output_csvs/transformed_data.csv)
-  * [transformed data RDS](./example_output_csvs/transformed_data.rds)
