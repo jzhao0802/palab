@@ -1,0 +1,14 @@
+Variable,Name,Description 
+carID,Car Type,This is just an example 
+mpg,Mile per Galleon,This is just an example 
+cyl,Cylinders,This is just an example 
+disp,Display,This is just an example 
+hp,Horse Power,This is just an example 
+drat,D Rat,This is just an example 
+wt,W T,This is just an example 
+qsec,Q Sec,This is just an example 
+vs,V S,This is just an example 
+am,A M ,This is just an example 
+gear,Gear,This is just an example 
+carb,Carb,This is just an example 
+index_date,Index Date,This is just an example 
