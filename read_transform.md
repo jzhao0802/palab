@@ -54,7 +54,7 @@ None
 * Produce a dataset called `output`:
   * Transform the missing values for each column - look for any of the values in `missing_values` in all columns, and replace with the R standard for missing, i.e. "NA".
   * Remove any observations where the outcome is missing.
-* Produce a report (and save it as `output`_report.csv_ if `output_csv` = TRUE) of the different tables involved, with the following information:
+* Produce a report (and save it as `output`report.csv if `output_csv` = TRUE) of the different tables involved, with the following information:
   * Number of observations in original data
   * Number of observations in transformed data
   * Number of observations in original data where the outcome was missing.
@@ -66,17 +66,17 @@ None
   * Columns in input data but not in `var_config`
 
 ## Return
-Two data.frames returned as a single bbject. \$data should return an R data frame holding the transformed data, and \$report should hold the data.frame that's written to `output`_report.csv_.
+List containing these data frames:
+* data - the transformed data
+* report - the report mentioned above
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
 * `var_config`
   * R data frame of var_config.csv
-* `output`.rds
-  * RDS file of transformed data written to `output_dir`
 * `output`.csv
   * If `output_csv` = TRUE, write transformed data to a csv.
-* `output`_report.csv_
+* `output`report.csv
   * If `output_csv` = TRUE, write report as csv.
 
 ## Defaults
@@ -87,6 +87,7 @@ read_transform(
   missing_values =,
   max_levels = 100,
   output = 'transformed_data',
+  report_csv = NULL,
   output_dir =,
   output_csv = FALSE
   )  
@@ -94,14 +95,15 @@ read_transform(
 
 # Example call
 ```
-read_transform(
+cars <- read_transform(
   input_csv = "D:/data/cars1/input/mt_cars.csv",
-  var_config = "D:/data/cars1/metadata/var_config.csv",
+  var_config = "D:/data/cars1/metadata/cars_var_config.csv",
   missing_values = "-999, 0, -99",
   max_levels = 100,
-  output = 'output',
+  output = "cars",
   output_dir = "D:/data/cars1",
-  output_csv = FALSE
+  output_csv = TRUE,
+  outcome_var = “gear”
   )
 ```
 

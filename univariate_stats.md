@@ -72,7 +72,7 @@ This function will produce a summary of each variable in the input dataset. It w
   * _P80_: Value at the percentile 80 of the variable.
   * _P90_: Value at the percentile 90 of the variable.
 * Note that the percentile thresholds should be calculated on non-missing values only.
-* Produce `univar_stats_problems.csv` to highlight any obvious data issues. If the univariate stats of a variable meets any of the following criteria, then it should be in the output:
+* Produce `output`univar_stats_problems.csv to highlight any obvious data issues. If the univariate stats of a variable meets any of the following criteria, then it should be in the output:
   * Variable is 100% missing
   * Variable has only 1 unique value
 
@@ -80,13 +80,19 @@ This function will produce a summary of each variable in the input dataset. It w
   * _Variable_: Name of variable
   * _Problem_: A description of the problem with this variable, which can take the folloiwng values:
 
+## Return
+List containing these data frames:
+* univar_stats_x_cat
+* univar_stats_x_cat_melted
+* univar_stats_x_num
+* univar_stats_problems
 
 ## Output
 All files below should be output to the `output_dir`, overwriting a previous version if necessary.
 * `output`univar_stats_x_cat.csv
 * `output`univar_stats_x_cat_melted.csv
 * `output`univar_stats_x_num.csv
-* The default of `output` is '', so the function produces univar_stats_x_cat.csv, univar_stats_x_cat_melted.csv and univar_stats_x_num.csv by default.
+* `output`univar_stats_problems.csv
 
 ## Defaults
 ```
@@ -100,12 +106,12 @@ univariate_stats(
 
 ## Example call
 ```
-univariate_stats(
-  input=transformed_data,
+cars_uni <- univariate_stats(
+  input=cars$data,
   var_config=var_config,
-  output='transformed_data',
+  output="cars",
   output_dir="D:/data/cars1/",
-  )  
+  )
 ```
 
 ## Tests

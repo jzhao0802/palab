@@ -35,26 +35,23 @@ This function will take in an R data.frame and convert all nominal categorical v
   * an observation with `cat` = `C` is enconded as `cat_B_A` = 0, `cat_C_A` = 1
 * If `cat` is missing for a certain row, than all new dummy variables should be missing as well.
 * Here is a clear example of dummy encoding: http://www.ats.ucla.edu/stat/r/library/contrast_coding.htm
-* A new var_config file should be created that has all the original categorical variables removed and replaced with the dummy variables, see Output section.
+* A new `var_config` file should be created that has all the original categorical variables removed and replaced with the dummy variables.
 * If `name_desc.csv` (for details have a look at `var_desc` function) is provided add each dummy variable to it as. For the example variable above, `cat`:
   * `Var` should be the newly created column name of the dummy variable, e.g. `cat_B_A`.
   * `Name` should be `cat: B vs A`.
   * `Desc` should be `Categorical variable: cat, level B vs level A`.
 
 ## Return
-R data frame holding the transformed data with dummy vars and original categorical variables removed so that each column is numeric.
+* `output`dummified (R data.frame) - this holds the transformed data with dummy vars and original categorical variables removed so that each column is numeric.
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
-* `name_desc`
-  * Updated/over-write as described above.
+* `output`name_desc_dummyfied.csv
+  * A new name_desc file that is identical to `name_desc` except for the categorical variables.
 * `output`var_config_dummyfied.csv
-  * A new var_config file that is identical to `var_config` except the categorical variables.
-* `output`dummyfied.rds
-  * RDS file of transformed data written to `output_dir`
+  * A new var_config file that is identical to `var_config` except for the categorical variables.
 * `output`dummyfied.csv
   * If `output_csv` = TRUE, write transformed data to a CSV.
-* The default of `output` is '', so the function produces dummyfied.rds and dummyfied.csv if `output_csv`=TRUE.
 
 ## Defaults
 ```
@@ -70,10 +67,10 @@ dummy_vars(
 
 # Example call
 ```
-dummy_vars(
-  input = "D:/data/cars1/input/mt_cars_transformed.csv",
-  var_config = "D:/data/cars1/metadata/var_config.csv",
-  output = 'transformed_dummyfied',
+cars_dummy <- dummy_vars(
+  input = cars$data,
+  var_config = var_config,
+  output = "cars",
   output_dir = "D:/data/cars1",
   output_csv = FALSE
   )

@@ -63,6 +63,11 @@ All CSVs below should be output to the `output_dir`, overwriting a previous vers
 * `output`bivar_stats_y_cat_x_num.csv
 * The default of `output` is '', so the function produces bivar_stats_y_cat_x_cat.csv and bivar_stats_y_cat_x_num.csv by default.
 
+## Return
+List containing these data frames:
+* bivar_stats_y_cat_x_cat
+* bivar_stats_y_cat_x_num
+
 ## Defaults
 ```
 bivar_stats_y_cat(
@@ -76,13 +81,13 @@ bivar_stats_y_cat(
 
 ## Example call
 ```
-bivar_stats_y_cat(
-  input=transformed_data,
+cars_bivar <- bivar_stats_y_cat(
+  input=cars$data,
   var_config=var_config,
-  output='transformed_data',
+  output="cars",
   output_dir="D:/data/cars1/",
   outcome = "gear"
-  )  
+  )
 ```
 
 ## Tests

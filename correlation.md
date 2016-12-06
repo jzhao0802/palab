@@ -33,13 +33,16 @@ This function calculates the correlations between the variables/columns of a num
   * _FDR_BH_P-Value_: p-value after correcting with FDR (Benjamini Hochberg): https://www.wikiwand.com/en/False_discovery_rate#/Benjamini.E2.80.93Hochberg_procedure
   * _FDR_BHY_P-Value_: p-value after correcting with FDR (Benjamini Hochberg Yekutieli): https://www.wikiwand.com/en/False_discovery_rate#/Benjamini.E2.80.93Hochberg.E2.80.93Yekutieli_procedure
   * _Bonferroni_P-Value_: p-value after correcting with Bonferroni: https://www.wikiwand.com/en/Bonferroni_correction
-  
+
 * This table should be sorted by descending _AbsCorrelation_ to highlight the most correlated pair of variables. The correlation matrix is symmetric, please make sure that each pair is present only once and not twice.
 
 ## Output
 All CSVs below should be output to the `output_dir`.
 * `output`correlation.csv
 * The default of `output` is '', so the function produces correlation.csv by default.
+
+## Return
+* `output`correlation (R data.frame)
 
 ## Defaults
 ```
@@ -53,11 +56,9 @@ correlation(
 
 ## Example call
 ```
-output_dir <- "D:/data/cars1/"
-input_rds <- str_c(output_dir, "transformed_data.rds")
-
-correlation(
-  input = transformed_data_rds,
-  output_dir = output_dir,
+cars_cor <- correlation(
+  input = cars$data,
+  output = "cars",
+  output_dir="D:/data/cars1/"
   )  
 ```

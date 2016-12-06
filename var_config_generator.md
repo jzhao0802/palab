@@ -33,6 +33,9 @@ None
   * _NumUniqueValues_: This is the number of unqiue values that the column contains.
 * Every column that appears in `input_csv` should also appear as a row in `output`var_config.csv and must have a _Type_.
 
+## Return
+* `output`var_config (R data.frame)
+
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
 * `output`var_config.csv
@@ -50,10 +53,11 @@ var_config_generator(
 
 ## Example call
 ```
-var_config_generator(
-  input_csv = "D:/data/cars1/input/mt_cars.csv"
+var_config <- var_config_generator(
+  input_csv = "D:/data/cars1/input/mt_cars.csv",
+  output = "cars",
   output_dir = "D:/data/cars1"
-  )  
+  )
 ```
 ## Tests
 * Using the provided toy example for [input_csv](./example_data/mtcars.csv): all outputs should exactly match the provided examples for results [output](./example_output_csvs/var_config_generated.csv)

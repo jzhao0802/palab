@@ -51,26 +51,27 @@ This function will replace extreme values in numerical variables with either a u
     * Second column: if the variable was not capped then enter the flag 'N', otherwise enter the numerical value at which the variable was capped (user-defined threshold or `x_pth`).
 
 ## Return
-R data frame with the capped values.
+List containing these data frames:
+* ex - the transformed data with capped values
+* ex_val_thrsh - as described above
 
 ## Outputs
 All CSVs below should be output to the output_dir, overwriting a previous version if necessary.
-* `output`_ex.rds
-  * RDS file of `output`_ex.csv_ written to `output_dir`
-* If `output_csv` = TRUE, write out `output`_ex.csv_ as a csv to `output_dir`
-* `output`_ex_val_thrsh_out.csv_
+* `output`ex.csv
+  * If `output_csv` = TRUE, write out `output`ex.csv as a csv to `output_dir`
+* `output`ex_val_thrsh_out.csv
   * This file logs the thresholds that were used to cap the numerical variables.
 
 ## Defaults
 ```
-extreme_values(
-  input = ,
-  var_config = ,
+cars_extreme <- extreme_values(
+  input = cars$data,
+  var_config = var_config,
   xperct = 0.99,
   ex_val_thrsh =,
-  output = ,
-  output_dir = ,
-  output_csv = "False"
+  output = "cars",
+  output_dir="D:/data/cars1/",
+  output_csv = TRUE
   )  
 ```
 
