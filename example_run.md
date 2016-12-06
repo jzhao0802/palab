@@ -38,7 +38,7 @@ On disk:
 cars_uni <- univariate_stats(
   input=cars$data,
   var_config=var_config,
-  output="cars",
+  output="cars_",
   output_dir="D:/data/cars1/",
   )  
 ```
@@ -59,7 +59,7 @@ On disk:
 cars_bivar <- bivar_stats_y_cat(
   input=cars$data,
   var_config=var_config,
-  output="cars",
+  output="cars_",
   output_dir="D:/data/cars1/",
   outcome = "gear"
   )
@@ -78,7 +78,7 @@ On disk:
 cars_bivar_num <- bivar_stats_y_cat(
   input=cars$data,
   var_config=var_config,
-  output="cars",
+  output="cars_",
   output_dir="D:/data/cars1/",
   outcome = "gear"
   )
@@ -101,7 +101,7 @@ cars_extreme <- extreme_values(
   var_config = var_config,
   xperct = 0.99,
   ex_val_thrsh =,
-  output = "cars",
+  output = "cars_",
   output_dir="D:/data/cars1/",
   output_csv = TRUE
   )  
@@ -119,12 +119,12 @@ On disk:
 ```
 cars_cor <- correlation(
   input = cars$data,
-  output = "cars",
+  output = "cars_",
   output_dir="D:/data/cars1/"
   )  
 ```
 In memory:
-* cars_correlation
+* cars_cor
 
 On disk:
 * cars_correlation.csv
@@ -134,7 +134,7 @@ On disk:
 cars_binned <- binning(
   input=cars$data,
   var_config=var_config,
-  output = "cars",
+  output = "cars_",
   output_dir="D:/data/cars1/"
   )  
 ```
@@ -150,13 +150,13 @@ On disk:
 cars_dummy <- dummy_vars(
   input = cars$data,
   var_config = var_config,
-  output = "cars",
+  output = "cars_",
   output_dir = "D:/data/cars1",
   output_csv = FALSE
   )
 ```
 In memory:
-* cars_dummified
+* cars_dummy
 
 On disk:
 * cars_dummified.csv
