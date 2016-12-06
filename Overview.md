@@ -14,19 +14,19 @@ The Predictive Analtyics (PA) team run many projects a year which have common da
 * Please conform to Hadley Wickham R style guide http://adv-r.had.co.nz/Style.html and the best practices described in the book (http://r-pkgs.had.co.nz).
 * Code should be commented with a consistent coding structure across all functions.
 * The package should pass R Cmd Check (http://r-pkgs.had.co.nz/check.html).
-* Where possible, existing packages should be used to avoid re-writing code that has already been written in the R community. 
-  * Some thought needs to be put into how to manage this pacakge when dependancies update. 
+* Where possible, existing packages should be used to avoid re-writing code that has already been written in the R community.
+  * Some thought needs to be put into how to manage this pacakge when dependancies update.
 
 ## Initial running order for functions
-* `var_config_generator`
-* `read_transform`
-* `dummy_vars`
-* `long_var_names`
-* `univariate_stats`
-* `bivariate_stats_cat`
-* `bivariate_stats_num`
-* `correlation_xbyx`
-* `multicollinearity`
-* `extreme_values`
+* var_config_generator
+* read_transform
+* univariate_stats
+* bivariate_stats_cat
+* bivariate_stats_num
+* `correlation`
+* extreme_values
 * `binning`
+* `dummy_vars`
+* `seq_vars_ds`
+* `seq_vars_create`
 * `perf_metrics_cat`
