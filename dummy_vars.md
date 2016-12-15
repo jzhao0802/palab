@@ -42,7 +42,8 @@ This function will take in an R data.frame and convert all nominal categorical v
   * `Desc` should be `Categorical variable: cat, level B vs level A`.
 
 ## Return
-* `output`dummified (R data.frame) - this holds the transformed data with dummy vars and original categorical variables removed so that each column is numeric.
+* `output`dummified (R data.frame)
+	* The data frame `input`, with the categorical variables dropped, and replaced with the dummy vars. All categorical variables in this data frame should be numeric. 
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
