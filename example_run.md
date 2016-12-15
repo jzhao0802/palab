@@ -99,7 +99,7 @@ On disk:
 cars_extreme <- extreme_values(
   input = cars$data,
   var_config = var_config,
-  xperct = 0.99,
+  pth = 0.99,
   ex_val_thrsh =,
   output = "cars_",
   output_dir="D:/data/cars1/",

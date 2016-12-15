@@ -67,9 +67,22 @@ All CSVs below should be output to the output_dir, overwriting a previous versio
 cars_extreme <- extreme_values(
   input = cars$data,
   var_config = var_config,
-  xperct = 0.99,
+  pth = 0.99,
   ex_val_thrsh =,
   output = "cars",
+  output_dir="D:/data/cars1/",
+  output_csv = TRUE
+  )  
+```
+
+## Example call
+```
+cars_extreme <- extreme_values(
+  input = cars$data,
+  var_config = var_config,
+  pth = 0.99,
+  ex_val_thrsh =,
+  output = "cars_",
   output_dir="D:/data/cars1/",
   output_csv = TRUE
   )  

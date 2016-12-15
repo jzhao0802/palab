@@ -25,7 +25,6 @@ This function will produce a summary of how each variable varies with a _categor
 ## Function
 * Output a warning if the outcome variable has more than 5 levels.
   * More than 5 levels will make the resulting spreadsheets very difficult to digest, so the user needs to be warned about this.
-* For columns prefixed with "o_", no stats should be calculated.
 * Each statistic mentioned below ends in "_\__X_". This means that it should be calculated for each level of the outcome variable, and the name of the stat should be suffixed with that level value. E.g. if the outcome variable has 2 levels, "1" and "0", the stat _Count__X_ should have 2 columns in the output CSV, "Count_1" and "Count_0", calculated for all observations where the outcome variable has level 1 and 0 respectively.
 * For categorical variables (except the outcome variable itself), produce `output`bivar_stats_y_cat_x_cat.csv. This is a full frequency table containing all levels for all variables with the following columns:
   * _Variable_: Name of the categorical variable.
