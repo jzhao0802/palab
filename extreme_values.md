@@ -39,14 +39,14 @@ This function will replace extreme values in numerical variables with either a u
  * Produce `ex_val_thrsh_output.csv` which takes the same <duplicate> form to `ex_val_thrsh`:
    * First column: the list of variables that were capped for extreme values.
    * Second column: the threshold value at which the variable was capped which could be either user-defined value or x_pth.
- * Create a duplicate of `input` called `output`_ex.csv__. Update the numerical variables in `output`_ex.csv__ with those that have been capped.
+ * Create a duplicate of `input` called `output`ex.csv. Update the numerical variables in `output`ex.csv with those that have been capped.
 
 * If the user has not provided `ex_val_thrsh` then the default assumption is that all numerical variables should be capped at `x_pth`:
   * Compute the value at the percentile level stored in `pth` (`x_pth`) for each numerical variable in `input`.
   * For each numerical variable, replace values greater than or equal to `x_pth` with `x_pth`, i.e. `x[x>=x_pth] = x_pth`
-  * Create a duplicate of `input` called `output`_ex.csv__. Update the all numerical variables in `output`_ex.csv_ with their capped equivalents.
+  * Create a duplicate of `input` called `output`ex.csv. Update the all numerical variables in `output`ex.csv with their capped equivalents.
 
-* Produce `output`_ex_val_thrsh_out.csv_ which takes the same form as `ex_val_thrsh`:
+* Produce `output`ex_val_thrsh_out.csv which takes the same form as `ex_val_thrsh`:
     * First column: the list of all numerical variables.
     * Second column: if the variable was not capped then enter the flag 'N', otherwise enter the numerical value at which the variable was capped (user-defined threshold or `x_pth`).
 
