@@ -18,16 +18,14 @@ It's probably a good idea to build this function modularly, i.e. write an intern
 * `var_config`
   * Full path and name of the CSV containing the variable configuration.
   * Example file is [here](../example_metadata_files/var_config.csv)
-* `method`
-  * String, either "r" for range or "q" for quantiles. Default = "q".
-* `num_bins`
-  * Number of bins required. Default = 5.
-* `cutpoints`
-  * If specific cutpoints are required, these are specified here as a list of integers or floats.
-* `column`
-  * List of column names to perform binning on. Default = c() which means all numeric columns.
-* `replace_val`
-  * String, either "o" for ordinal or "m" for mean. Default = "m".
+* `binning_config.csv`
+  * Full path and name of the CSV containing the binning configuration for each variable.
+  * Example file is [here](../example_metadata_files/binning_config.csv)
+  * First column: _VariableName_, the name of the column in the input dataset.
+  * Second column: _NumBins_, the number of bins required for the variable. If not poplated, default to 5.
+  * Third column: _Method_, either "r" for range or "q" for quantiles. If not poplated, default to "q"
+  * Fourth colum: _CutPoints_, comma seperated list of cut points to split the variable into bins.
+  * Fifth column: _ReplaceVal_, either "o" for ordinal or "m" for mean. If not poplated, default = "m".
 * `output`
   * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
 * `output_dir`
@@ -38,30 +36,36 @@ It's probably a good idea to build this function modularly, i.e. write an intern
 ## Function
 
 * The function performs binning on all numeric columns by default. Columns are deemed continous/numeric based on the `var_config` file. `var_config` will be manually checked by us before using binning so no further checks are needed from this function.
-* By default each numeric column is split into quintiles, i.e. 5 equal portions (`num_bins` = 5, `method` = "q", `column` = c(), `replace_val` = "m")
-* If `column` is not an empty list, only those columns should be binned that are included in `column`, e.g.: `column` = c("age", "income").
-* If either of the columns in the list of `column` is not a numeric feature based on `var_config` the function should throw an error and terminate.
+* If a variable is not listed in `binning_config.csv`, it should not be transformed.
+* If a variable is listed in `binning_config.csv`, then it is transformed as specified by the columns in the config file, and then replaces the original column in `input`
+* If a variable is listed but has no values in any other column, it is by default split into quintiles, i.e. 5 equal portions (_NumBins_ = 5, _Method_ = "q", _ReplaceVal_ = "m")
+* If numerical columns are not listed in `var_config`, but are listed in `binning`, the function should throw an error and terminate.
 
-* `num_bins` determine the number of buckets the function uses to bin a given numeric variable.
-* The `num_bins` param has to be interpretted together with the `method` param:
-  * If `method` = "q", the function works with quantiles, i.e. cutpoints divide the range of a probability distribution into continuous intervals with equal probabilities.
-  * If `method` = "r", the function works on the range of variables. It takes the minimum and maximum values of all the columns in the `column` list (i.e. this could be all numeric columns, a list of 2 columns, or just a single one). Then the range of (maximum-minimum) is divided into equal-range bins based on `num_bins`.
+* _NumBins_ determine the number of buckets the function uses to bin the variable.
+* The _NumBins_ param has to be interpretted together with the _Method_ param:
+  * If _Method_ = "q", the function works with quantiles, i.e. cutpoints divide the range of a probability distribution into continuous intervals with equal probabilities.
+    * All observations with the same value of the variable must belong in the same bin. This means that if q = 4 and there the value at quartile 1, 2 and 3 is the same, there will only be 2 bins, despite q being stated as 4.
+    * In the event that bins are collapsed, a warning should be issued which reads as follows:
+      * "Variable X was not split into 4 bins as only 2 unique cut points were found"
+  * If _Method_ = "r", the function works on the range of the variable. The range of teh variable (maximum-minimum) is divided into equal-range bins based on _NumBins_.
 
-* `cutpoints` parameter is used when there are specific cut points.
-  * If `cutpoints` is specified, the `num_bins` paramter is overridden.
-  * The function must use each item in the list as a cutpoint to form the buckets for binning.
-  * E.g. `cutpoints` = c(10, 20, 40) will define 4 bins:
+* _CutPoints_ is used when there are specific cut points.
+  * If _CutPoints_ is specified, the _NumBins_ column in `binning_config.csv` is overridden.
+  * The function must use each item in the list as a cutpoint to form the buckets for binning that variable.
+  * E.g. _CutPoints_ = 10, 20, 40 will define 4 bins:
     1. -Inf < x <=  10
     2. 10 < x <= 20
     3. 20 < x <= 40
     4. 40 < x <= Inf
 
-* If `replace_val` = "o", then each continuous value is replaced with the number of bin it belongs to. For example if `num_bins` = 3, `method` = "q", `column` = c("age"), `replace_val` = "o", and "age" = c(15, 16, 17, 18, 19, 20, 21, 22, 23), the binned version of "age" = c(1, 1, 1, 2, 2, 2, 3, 3, 3). It's vital to preserve the ordinal structure of the data. This is why, the first 3 rows (15, 16,17) will become 1 and not 2 or 3.
-* If `replace_val` = "m", then each continuous value is replaced with the mean of values within the bin it belongs to. For example if `cutpoints` = c(3), `method` = "q", `column` = c("age"), `replace_val` = "m", and "age" = c(15, 16, 17, 18, 19, 20, 21, 22, 23), the binned version of "age" = c(16, 16, 16, 19, ,19, 19, 22, 22, 22).
+* If _ReplaceVal_ = "o", then each continuous value is replaced with the number of bin it belongs to. For example if _NumBins_ = 3, _Method_ = "q", _VariableName_ = Age, _ReplaceVal_ = "o", and "age" = c(15, 16, 17, 18, 19, 20, 21, 22, 23), the binned version of "age" = c(1, 1, 1, 2, 2, 2, 3, 3, 3). It's vital to preserve the ordinal structure of the data. This is why, the first 3 rows (15, 16,17) will become 1 and not 2 or 3.
+* If _ReplaceVal_ = "m", then each continuous value is replaced with the mean of values within the bin it belongs to. For example if _CutPoints_ = c(3), _Method_ = "q", _VariableName_ = Age, _ReplaceVal_ = "m", and "age" = c(15, 16, 17, 18, 19, 20, 21, 22, 23), the binned version of "age" = c(16, 16, 16, 19, ,19, 19, 22, 22, 22).
 * Missing values should be ignored and remain missing after the binning.
 
 ## Return
-* `output`binned (R data.frame) i.e. transformed data with numeric columns binned
+* `output`binned (R data.frame)
+  * This is the original data frame (`input`), with the varibles listed in `binning_config.csv` replaced with their binned versions.
+  * The output dataset must
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.

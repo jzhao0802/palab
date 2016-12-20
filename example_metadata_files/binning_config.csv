@@ -1,0 +1,3 @@
+Variable,NumBins,Method,CutPoints,RepalceVal
+disp,,,"150, 200",m
+qsec,3,q,,o
