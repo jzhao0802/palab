@@ -54,10 +54,18 @@ _An additional column will have been generated which is the predicted score of t
   * Check that the maximum value in this list is less than or equal to the total number of positive observations in `outcome_variable`, i.e. sum(`outcome_variable`== `lpc`).
   * If `tp_vals` has been provided then produce `pr_top_counts.csv` where the columns names are `TP`, `FP` and `score_thrsh`. To calculate the first row of `pr_top_counts.csv`, populate the first column as `tp_vals[1]`. Next, subset the `predicted_scores` to the positive class and sort it in descending order. Select the top number of true positives (value stored in `tp_vals[1]`) from the sorted positive predicted scores and now count the number of false positives that are greater than the minimum predicted score for the top number of true positives; this is the entry of the second column. That is, to compute the number of FP when TP is equal to `tp_vals[1]` then `pos_scores` = sort(`predicted_scores`[`outcome_variable`== 1]); `ps_thrsh` = `pos_scores`[`tp_vals[1]`]; `FP` = sum(((`predicted_scores`[`outcome_variable`== 0])>=`os_thrsh`). `ps_thrsh` should be stored in the third column. This process should be repeated for all entries in `tp_vals`.
 
+## Return
+List containing these data frames:
+* metrics
+* roc_curve
+* pr_curve
+* pr_curve_bins
+* pr_top_counts
+
 ## Output
 * `metrics.csv`
-* If `roc_curve_flag` is "True", `roc_curve.png/.rds`
-* If `pr_curve_flag` is "True", `pr_curve_flag.png/.rds`
+* If `roc_curve_flag` is "True", `roc_curve.png`
+* If `pr_curve_flag` is "True", `pr_curve.png`
 * `pr_curve_bins.csv`
 * `pr_top_counts.csv`
 
@@ -71,6 +79,7 @@ perf_metrics_cat(
   pr_curve_flag = 'FALSE'
   )
 ```  
+
 ## Tests
 * All outputs should have the correct format and structure as specified.
 * Using the provided toy example provided [here](./example_data/model_output.csv) for  model_output.csv - all outputs produced should exactly match the provided examples results: [metrics.csv](./example_output_csvs/metrics.csv), [pr_curve_bins.csv](./example_output_csvs/pr_curve_bins.csv) and [pr_top_counts.csv](./example_output_csvs/pr_top_counts.csv) with `prob_thrsh` set to 0.5 and `tp_vals` contains the following values {5,10,15,50}.

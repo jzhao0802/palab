@@ -65,7 +65,6 @@ It's probably a good idea to build this function modularly, i.e. write an intern
 ## Return
 * `output`binned (R data.frame)
   * This is the original data frame (`input`), with the varibles listed in `binning_config.csv` replaced with their binned versions.
-  * The output dataset must
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.

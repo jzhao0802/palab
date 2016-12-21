@@ -34,7 +34,7 @@ None
 * Every column that appears in `input_csv` should also appear as a row in `output`var_config.csv and must have a _Type_.
 
 ## Return
-* `output`var_config (R data.frame)
+* var_config (R data.frame)
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.

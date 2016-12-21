@@ -36,7 +36,7 @@ For this function reduced running time is a priority so please consider when con
 ## Function
 * Compute the frequency of each event variable in `event_dates`, i.e. the number of date entries divided by the total number of observations (inc missing values).
 * Subset the list of event variables to those that occur with a frequency of at least `freq_thrsh`
-* From the subsetted list create `output`seq_vars_descriptives.csv. The rows in this file are the list of unique un-ordered pairs, i.e. for N subsetted events; this file would have N(N-1)/2 rows. The output should contain the following column for each unique pair of events:
+* From the subsetted list create `seq_vars_descriptives`. The rows in this file are the list of unique un-ordered pairs, i.e. for N subsetted events; this file would have N(N-1)/2 rows. The output should contain the following column for each unique pair of events:
   * _A_: The variable name of the first event in the pair.
   * _B_: The varialbe name of the second event in the pair.
   * _A and B_: count of the number observations where both events (named in columns A and B) occur regardless of order, i.e. a valid date entry exists for both events.   
@@ -71,9 +71,11 @@ For this function reduced running time is a priority so please consider when con
 * If the outcome variable is binary then apply the following additional criteria:
   * _Delta A and B_ should be greater than `xfreq_thrsh`.
 
+## Return
+* seq_vars_descriptives (R data.frame)
+
 ## Output
 * `output`seq_vars_descriptives.csv
-* The default of `output` is '', so the function produces seq_vars_descriptives.csv by default.
 
 ## Defaults
 ```

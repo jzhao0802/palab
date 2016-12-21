@@ -31,17 +31,18 @@ The function reads in a list of paired variables and a set of corresponding orde
   * If `After` is set to `TRUE` then create an array of flags with zero being the default value, where the length is equal to the number of rows in `event_dates`.  The flag should be set to 1 if the event named in `A` occured after the event named in `B` for that patient observation. If the observation for is missing for `A` or `B` or both then the flag should be set to NA. The mapping to the patient id should be preserved. This array of flags should be joined to `output`seq_vars_feats.csv using the patient id as the key the column name should be a concatenation of the following strings: the event name stored in `A`, `_AFTER_` and the event name stored in `B` . If `After` is set to `FALSE` then skip this column.
   * If `Equal` is set to `TRUE` then create an array of flags with zero being the default value,  where the length is equal to the number of rows in `event_dates`.  The flag should be set to 1 if the event named in `A` occured at the same time as the event named in `B` for that patient observation. If the observation for is missing for `A` or `B` or both then the flag should be set to NA. The mapping to the patient id should be preserved. This array of flags should be joined to `output`seq_vars_feats.csv using the patient id as the key the column name should be a concatenation of the following strings: the event name stored in `A`, `_EQUAL_` and the event name stored in `B` . If `Equal` is set to `FALSE` then skip this column.
 
+## Return
+* seq_vars_feats (R data.frame)
 
 ## Output
 * `output`seq_vars_feats.csv
-* The default of `output` is '', so the function produces seq_vars_feats.csv by default.
 
 ## Defaults
 ```
 seq_vars(
   event_dates = ,
   seq_vars_selection =,
-  missing_values = NA, 
+  missing_values = NA,
   output='',
   output_dir=
   )
@@ -52,6 +53,6 @@ seq_vars(
 seq_vars_create(
   event_dates = event_dates.csv,
   seq_vars_selection = ./example_data/seq_vars_selection.csv,
-  missing_values = NA 
+  missing_values = NA
   )
 ```
