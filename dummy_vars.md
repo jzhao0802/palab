@@ -28,12 +28,15 @@ This function will take in an R data.frame and convert all nominal categorical v
 * For each categorical varible (as defined by `var_config`) with k levels, create k-1 dummy variables using the contrasts function of R, and remove the original column. The resulting data.frame must have only numeric features.
 * If certain categorical variables have more than 10 levels, the function should give a warning to the user, listing the problematic columns.
 * The levels of each categorical variable should be ordered alphabetically before creating the derived dummy variables.
-* If the original categorical variable's name is `cat`, and it has k=3 levels: `A`, `B`, `C` then the column names of the k-1 dummy variables should be: `cat_B_A`, `cat_C_A`.
+* The first variable in this alphabetically ordered list is the reference variable.
+* * If the original categorical variable's name is `cat`, and it has k=3 levels: `A`, `B`, `C` then the column names of the k-1 dummy variables should be: `cat_B_A`, `cat_C_A`.
 * Therefore
   * an observation with `cat` = `A` is enconded as `cat_B_A` = 0, `cat_C_A` = 0
   * an observation with `cat` = `B` is enconded as `cat_B_A` = 1, `cat_C_A` = 0
   * an observation with `cat` = `C` is enconded as `cat_B_A` = 0, `cat_C_A` = 1
-* If `cat` is missing for a certain row, than all new dummy variables should be missing as well.
+* If `cat` has missing values, another dummy variable called `cat_C_missing` should be created.
+  * an observation where `cat` is missing is enconded as `cat_B_A` = 0, `cat_C_A` = 0, `cat_C_missing` = 1
+  * For all observations where `cat` is one of the k levels, `cat_C_missing` = 0
 * Here is a clear example of dummy encoding: http://www.ats.ucla.edu/stat/r/library/contrast_coding.htm
 * A new `var_config` file should be created that has all the original categorical variables removed and replaced with the dummy variables.
 * If `name_desc.csv` (for details have a look at `var_desc` function) is provided add each dummy variable to it as. For the example variable above, `cat`:
@@ -43,7 +46,7 @@ This function will take in an R data.frame and convert all nominal categorical v
 
 ## Return
 * `output`dummified (R data.frame)
-	* The data frame `input`, with the categorical variables dropped, and replaced with the dummy vars. All categorical variables in this data frame should be numeric. 
+	* The data frame `input`, with the categorical variables dropped, and replaced with the dummy vars. All categorical variables in this data frame should be numeric.
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
