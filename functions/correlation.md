@@ -12,6 +12,9 @@ This function calculates the correlations between the variables/columns of a num
 ## Parameters
 * `input`
   * R data frame output by `dummy_vars`
+* `var_config`
+  * Full path and name of the CSV containing the variable configuration.
+  * Example file is [here](../example_metadata_files/var_config.csv)
 * `method`
   * String specifying the type of correlation to calculate. Default = 'spearman'
     * 'spearman': https://www.wikiwand.com/en/Spearman's_rank_correlation_coefficient
@@ -22,8 +25,7 @@ This function calculates the correlations between the variables/columns of a num
   * The directory into which all outputs will be written to.
 
 ## Function
-* Calculate the correlation meassure specified in the `method` parameter for every pair of variables.
-* If any of the columns of the input data.frame isn't numeric, throw an error and let the user know which column(s) to check.
+* Calculate the correlation measure specified in the `method` parameter for every pair of _numerical_ variables (as in `var_config`).
 * Produce `output`correlation.csv with the following columns:
   * _Variable1_: Name of variable 1
   * _Variable2_: Name of variable 2
@@ -31,7 +33,6 @@ This function calculates the correlations between the variables/columns of a num
   * _AbsCorrelation_: Absolute value of the correlation coefficient
   * _P-Value_: p-value of correlation coefficient
   * _FDR_BH_P-Value_: p-value after correcting with FDR (Benjamini Hochberg): https://www.wikiwand.com/en/False_discovery_rate#/Benjamini.E2.80.93Hochberg_procedure
-  * _FDR_BHY_P-Value_: p-value after correcting with FDR (Benjamini Hochberg Yekutieli): https://www.wikiwand.com/en/False_discovery_rate#/Benjamini.E2.80.93Hochberg.E2.80.93Yekutieli_procedure
   * _Bonferroni_P-Value_: p-value after correcting with Bonferroni: https://www.wikiwand.com/en/Bonferroni_correction
 
 * This table should be sorted by descending _AbsCorrelation_ to highlight the most correlated pair of variables. The correlation matrix is symmetric, please make sure that each pair is present only once and not twice.

@@ -19,7 +19,7 @@ This function will produce a summary of how each variable varies with a _numeric
   * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
 * `output_dir`
   * The directory into which all outputs will be written to.
-* `outcome`
+* `outcome_var`
   * The variable to use as an outcome.
 
 ## Function

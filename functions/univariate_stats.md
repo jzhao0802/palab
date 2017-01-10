@@ -45,7 +45,8 @@ This function will produce a summary of each variable in the input dataset. It w
     * For the normal levels, _Proportion_ = _Count_ / Number of non_missing observations for that variable
 * For numerical variables (from `var_config`), produce `output`univar_stats_x_num.csv with following columns:
   * _Variable_: Name of the categorical variable.
-  * _Non-missing, N_: Number of non-missing obsservations.
+  * _Number unique values_: Number of unique values in the variable.
+  * _Non-missing, N_: Number of non-missing observations.
   * _Non-missing, %_: Percentage of non-missing observations.
   * _Missing, N_: Number of missing observations.
   * _Missing, %_: Percentage of missing observations.
@@ -75,6 +76,8 @@ This function will produce a summary of each variable in the input dataset. It w
 * Produce `output`univar_stats_problems.csv to highlight any obvious data issues. If the univariate stats of a variable meets any of the following criteria, then it should be in the output:
   * Variable is 100% missing
   * Variable has only 1 unique value
+  * Maximum value of the variable is more than 3 standard deviations away from the mean
+  * Minimum value of the varaible is more than 3 standard deviations away from the mean
 
   The table should have the following columns:
   * _Variable_: Name of variable

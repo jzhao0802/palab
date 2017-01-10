@@ -21,6 +21,7 @@ This function will replace extreme values in numerical variables with either a u
     * Input file where the user can provide their own thresholds for capping numerical variables or a flag indicating that a variable should not be capped. For all other numerical variables not listed in this file then the value of that variable at the `pth` percentile will be used to cap the variable.
     * First column: _Variable_, the name of the variable.
     * Second column: _Thrsh_, a numerical value which represents a user-defined threshold at which the variable should be capped. A flag of "N" indicates that the variable should not be capped.
+    * Third column: _MinThrsh_, a numerical value which represents a user-defined threshold that should be the new lower bound of the variable.
     * Example file: [ex_val_thrsh.csv](./example_metadata_files/ex_val_thrsh.csv)
 * `output`
   * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
@@ -35,6 +36,7 @@ This function will replace extreme values in numerical variables with either a u
  * Check that the variables listed in `ex_val_thrsh` exist in `input`. Otherwise return an error specifying which variable name in `ex_val_thrsh` does not exist in `input`.
  * For variables where the row entry for _Thrsh_ is numerical: cap values greater than or equal to the provided threshold value, i.e. x[x>thrsh] = thrsh.
  * For numerical variables that are contained in `input` but not listed in `ex_val_thrsh`:  compute the value at the `pth` percentile (`x_pth`) for each variable and use it to replace values greater than or equal to the value at `pth` percentile for that variable, i.e. `x[x>=x_pth] = x_pth`.
+ * For variables that have an entry in the _MinThrsh_ column, ensure that the value of the variable is no lower than this number. 
  * For variables where the row entry for _Thrsh_ is "N": do not alter these variables.
  * Produce `ex_val_thrsh_output.csv` which takes the same <duplicate> form to `ex_val_thrsh`:
    * First column: the list of variables that were capped for extreme values.
