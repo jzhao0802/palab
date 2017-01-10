@@ -26,7 +26,7 @@ It's probably a good idea to build this function modularly, i.e. write an intern
   * Third column: _Method_, either "r" for range or "q" for quantiles. If not poplated, default to "q"
   * Fourth colum: _CutPoints_, comma seperated list of cut points to split the variable into bins.
   * Fifth column: _ReplaceVal_, either "o" for ordinal or "m" for mean. If not poplated, default = "m".
-* `output`
+* `prefix`
   * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
 * `output_dir`
   * The directory into which all outputs will be written to.
@@ -63,12 +63,12 @@ It's probably a good idea to build this function modularly, i.e. write an intern
 * Missing values should be ignored and remain missing after the binning.
 
 ## Return
-* `output`binned (R data.frame)
+* `prefix`binned (R data.frame)
   * This is the original data frame (`input`), with the varibles listed in `binning_config.csv` replaced with their binned versions.
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
-* `output`binned.csv
+* `prefix`binned.csv
   * If `output_csv` = TRUE, write transformed data to a CSV.
 
 ## Defaults
@@ -81,7 +81,7 @@ binning(
   num_bins =5,
   column=c(),
   replace_val="m",
-  output='',
+  prefix='',
   output_dir=,
   output_csv=FALSE
   )  
@@ -92,7 +92,7 @@ binning(
 cars_binned <- binning(
   input=cars$data,
   var_config=var_config,
-  output = "cars",
+  prefix = "cars",
   output_dir="D:/data/cars1/"
   )
 ```

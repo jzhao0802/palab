@@ -16,10 +16,10 @@ On disk:
 ```
 cars <- read_transform(
   input_csv = "D:/data/cars1/input/mt_cars.csv",
-  var_config = "D:/data/cars1/metadata/cars_var_config.csv",
+  var_config = "D:/data/cars1/var_config.csv"
   missing_values = "-999, 0, -99",
   max_levels = 100,
-  output = "cars",
+  prefix = "cars",
   output_dir = "D:/data/cars1",
   output_csv = TRUE,
   outcome_var = “gear”
@@ -37,8 +37,8 @@ On disk:
 ```
 cars_uni <- univariate_stats(
   input=cars$data,
-  var_config=var_config,
-  output="cars_",
+  var_config = "D:/data/cars1/var_config.csv"
+  prefix = "cars",
   output_dir="D:/data/cars1/",
   )  
 ```
@@ -58,10 +58,10 @@ On disk:
 ```
 cars_bivar <- bivar_stats_y_cat(
   input=cars$data,
-  var_config=var_config,
-  output="cars_",
+  var_config = "D:/data/cars1/var_config.csv"
+  prefix = "cars",
   output_dir="D:/data/cars1/",
-  outcome = "gear"
+  outcome_var = "gear"
   )
 ```
 
@@ -77,10 +77,10 @@ On disk:
 ```
 cars_bivar_num <- bivar_stats_y_cat(
   input=cars$data,
-  var_config=var_config,
-  output="cars_",
+  var_config = "D:/data/cars1/var_config.csv"
+  prefix = "cars",
   output_dir="D:/data/cars1/",
-  outcome = "gear"
+  outcome_var = "gear"
   )
 ```  
 
@@ -98,10 +98,10 @@ On disk:
 ```
 cars_extreme <- extreme_values(
   input = cars$data,
-  var_config = var_config,
+  var_config = "D:/data/cars1/var_config.csv"
   pth = 0.99,
   ex_val_thrsh =,
-  output = "cars_",
+  prefix = "cars",
   output_dir="D:/data/cars1/",
   output_csv = TRUE
   )  
@@ -119,7 +119,8 @@ On disk:
 ```
 cars_cor <- correlation(
   input = cars$data,
-  output = "cars_",
+  var_config = "D:/data/cars1/var_config.csv"
+  prefix = "cars",
   output_dir="D:/data/cars1/"
   )  
 ```
@@ -133,8 +134,8 @@ On disk:
 ```
 cars_binned <- binning(
   input=cars$data,
-  var_config=var_config,
-  output = "cars_",
+  var_config = "D:/data/cars1/var_config.csv"
+  prefix = "cars",
   output_dir="D:/data/cars1/"
   )  
 ```
@@ -149,8 +150,8 @@ On disk:
 ```
 cars_dummy <- dummy_vars(
   input = cars$data,
-  var_config = var_config,
-  output = "cars_",
+  var_config = "D:/data/cars1/var_config.csv"
+  prefix = "cars",
   output_dir = "D:/data/cars1",
   output_csv = FALSE
   )

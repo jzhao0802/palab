@@ -28,7 +28,7 @@ For this function reduced running time is a priority so please consider when con
 * `xfreq_thrsh`
   * This input is only used for cases when the outcome variable is binary. A user-defined value between 0 and 1 the defines the minimum required difference in the class-specific frequency of a sequence varible, e.g. if the frequency of a variable is 10% for level 1 and 25% for level two then the difference is 15%.
   * The default value is 5%  
-* `output`
+* `prefix`
   * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
 * `output_dir`
   * The directory into which all outputs will be written to.
@@ -75,7 +75,7 @@ For this function reduced running time is a priority so please consider when con
 * seq_vars_descriptives (R data.frame)
 
 ## Output
-* `output`seq_vars_descriptives.csv
+* `prefix`seq_vars_descriptives.csv
 
 ## Defaults
 ```
@@ -85,7 +85,7 @@ seq_vars(
   missing_values = NA,
   freq_thrsh = 0.01,
   xfreq_thrsh = 0.05,
-  output='',
+  prefix='',
   output_dir=
   )
 ```  

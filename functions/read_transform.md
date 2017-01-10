@@ -33,7 +33,7 @@ None
 * `missing_values`
   * A comma delimited string of missing values for all columns.
   * e.g. "-999, 0, -99"
-* `output`
+* `prefix`
   * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
 * `output_dir`
   * The directory into which all outputs will be written to.
@@ -51,10 +51,10 @@ None
   * No checks are carried out for other variables.
   * If there are columns in `input_csv` which are not listed in `var_config.csv`, they should be dropped.
   * If there are columns in `var_config.csv` which are not in `input_csv`, they should not be added.
-* Produce a dataset called `output`:
+* Produce a dataset called `prefix`:
   * Transform the missing values for each column - look for any of the values in `missing_values` in all columns, and replace with the R standard for missing, i.e. "NA".
   * Remove any observations where the outcome is missing.
-* Produce a report (and save it as `output`report.csv if `output_csv` = TRUE) of the different tables involved, with the following information:
+* Produce a report (and save it as `prefix`report.csv if `output_csv` = TRUE) of the different tables involved, with the following information:
   * Number of observations in original data
   * Number of observations in transformed data
   * Number of observations in original data where the outcome was missing.
@@ -72,9 +72,9 @@ List containing these data frames:
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
-* `output`.csv
+* `prefix`.csv
   * If `output_csv` = TRUE, write transformed data to a csv.
-* `output`report.csv
+* `prefix`report.csv
   * If `output_csv` = TRUE, write report as csv.
 
 ## Defaults
@@ -98,7 +98,7 @@ cars <- read_transform(
   var_config = "D:/data/cars1/metadata/cars_var_config.csv",
   missing_values = "-999, 0, -99",
   max_levels = 100,
-  output = "cars",
+  prefix = "cars",
   output_dir = "D:/data/cars1",
   output_csv = TRUE,
   outcome_var = “gear”

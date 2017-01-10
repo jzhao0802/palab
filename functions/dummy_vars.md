@@ -20,7 +20,7 @@ This function will take in an R data.frame and convert all nominal categorical v
   * Example file is [here](../example_metadata_files/dummy_var_config.csv)
 * `name_desc`
   * Full path and name of the CSV containing the names and descriptions of columns in `input`.
-* `output`
+* `prefix`
   * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
 * `output_dir`
   * The directory into which all outputs will be written to.
@@ -51,17 +51,17 @@ This function will take in an R data.frame and convert all nominal categorical v
   * `Desc` should be `Categorical variable: cat, level B vs level A`.
 
 ## Return
-* `output`dummified (R data.frame)
+* `prefix`dummified (R data.frame)
 	* The data frame `input`, with the categorical variables dropped, and replaced with the dummy vars. All categorical variables in this data frame should be numeric.
 
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
-* `output`name_desc_dummyfied.csv
+* `prefix`name_desc_dummyfied.csv
   * A new name_desc file that is identical to `name_desc` except for the categorical variables.
-* `output`var_config_dummyfied.csv
+* `prefix`var_config_dummyfied.csv
   * A new var_config file that is identical to `var_config` except for the categorical variables.
   * This should be written out every time the function is run. The most common thing to do after the function is run, is to put the output through univariate stats, which needs a var_config.csv.
-* `output`dummyfied.csv
+* `prefix`dummyfied.csv
   * If `output_csv` = TRUE, write transformed data to a CSV.
 
 ## Defaults
@@ -70,7 +70,7 @@ dummy_vars(
   input =,
   var_config =,
   name_desc = '',
-  output = '',
+  prefix = '',
   output_dir =,
   output_csv = FALSE
   )  
@@ -81,7 +81,7 @@ dummy_vars(
 cars_dummy <- dummy_vars(
   input = cars$data,
   var_config = var_config,
-  output = "cars",
+  prefix = "cars",
   output_dir = "D:/data/cars1",
   output_csv = FALSE
   )

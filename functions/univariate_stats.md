@@ -15,14 +15,14 @@ This function will produce a summary of each variable in the input dataset. It w
 * `var_config`
   * Full path and name of the CSV containing the variable configuration.
   * Example file is [here](../example_metadata_files/var_config.csv)
-* `output`
+* `prefix`
   * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
 * `output_dir`
   * The directory into which all outputs will be written to.
 
 ## Function
 
-* For categorical variables (from `var_config`), produce `output`univar_stats_x_cat.csv with the following columns:
+* For categorical variables (from `var_config`), produce `prefix`univar_stats_x_cat.csv with the following columns:
   * _Variable_: Name of the categorical variable.
   * _Non-missing, N_: Number of non-missing obsservations.
   * _Non-missing, %_: Percentage of non-missing observations.
@@ -32,7 +32,7 @@ This function will produce a summary of each variable in the input dataset. It w
   * _LevelX value_: The value in the most popular level in this variable
   * _Obs in LevelX, N_: Count of observations which have this variable equal to _LevelX value_
   * _Obs in LevelX, %_: _Obs in LevelX, N_ /  _Non-missing, N_
-* For categorical variables (from `var_config`), produce `output`univar_stats_x_cat_melted.csv. This is a full frequency table containing all levels for all variables with the following columns:
+* For categorical variables (from `var_config`), produce `prefix`univar_stats_x_cat_melted.csv. This is a full frequency table containing all levels for all variables with the following columns:
   * _Variable_: Name of the categorical variable.
   * _Number of Levels_: This is the number of different levels in that variable. This value will be repeated for all rows with that variable.
   * _Level_: The value of the level in that variable
@@ -43,7 +43,7 @@ This function will produce a summary of each variable in the input dataset. It w
   * _Proportion_: Percentage of observations which have this variable equal to this level.
     * For the special levels, _Proportion_ = _Count_ / Number of observations
     * For the normal levels, _Proportion_ = _Count_ / Number of non_missing observations for that variable
-* For numerical variables (from `var_config`), produce `output`univar_stats_x_num.csv with following columns:
+* For numerical variables (from `var_config`), produce `prefix`univar_stats_x_num.csv with following columns:
   * _Variable_: Name of the categorical variable.
   * _Number unique values_: Number of unique values in the variable.
   * _Non-missing, N_: Number of non-missing observations.
@@ -73,7 +73,7 @@ This function will produce a summary of each variable in the input dataset. It w
   * _P80_: Value at the percentile 80 of the variable.
   * _P90_: Value at the percentile 90 of the variable.
 * Note that the percentile thresholds should be calculated on non-missing values only.
-* Produce `output`univar_stats_problems.csv to highlight any obvious data issues. If the univariate stats of a variable meets any of the following criteria, then it should be in the output:
+* Produce `prefix`univar_stats_problems.csv to highlight any obvious data issues. If the univariate stats of a variable meets any of the following criteria, then it should be in the output:
   * Variable is 100% missing
   * Variable has only 1 unique value
   * Maximum value of the variable is more than 3 standard deviations away from the mean
@@ -92,17 +92,17 @@ List containing these data frames:
 
 ## Output
 All files below should be output to the `output_dir`, overwriting a previous version if necessary.
-* `output`univar_stats_x_cat.csv
-* `output`univar_stats_x_cat_melted.csv
-* `output`univar_stats_x_num.csv
-* `output`univar_stats_problems.csv
+* `prefix`univar_stats_x_cat.csv
+* `prefix`univar_stats_x_cat_melted.csv
+* `prefix`univar_stats_x_num.csv
+* `prefix`univar_stats_problems.csv
 
 ## Defaults
 ```
 univariate_stats(
   input=,
   var_config=,
-  output='',
+  prefix='',
   output_dir=,
   )  
 ```

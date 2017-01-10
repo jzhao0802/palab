@@ -19,14 +19,14 @@ This function calculates the correlations between the variables/columns of a num
   * String specifying the type of correlation to calculate. Default = 'spearman'
     * 'spearman': https://www.wikiwand.com/en/Spearman's_rank_correlation_coefficient
     * 'pearson': https://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient
-* `output`
+* `prefix`
   * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
 * `output_dir`
   * The directory into which all outputs will be written to.
 
 ## Function
 * Calculate the correlation measure specified in the `method` parameter for every pair of _numerical_ variables (as in `var_config`).
-* Produce `output`correlation.csv with the following columns:
+* Produce `prefix`correlation.csv with the following columns:
   * _Variable1_: Name of variable 1
   * _Variable2_: Name of variable 2
   * _Correlation_: The correlation coefficient
@@ -39,18 +39,18 @@ This function calculates the correlations between the variables/columns of a num
 
 ## Output
 All CSVs below should be output to the `output_dir`.
-* `output`correlation.csv
-* The default of `output` is '', so the function produces correlation.csv by default.
+* `prefix`correlation.csv
+* The default of `prefix` is '', so the function produces correlation.csv by default.
 
 ## Return
-* `output`correlation (R data.frame)
+* `prefix`correlation (R data.frame)
 
 ## Defaults
 ```
 correlation(
   input =,
   method='spearman',
-  output='',
+  prefix='',
   output_dir =,
   )  
 ```
@@ -59,7 +59,7 @@ correlation(
 ```
 cars_cor <- correlation(
   input = cars$data,
-  output = "cars",
+  prefix = "cars",
   output_dir="D:/data/cars1/"
   )  
 ```
