@@ -1,3 +1,4 @@
-Variable,Thrsh
-disp,250
-mpg, N
+Variable,Thrsh,MinThrsh
+disp,250,
+mpg, N,
+qsec,,15
