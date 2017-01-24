@@ -16,8 +16,8 @@ None
 * `key`
   * Name of the column containing the key, e.g. patient_id
   * All other columns in the data frame are presumed to be model predicitons.
-* `predict.thresh`
-  * The threshold above which to classify a prediction as in the positve class.
+* `predict.quantile`
+  * The top quantile to classify a prediction as in the positve class.
   * This value must be between 0 and 1.
 * `perf.thresh`
   * The performance threshold above which a model has to perform to be included in the aggregation.
@@ -38,7 +38,7 @@ None
   * _Spearman's correlation coefficient_: Spearman's correlation coefficient between the P(Class1) for _Model1_ and P(Class1) for _Model2_. The result should be rounded to two decimal places.
     * p-value is not needed here as all models will have the same number of observations.
   * _Class 1 Consensus_: The percentage of _Model1_'s Class 1 prediction that _Model2_'s class prediction agrees with.
-    * This should make use of the `predict.thresh` parameter to transform the P(Class1) for each model into a prediciton for class 1.
+    * This should make use of the `predict.quantile` parameter to transform the P(Class1) for each model into a prediciton for class 1, by taking the top `predict.quantile` observations as class 1.
     * Example: Let us say that _Model1_ predicts 20k out of 100k observations as positve. Of those 20k, _Model2_ predicts 15k as positive. This column should then read 75%.
     * This column is realtive to _Model1_ only.
   * _Model1 PR AUC_: Area under the PR curve for Model 1.
@@ -56,7 +56,7 @@ None
   * _agg.prob.max_: the maximum prediction of P(Class1) across each of the selected models.
   * _agg.prob.min_: the minimum prediction of P(Class1) across each of the selected models.
   * _agg.vote_: the total number of "votes" across each of the selected models.
-    * This is calculated by first using `predict.thresh` to transform the P(Class1) for each model into a prediciton for class 1.
+    * This is calculated by first using `predict.quantile` to transform the P(Class1) for each model into a prediciton for class 1.
     * Then the number of models which predict Class 1 for a particular piece observations are counted.
     * For example, if there are 10 models overall and 6 of them predict Class 1 for a paritucalr observation, the value of this column should be 6 for this observation.
 
