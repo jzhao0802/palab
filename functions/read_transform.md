@@ -45,7 +45,7 @@ None
 ## Function
 * Read in the input_csv and var_config.
 * Check that variables are compatable with their type.
-  * If a variable is classed as numerical but has character values in it, the function should error.
+  * If a variable is classed as numerical but has character values in it, the function should error. If a numeric column is 100% missing, this should be acceptable. 
   * If a variable is classed as categorical but has more than `max_levels` different values, the function should output a warning to the user.
   * There should only be one variable listed as the key, and it should have as many unique values as there are observations in `input_csv`.
   * No checks are carried out for other variables.

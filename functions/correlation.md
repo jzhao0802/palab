@@ -11,7 +11,7 @@ This function calculates the correlations between the variables/columns of a num
 
 ## Parameters
 * `input`
-  * R data frame output by `dummy_vars`
+  * R data frame
 * `var_config`
   * Full path and name of the CSV containing the variable configuration.
   * Example file is [here](../example_metadata_files/var_config.csv)
@@ -49,6 +49,7 @@ All CSVs below should be output to the `output_dir`.
 ```
 correlation(
   input =,
+  var_config=,
   method='spearman',
   prefix='',
   output_dir =,
@@ -59,6 +60,7 @@ correlation(
 ```
 cars_cor <- correlation(
   input = cars$data,
+  var_config = var_config,
   prefix = "cars",
   output_dir="D:/data/cars1/"
   )  

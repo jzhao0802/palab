@@ -36,7 +36,7 @@ This function will replace extreme values in numerical variables with either a u
  * Check that the variables listed in `ex_val_thrsh` exist in `input`. Otherwise return an error specifying which variable name in `ex_val_thrsh` does not exist in `input`.
  * For variables where the row entry for _Thrsh_ is numerical: cap values greater than or equal to the provided threshold value, i.e. x[x>thrsh] = thrsh.
  * For numerical variables that are contained in `input` but not listed in `ex_val_thrsh`:  compute the value at the `pth` percentile (`x_pth`) for each variable and use it to replace values greater than or equal to the value at `pth` percentile for that variable, i.e. `x[x>=x_pth] = x_pth`.
- * For variables that have an entry in the _MinThrsh_ column, ensure that the value of the variable is no lower than this number. 
+ * For variables that have an entry in the _MinThrsh_ column, ensure that the value of the variable is no lower than this number.
  * For variables where the row entry for _Thrsh_ is "N": do not alter these variables.
  * Produce `ex_val_thrsh_output.csv` which takes the same <duplicate> form to `ex_val_thrsh`:
    * First column: the list of variables that were capped for extreme values.
@@ -47,6 +47,7 @@ This function will replace extreme values in numerical variables with either a u
   * Compute the value at the percentile level stored in `pth` (`x_pth`) for each numerical variable in `input`.
   * For each numerical variable, replace values greater than or equal to `x_pth` with `x_pth`, i.e. `x[x>=x_pth] = x_pth`
   * Create a duplicate of `input` called `prefix`ex.csv. Update the all numerical variables in `prefix`ex.csv with their capped equivalents.
+  * Produce `ex_val_thrsh_output.csv` which takes the same form to `ex_val_thrsh`
 
 * Produce `prefix`ex_val_thrsh_out.csv which takes the same form as `ex_val_thrsh`:
     * First column: the list of all numerical variables.
@@ -69,7 +70,7 @@ All CSVs below should be output to the output_dir, overwriting a previous versio
 cars_extreme <- extreme_values(
   input =,
   var_config =,
-  pth = 0.99,
+  pth = 1,
   ex_val_thrsh =,
   prefix =,
   output_dir=",
