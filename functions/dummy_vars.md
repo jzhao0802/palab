@@ -43,6 +43,9 @@ This function will take in an R data.frame and convert all nominal categorical v
 * If `cat` has missing values, another dummy variable called `cat_missing_A` should be created.
   * An observation where `cat` is missing is enconded as `cat_B_A` = 0, `cat_C_A` = 0, `cat_missing_A` = 1
   * For all observations where `cat` is one of the k levels, `cat_missing_A` = 0
+* As these the dummfied dataset may get output to CSV for use later on, all variable names must not have any special characters.
+  * All special character in a variable name should be replaced with an underscore.
+  * For example, if a variable A has a level called "100MG/day", the name of the dummy_var should be `A_100MG_day_<reflevel>`
 * Here is a clear example of dummy encoding: http://www.ats.ucla.edu/stat/r/library/contrast_coding.htm
 * A new `var_config` file should be created that has all the original categorical variables removed and replaced with the dummy variables.
 * If `name_desc.csv` (for details have a look at `var_desc` function) is provided add each dummy variable to it as. For the example variable above, `cat`:
