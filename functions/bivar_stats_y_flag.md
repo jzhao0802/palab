@@ -25,7 +25,7 @@ This is quite often the case for certain types of projects.
 
 ## Function
 *  `var_config` should be used to identify numerical variables. No processing is to be carried out on categorical variables here.
-* Produce a table with the following columns. 
+* Produce a table with the following columns.
   * _Variable_: Name of numerical variable
   * _Num Unique Values_: Number of unique values that this variable has (from `var_config_generated`)
   * _Non Missing_: Number of non-missing observations in the variable
@@ -75,7 +75,7 @@ bivar_stats_y_flag(
 cars_bivar_flag <- bivar_stats_y_flag(
   input=cars$data,
   var_config=var_config,
-  output="cars",
+  prefix="cars",
   output_dir="D:/data/cars1/",
   outcome_var = "gear"
   )

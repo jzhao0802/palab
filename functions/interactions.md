@@ -28,9 +28,13 @@ For this function, reduced running time is a priority.
   * The minumum number of observations that an interaction term must have.
 * `min_prophits`
   * The minimum proportion of hits that an interaction term ust have.
+* `prefix`
+  * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
+* `output_dir`
+  * The directory into which all outputs will be written to.
 
 ## Function
-* If this `sample_size` is not NULL, then `sample_size` observations should be drawn randomly from `input` and all further analysis should be carried out on this sample.
+* If `sample_size` is not NULL, then `sample_size` observations should be drawn randomly from `input` and all further analysis should be carried out on this sample.
 * Make a list of _rules_:
   * For categorical variables, a rule is just the variable equal to any of its levels, or missing.
     * The variable Gender may have 3 rules; "Gender: F", "Gender: M", "Gender: missing". The rules are derived from the data.
@@ -40,7 +44,7 @@ For this function, reduced running time is a priority.
     * If the variable can not be split into `max_quantiles`, it should be split into just 3 rules; Above 0, Zero and below, missing, e.g. "Age: Above 0", "Age: Zero or below", "Age: Missing"
     * The names of the rules are important for interpretability. When a numerical variable is split into quantiles, the lower and upper bounds should be displayed in the rule name.
     * This dichotimisation is just intended as a "first draft". Having run this function once, the user might manually dichotomise a numerical variable and set it to be a categorical variable for the next iteration of running this function.
-* Produce a table of interactions called which contains a row per rule-pair (i.e. interaction term), with the following columns:
+* Produce a table of interactions which contains a row per rule-pair (i.e. interaction term), with the following columns:
   * _Rule1_: Name and level of first rule in the rule-pair. E.g. "Age: 18 - 25"
   * _Rule2_: Name and level of second rule in the rule-pair. E.g. "Gender: F"
   * _Triggers_: Number of observations in sample where both _Rule1_ and _Rule2_ are true.
@@ -55,7 +59,8 @@ For this function, reduced running time is a priority.
 A data frame with the table of interactions.
 
 ## Output
-There is no output to CSV for this function
+All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
+* `prefix`bivar_stats_y_flag.csv
 
 ## Defaults
 ```
@@ -66,7 +71,9 @@ interactions <- interactions(
   outcome_var = ,
   max_quantiles = 3,
   min_triggers = 100,
-  min_prophits = 0.2
+  min_prophits = 0.2,
+  prefix='',
+  output_dir=
   )
 ```
 
@@ -78,6 +85,8 @@ interactions <- interactions(
   sample_size = 100000,
   outcome_var = gear,
   min_triggers = 1000,
-  min_prophits = 0.5
+  min_prophits = 0.5,
+  prefix="interactions",
+  output_dir="D:/data//"
   )
 ```
