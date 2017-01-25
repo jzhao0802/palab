@@ -25,7 +25,7 @@ This is quite often the case for certain types of projects.
 
 ## Function
 *  `var_config` should be used to identify numerical variables. No processing is to be carried out on categorical variables here.
-* Produce a table with the following columns. All variables that depend on `outcome_var` should not be included in the output if
+* Produce a table with the following columns. 
   * _Variable_: Name of numerical variable
   * _Num Unique Values_: Number of unique values that this variable has (from `var_config_generated`)
   * _Non Missing_: Number of non-missing observations in the variable
