@@ -32,7 +32,7 @@ This function automatically selects an uncorrelated subset of predictors from th
   2. Identify the predictor with the highest VIF, and remove it from the data set.
   3. Recalculate VIF for each each predictor in the remaining set.
   4. Repeat (2) and (3) until each remaining variable's VIF is below `vif_thrsh`.
-    * At stages (1) and (3), also calculate the Condition Index (CI) of the design matrix.
+    * At stage (1), also calculate the Condition Index (CI) of the design matrix.
 * Definitions:
   * VIF_j is calculated for the j-th predictor of `input` as 1/(1-R^2_j), where R^2_j is the R^2 value of the linear/logistic regression model fitted to the j-th predictor in `input` as the outcome variable, and all other predictors used in the design matrix to predict it. Use the VIF function in the [fmsb](https://cran.r-project.org/web/packages/fmsb/fmsb.pdf) package for this.
     * If the j_th predictor is a categorical variable with two levels, then fit a logistic regression to it using the other predictors as independent variables.
@@ -43,8 +43,8 @@ This function automatically selects an uncorrelated subset of predictors from th
 * Once all remaining predictors have a VIF <= `vif_thrsh`, create a data frame called `multicol`. This is same as the `input` data frame but now with only the variables that have VIF <= `vif_thrsh`, and the `outcome_var`.
 * Create a data frame called `info` which records the iterations of the function, with the following columns:
   * _Iteration_: The iteration number.
-  * _NumVar_: The number of variables which were considered in this iteration.
-  * _VarRemoved_: Name of the variable which was removed in this iteration, i.e. the one that had the highest VIF.
+  * _NumVar_: The number of predictors which were considered in this iteration.
+  * _VarRemoved_: The name of the predictor which was removed in this iteration, i.e. the predictor which had the highest VIF.
   * _CI_: The condition index of the predictors in this iteration.
 
 ## Return
