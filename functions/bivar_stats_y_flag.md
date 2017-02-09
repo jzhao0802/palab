@@ -36,7 +36,9 @@ This is quite often the case for certain types of projects.
   * _Mean Class0_: Mean of the variable when `outcome_var` equals 0.
 
   * _Mean difference_: Absolute value of ( (_Mean Class1_ - _Mean Class0_) / _Mean_ ).
-  * _Correlation_: Spearman's correlation coefficient measuring the association between the numerical variable and the outcome variable. The result should be rounded to two decimal places.
+  * _Correlation_: Spearman's correlation coefficient measuring the association between the numerical variable and the outcome variable. The result should be rounded to 5 decimal places.
+  * _Correlation p-value_: Spearman's correlation coefficient p-value 
+  * _Correlation p-value corrected_: Spearman's correlation coefficient p-value corrected using the Bonferroni method described in correlations.md
   * _Diagnostic Odds_: Diagnostic odds ratio
     * This is defined as (TP/FP) / (FN/TN). Here a TP is _Class1 Above 0_, FP is _Class0 Above 0_. FN is _Class1 Zero or below_, TN is _Class0 Zero or below_.
 
