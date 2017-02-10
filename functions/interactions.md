@@ -44,14 +44,21 @@ For this function, reduced running time is a priority.
     * If the variable can not be split into `max_quantiles`, it should be split into just 3 rules; Above 0, Zero and below, missing, e.g. "Age: Above 0", "Age: Zero or below", "Age: Missing"
     * The names of the rules are important for interpretability. When a numerical variable is split into quantiles, the lower and upper bounds should be displayed in the rule name.
     * This dichotimisation is just intended as a "first draft". Having run this function once, the user might manually dichotomise a numerical variable and set it to be a categorical variable for the next iteration of running this function.
-* Produce a table of interactions which contains a row per rule-pair (i.e. interaction term), with the following columns:
-  * _Rule1_: Name and level of first rule in the rule-pair. E.g. "Age: 18 - 25"
+* Produce a table of interactions which contains a row per rule-pair-combination (i.e. interaction term), with the following columns:
+  * _Rule1_: Name and level of first rule in the rule-pair. E.g. "Age: 18 to 25"
   * _Rule2_: Name and level of second rule in the rule-pair. E.g. "Gender: F"
-  * _Triggers_: Number of observations in sample where both _Rule1_ and _Rule2_ are true.
-  * _Hits_: Number of observations in sample where both _Rule1_ and _Rule2_ are true, and `outcome` equals 1.
+  * _Rule1True_: Either a 1 or 0 indictating whether _Rule1_ is true or not
+  * _Rule2True_: Either a 1 or 0 indictating whether _Rule2_ is true or not  
+  * _Triggers_: Number of observations in sample where this combination of _Rule1_ and _Rule2_ is true    
+  * _Hits_: Number of observations in sample where this combination of _Rule1_ and _Rule2_ is true and `outcome` equals 1.
   * _PropHits_: _Hits_ / _Triggers_
     * The table should be sorted by descending _PropHits_.
-* Every rule-pair must be in the table once and not twice. To ensure this table is not too large, a rule-pair should ONLY be present if:
+* The table should contain one row per combination of _Rule1_ and _Rule2_, i.e.:
+  1. _Rule1_ = true AND _Rule2_ = true
+  2. _Rule1_ = true AND _Rule2_ = false
+  3. _Rule1_ = false AND _Rule2_ = true
+  4. _Rule1_ = false AND _Rule2_ = false  
+* Every rule-pair-combination must be in the table once and not twice. To ensure this table is not too large, a rule-pair should ONLY be present if:
   * _Triggers_ is greater than `min_triggers`. If a rule itself does not have the minimum required number of triggers, then every pair containing that rule will of course not be in the data frame.
   * _PropHits_ is greater than`min_prophits`.
 
