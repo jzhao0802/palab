@@ -47,18 +47,20 @@ For this function, reduced running time is a priority.
 * Produce a table of interactions which contains a row per rule-pair-combination (i.e. interaction term), with the following columns:
   * _Rule1_: Name and level of first rule in the rule-pair. E.g. "Age: 18 to 25"
   * _Rule2_: Name and level of second rule in the rule-pair. E.g. "Gender: F"
-  * _Rule1True_: Either a 1 or 0 indictating whether _Rule1_ is true or not
-  * _Rule2True_: Either a 1 or 0 indictating whether _Rule2_ is true or not  
-  * _Triggers_: Number of observations in sample where this combination of _Rule1_ and _Rule2_ is true    
-  * _Hits_: Number of observations in sample where this combination of _Rule1_ and _Rule2_ is true and `outcome` equals 1.
-  * _PropHits_: _Hits_ / _Triggers_
+  * _Variable 1_: Name of the variable in _Rule1_
+  * _Variable 2_: Name of the variable in _Rule2_
+  * _Variable Level 1_: Level of the variable in _Rule1_
+  * _Variable Level 2_: Level of the variable in _Rule2_
+  * _AND or OR_: Whether the results are for an OR condition between _Rule1_ and _Rule2_, or whether it is an AND condition.
+  * _Triggers_: Number of observations in sample where this combination of _Rule1_ and _Rule2_ is true   
+  * _Triggers Prop_: Number of observations in sample where this combination of _Rule1_ and _Rule2_ is true   
+  * _Class 1 Triggers_: Number of observations in sample where this combination of _Rule1_ and _Rule2_ is true and `outcome_var` equals 1.
+  * _Class 0 Triggers_: Number of observations in sample where this combination of _Rule1_ and _Rule2_ is true and `outcome_var` equals 0.
+  * _Prop Class 1 Triggers_: _Class 1 Triggers_ / Number of observations in `input` where `outcome_var` = 1
+  * _Prop Class 0 Triggers_: _Class 0 Triggers_ / Number of observations in `input` where `outcome_var` = 0
+  * _PropHits_: _Class 1 Triggers_ / _Triggers_
     * The table should be sorted by descending _PropHits_.
-* The table should contain one row per combination of _Rule1_ and _Rule2_, i.e.:
-  1. _Rule1_ = true AND _Rule2_ = true
-  2. _Rule1_ = true AND _Rule2_ = false
-  3. _Rule1_ = false AND _Rule2_ = true
-  4. _Rule1_ = false AND _Rule2_ = false  
-* Every rule-pair-combination must be in the table once and not twice. To ensure this table is not too large, a rule-pair should ONLY be present if:
+* Every rule-pair-combination must be in the table once as an AND condition, and once for an OR condition. To ensure this table is not too large, a rule-pair should ONLY be present if:
   * _Triggers_ is greater than `min_triggers`. If a rule itself does not have the minimum required number of triggers, then every pair containing that rule will of course not be in the data frame.
   * _PropHits_ is greater than`min_prophits`.
 

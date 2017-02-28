@@ -2,6 +2,7 @@
 
 ## Purpose
 This function calculates the correlations between the variables/columns of a numeric R data.frame.
+For this function, reduced running time is a priority so perhaps parellisation can be considered.
 
 ## Internal Dependencies
 `read_transform` and `dummy_vars`

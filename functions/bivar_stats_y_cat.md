@@ -21,13 +21,15 @@ This function will produce a summary of how each variable varies with a _categor
   * The directory into which all outputs will be written to.
 * `outcome_var`
   * The variable to use as an outcome.
+* `vargt0`
+  * If this is TRUE, certain statistics should be calculated differently
 
 ## Function
 * Output a warning if the outcome variable has more than 5 levels.
   * More than 5 levels will make the resulting spreadsheets very difficult to digest, so the user needs to be warned about this.
 * Each statistic mentioned below ends in "_\__X_". This means that it should be calculated for each level of the outcome variable, and the name of the stat should be suffixed with that level value. E.g. if the outcome variable has 2 levels, "1" and "0", the stat _Count__X_ should have 2 columns in the output CSV, "Count_1" and "Count_0", calculated for all observations where the outcome variable has level 1 and 0 respectively.
 * The statistic columns for each class in the output should appear next to each other in the output, so that they can be compared.
-  * For example, the order of columns should be: Count_1, Count_0, Proportion of Level 1, Proportion of Level 0, Proportion of Outcome 1, Proportion of Outcome 0... etc. 
+  * For example, the order of columns should be: Count_1, Count_0, Proportion of Level 1, Proportion of Level 0, Proportion of Outcome 1, Proportion of Outcome 0... etc.
 * For categorical variables (except the outcome variable itself), produce `prefix`bivar_stats_y_cat_x_cat.csv. This is a full frequency table containing all levels for all variables with the following columns:
   * _Variable_: Name of the categorical variable.
   * _Level_: The value of the level in that variable.
@@ -58,6 +60,13 @@ This function will produce a summary of how each variable varies with a _categor
   * _P95__X_: Value at the percentile 95 of the variable when outcome level is X.
   * _P99__X_: Value at the percentile 99 of the variable when outcome level is X.
 
+* if `vargt0` = TRUE, then the following statistics should only be calculated across the Above-0 part of each variable. This is the equivalent of setting any value, in any variable, which is <= 0, to missing, and running the rest of the function normally.
+  * _Mean*_ (all the mean values)
+  * _SD*_ (all the standard deviation values)
+  * _Min*_ (all the min values)
+  * _Max*_ (all the max values)
+  * _P*_ (all the percentile values)
+
 ## Output
 All CSVs below should be output to the `output_dir`, overwriting a previous version if necessary.
 * `prefix`bivar_stats_y_cat_x_cat.csv
@@ -76,7 +85,8 @@ bivar_stats_y_cat(
   var_config=,
   prefix='',
   output_dir=,
-  outcome=
+  outcome=,
+  vargt0=FALSE
   )  
 ```
 
@@ -87,7 +97,8 @@ cars_bivar <- bivar_stats_y_cat(
   var_config=var_config,
   output="cars",
   output_dir="D:/data/cars1/",
-  outcome = "gear"
+  outcome = "gear",
+  vargt0=FALSE
   )
 ```
 

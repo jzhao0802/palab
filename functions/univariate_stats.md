@@ -19,6 +19,8 @@ This function will produce a summary of each variable in the input dataset. It w
   * Name of the output file(s). This might need to be postfixed with function specific names, see Output section.
 * `output_dir`
   * The directory into which all outputs will be written to.
+* `vargt0`
+  * If this is TRUE, certain statistics should be calculated differently
 
 ## Function
 
@@ -73,6 +75,14 @@ This function will produce a summary of each variable in the input dataset. It w
   * _P80_: Value at the percentile 80 of the variable.
   * _P90_: Value at the percentile 90 of the variable.
 * Note that the percentile thresholds should be calculated on non-missing values only.
+
+* if `vargt0` = TRUE, then the following statistics should only be calculated across the Above-0 part of each variable. This is the equivalent of setting any value, in any variable, which is <= 0, to missing, and running the rest of the function normally.
+  * _Mean*_ (all the mean values)
+  * _SD*_ (all the standard deviation values)
+  * _Min*_ (all the min values)
+  * _Max*_ (all the max values)
+  * _P*_ (all the percentile values)
+
 * Produce `prefix`univar_stats_problems.csv to highlight any obvious data issues. If the univariate stats of a variable meets any of the following criteria, then it should be in the output:
   * Variable is 100% missing
   * Variable has only 1 unique value
@@ -104,6 +114,7 @@ univariate_stats(
   var_config=,
   prefix='',
   output_dir=,
+  vargt0=FALSE
   )  
 ```
 
@@ -114,6 +125,7 @@ cars_uni <- univariate_stats(
   var_config=var_config,
   output="cars",
   output_dir="D:/data/cars1/",
+  vargt0=FALSE
   )
 ```
 
