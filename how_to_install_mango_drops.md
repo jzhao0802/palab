@@ -12,6 +12,7 @@ Since it's a package that's still in development and is cannot be installed thro
   * This step can take again a good 10 minutes. By the end of it, a folder named palab will be created that holds all the source code, documentation, tests and dependencies of the package.
   * Open the palab.Rproj file with R studio.
   * Run install.packages("roxygen2")
+  * Run install.packages("profvis")
   * Then change to the Build tab (by default this is next to the History tab)
   * Hit "Build & Reload"
   * The palab package then will be built, installed and loaded in memory.
